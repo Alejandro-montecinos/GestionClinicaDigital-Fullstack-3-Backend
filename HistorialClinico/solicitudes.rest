@@ -1,0 +1,46 @@
+## Agregar Historial 
+
+POST http://127.0.0.1:5454/historial HTTP/1.1
+Content-Type: application/json
+
+{
+    "antecedentes_medicos":"antecedente 1234",
+   
+    "alergias":"alergico",
+
+    "observaciones_generales":"gggggggg",
+    
+    "paciente_id_paciente":1
+}
+
+
+
+### Entregar Historial
+GET  http://127.0.0.1:5454/historial HTTP/1.1
+Content-Type: application/json
+
+
+### Obtener marca segun id 
+GET  http://127.0.0.1:5454/historial/1 HTTP/1.1
+Content-Type: application/json
+
+
+### Actualizar marca 
+PUT http://127.0.0.1:5454/historial/1 HTTP/1.1
+Content-Type: application/json
+
+{
+    "id_historial_clinico":1,
+
+    "antecedentes_medicos":"antecedente 1234",
+   
+    "alergias":"alergico",
+
+    "observaciones_generales":"esta un poco loco",
+    
+    "paciente_id_paciente":1
+}
+
+### Eliminar Marca
+DELETE http://127.0.0.1:5454/historial/1 HTTP/1.1
+Content-Type: application/json
