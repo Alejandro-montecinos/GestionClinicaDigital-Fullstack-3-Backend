@@ -1,0 +1,53 @@
+## Agregar persona 
+
+POST http://127.0.0.1:2020/persona HTTP/1.1
+Content-Type: application/json
+
+{
+  "run": "12345",
+  "nombre": "Juan",
+  "apellido_paterno": "Pérez",
+  "apellido_materno": "González",
+  "fecha_nacimiento": "1995-06-15",
+  "telefono": "+56912345678",
+  "correo": "juan.perez@email.com",
+  "direccion": "Av. Siempre Viva 742",
+  "COMUNA_id_comuna": 1,
+  "ROL_id_rol": 2
+}
+
+
+
+
+### Entregar persona
+GET  http://127.0.0.1:2020/persona HTTP/1.1
+Content-Type: application/json
+
+
+### Obtener persona segun id 
+GET http://127.0.0.1:2020/persona/3 HTTP/1.1
+Content-Type: application/json
+
+
+### Actualizar persona
+PUT http://127.0.0.1:2020/persona/3 HTTP/1.1
+Content-Type: application/json
+
+{
+  "idPersona":"3",
+  "run": "1235555-5",
+  "nombre": "jovani",
+  "apellido_paterno": "vazquez",
+  "apellido_materno": "figeroa",
+  "fecha_nacimiento": "2004-3-3",
+  "telefono": "+56912345678",
+  "correo": "elpapu@gmail.com",
+  "direccion": "Av. Siempre Viva 742",
+  "COMUNA_id_comuna": 1,
+  "ROL_id_rol": 2
+}
+
+
+### Eliminar persona
+DELETE http://127.0.0.1:2020/persona/1 HTTP/1.1
+Content-Type: application/json

@@ -69,44 +69,6 @@ public class HistorialService {
 
    
 
-    
-
-
-
-
-    /*  
-
-    public ProductoModel guardarProducto(ProductoModel producto){
-        return productoRepository.save(producto);
-    }
-
-    public Optional<ProductoModel> buscarPorId (Long id){
-        return productoRepository.findById(id);
-    }
-
-    public ProductoModel actualizarProducto(ProductoModel request, Long id){
-        ProductoModel produ = productoRepository.findById(id).get();
-
-        produ.setNombre(request.getNombre());
-        produ.setDescripcion(request.getDescripcion());
-        produ.setPrecio(request.getPrecio());
-        produ.setStock(request.getStock());
-        productoRepository.save(produ);
-        return produ;
-    }
-
-    public Boolean eliminarProducto (Long id){
-        try {
-
-            productoRepository.deleteById(id);;
-            return true;
-
-        } catch (Exception e) {
-            return false;
-        }
-    }
-
-    */
 
 
     

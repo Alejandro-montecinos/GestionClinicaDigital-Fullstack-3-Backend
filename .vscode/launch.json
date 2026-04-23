@@ -1,0 +1,24 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-HistorialClinicoApplication<HistorialClinico>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.ClinicaIntegral.HistorialClinico.HistorialClinicoApplication",
+            "projectName": "HistorialClinico",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-PersonaApplication<Persona>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.ClinicaIntegral.Persona.PersonaApplication",
+            "projectName": "Persona",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
