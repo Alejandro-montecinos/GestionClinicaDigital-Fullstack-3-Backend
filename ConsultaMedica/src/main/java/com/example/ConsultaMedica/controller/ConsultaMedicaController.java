@@ -1,0 +1,44 @@
+package com.example.ConsultaMedica.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.example.ConsultaMedica.model.ConsultaMedica;
+import com.example.ConsultaMedica.service.ConsultaMedicaService;
+
+@RestController
+@RequestMapping("/consultas")
+public class ConsultaMedicaController {
+
+    @Autowired
+    private ConsultaMedicaService service;
+
+    @GetMapping
+    public List<ConsultaMedica> listar() {
+        return service.listar();
+    }
+
+    @PostMapping
+    public ConsultaMedica guardar(@RequestBody ConsultaMedica consulta) {
+        return service.guardar(consulta);
+    }
+
+    @PutMapping("/{id}")
+    public ConsultaMedica actualizar(@PathVariable Integer id, @RequestBody ConsultaMedica consulta) {
+        return service.actualizar(id, consulta);
+    }
+
+    @DeleteMapping("/{id}")
+    public void eliminar(@PathVariable Integer id) {
+        service.eliminar(id);
+    }
+}
