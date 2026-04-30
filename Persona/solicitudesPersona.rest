@@ -4,16 +4,16 @@ POST http://127.0.0.1:2020/persona HTTP/1.1
 Content-Type: application/json
 
 {
-  "run": "12345",
-  "nombre": "Juan",
-  "apellido_paterno": "Pérez",
-  "apellido_materno": "González",
-  "fecha_nacimiento": "1995-06-15",
+  "run": "6666-6",
+  "nombre": "alejandro",
+  "apellido_paterno": "montecinos",
+  "apellido_materno": "pavez",
+  "fecha_nacimiento": "2005-06-15",
   "telefono": "+56912345678",
-  "correo": "juan.perez@email.com",
-  "direccion": "Av. Siempre Viva 742",
-  "COMUNA_id_comuna": 1,
-  "ROL_id_rol": 2
+  "correo": "hola1235@gmail.com",
+  "direccion": "av./////holahola",
+  "COMUNA_id_comuna": 10,
+  "ROL_id_rol": 666
 }
 
 
@@ -49,5 +49,5 @@ Content-Type: application/json
 
 
 ### Eliminar persona
-DELETE http://127.0.0.1:2020/persona/1 HTTP/1.1
+DELETE http://127.0.0.1:2020/persona/3 HTTP/1.1
 Content-Type: application/json
