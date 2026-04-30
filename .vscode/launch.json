@@ -2,6 +2,20 @@
     "configurations": [
         {
             "type": "java",
+            "name": "ConsultaMedicaApplication",
+            "request": "launch",
+            "mainClass": "com.example.ConsultaMedica.ConsultaMedicaApplication",
+            "projectName": "ConsultaMedica"
+        },
+        {
+            "type": "java",
+            "name": "TratamientoApplication",
+            "request": "launch",
+            "mainClass": "com.example.Tratamiento.TratamientoApplication",
+            "projectName": "Traramiento"
+        },
+        {
+            "type": "java",
             "name": "Spring Boot-HistorialClinicoApplication<HistorialClinico>",
             "request": "launch",
             "cwd": "${workspaceFolder}",
