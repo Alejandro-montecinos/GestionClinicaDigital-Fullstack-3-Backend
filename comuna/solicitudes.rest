@@ -1,0 +1,37 @@
+## Agregar comuna 
+
+POST http://127.0.0.1:2121/comuna HTTP/1.1
+Content-Type: application/json
+
+{
+    "nombre_comuna":"puentelato",
+    
+    "ciudad_id_ciudad":2
+}
+
+
+
+### Entregar comuna
+GET  http://127.0.0.1:2121/comuna HTTP/1.1
+Content-Type: application/json
+
+
+### Obtener comuna segun id 
+GET  http://127.0.0.1:2121/comuna/8 HTTP/1.1
+Content-Type: application/json
+
+
+### Actualizar comuna 
+PUT http://127.0.0.1:2121/comuna/8 HTTP/1.1
+Content-Type: application/json
+
+{
+
+    "nombre_comuna":"Lo espejo ",
+    
+    "ciudad_id_ciudad":555
+}
+
+### Eliminar comuna
+DELETE http://127.0.0.1:2121/comuna/8 HTTP/1.1
+Content-Type: application/json
