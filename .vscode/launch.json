@@ -33,6 +33,16 @@
             "projectName": "Persona",
             "args": "",
             "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-ComunaApplication<comuna>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.ClinicaIntegral.comuna.ComunaApplication",
+            "projectName": "comuna",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
         }
     ]
 }
