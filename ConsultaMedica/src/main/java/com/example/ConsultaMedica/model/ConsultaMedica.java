@@ -1,5 +1,6 @@
 package com.example.ConsultaMedica.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -16,15 +17,21 @@ public class ConsultaMedica {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idConsulta;
 
+    @Column(nullable = false)
     private String fechaConsulta_ConsultaMedica;
 
+    @Column(nullable = false)
     private String sintomas_ConsultaMedica;
 
+    @Column(nullable = false)
     private String observaciones_ConsultaMedica;
 
+    @Column(nullable = false)
     private String diagnostico_ConsultaMedica;
 
+    @Column(nullable = false)
     private Integer pacienteId;
 
+    @Column(nullable = false)
     private Integer medicoId;
 }
