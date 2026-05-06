@@ -34,7 +34,7 @@ public class PersonaService {
     public PersonaModel buscarPersonaPorId (int id){
         PersonaModel personaM = personaRepositories.findById(id).orElse(null);
         if (personaM == null) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"Historial no encontrado");
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"Persona no encontrada");
         }
         return personaM;
     }

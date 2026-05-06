@@ -1,0 +1,85 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-PersonaApplication<Persona>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.ClinicaIntegral.Persona.PersonaApplication",
+            "projectName": "Persona",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env",
+            "vmArgs": " -Dcom.sun.management.jmxremote"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-CiudadApplication<ciudad>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.ClinicaIntegral.ciudad.CiudadApplication",
+            "projectName": "ciudad",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-ComunaApplication<comuna>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.ClinicaIntegral.comuna.ComunaApplication",
+            "projectName": "comuna",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-ConsultaMedicaApplication<ConsultaMedica>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.example.ConsultaMedica.ConsultaMedicaApplication",
+            "projectName": "ConsultaMedica",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-CitaMedicaApplication<GestionClinicaDigital>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.example.CitaMedica.CitaMedicaApplication",
+            "projectName": "GestionClinicaDigital",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-HistorialClinicoApplication<HistorialClinico>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.ClinicaIntegral.HistorialClinico.HistorialClinicoApplication",
+            "projectName": "HistorialClinico",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-RolApplication<Rol>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.example.Rol.RolApplication",
+            "projectName": "Rol",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-TratamientoApplication<Traramiento>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.example.Tratamiento.TratamientoApplication",
+            "projectName": "Traramiento",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
