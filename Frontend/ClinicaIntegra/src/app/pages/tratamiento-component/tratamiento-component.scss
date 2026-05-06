@@ -1,0 +1,188 @@
+/* CONTENEDOR */
+.main-container {
+  max-width: 900px;
+  margin: auto;
+  padding: 30px;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* HERO */
+.hero {
+  position: relative;
+  margin-bottom: 30px;
+}
+
+/* IMAGEN */
+.hero-image {
+  height: 250px;
+  border-radius: 15px;
+
+  background: 
+    linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)),
+    url("/img/doctor.jpg") center/cover no-repeat;
+
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+/* TEXTO SOBRE IMAGEN */
+.hero-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  text-align: center;
+}
+
+.hero-text h1 {
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+
+.hero-text p {
+  font-size: 14px;
+  opacity: 0.9;
+}
+
+/* CARD */
+.card {
+  background: white;
+  padding: 25px;
+  border-radius: 15px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  margin-bottom: 30px;
+}
+
+/* INPUTS */
+input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  transition: 0.3s;
+}
+
+input:focus {
+  border-color: #70E0D0;
+  box-shadow: 0 0 8px rgba(112,224,208,0.5);
+  outline: none;
+}
+
+/* BOTONES */
+.actions {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.btn-primary,
+.btn-secondary,
+.edit,
+.delete {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  font-weight: 500;
+  border-radius: 10px;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+/* BOTÓN PRINCIPAL */
+.btn-primary {
+  background: linear-gradient(135deg, #75D5FF, #70E0D0);
+  color: white;
+  border: none;
+}
+
+.btn-primary:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+}
+
+.btn-primary:active {
+  transform: scale(0.96);
+}
+
+/* EFECTO BRILLO */
+.btn-primary::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255,255,255,0.5),
+    transparent
+  );
+  transition: 0.5s;
+}
+
+.btn-primary:hover::before {
+  left: 100%;
+}
+
+/* BOTÓN SECUNDARIO */
+.btn-secondary {
+  background: white;
+  border: 2px solid #70E0D0;
+  color: #70E0D0;
+}
+
+.btn-secondary:hover {
+  background: #70E0D0;
+  color: white;
+  transform: translateY(-3px);
+}
+
+/* TABLA */
+.table-card {
+  background: white;
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th {
+  background: #75D5FF;
+  color: white;
+}
+
+td, th {
+  padding: 12px;
+  text-align: center;
+}
+
+tbody tr:hover {
+  background: rgba(117,213,255,0.2);
+}
+
+/* BOTONES TABLA */
+.edit {
+  background: #70E0D0;
+  color: white;
+  border: none;
+}
+
+.delete {
+  background: #ff6b6b;
+  color: white;
+  border: none;
+}
+
+.edit:hover {
+  transform: scale(1.15);
+}
+
+.delete:hover {
+  transform: scale(1.15);
+}

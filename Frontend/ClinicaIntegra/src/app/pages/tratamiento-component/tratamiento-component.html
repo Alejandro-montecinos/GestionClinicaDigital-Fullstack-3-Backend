@@ -1,0 +1,77 @@
+<div class="main-container">
+
+  <div class="hero">
+
+    <div class="hero-image"></div>
+
+    <div class="hero-text">
+      <h1>Tratamientos Médicos</h1>
+      <p>Gestiona los tratamientos de tus pacientes de forma simple y rápida</p>
+    </div>
+
+  </div>
+
+  <div class="card">
+
+    <form (ngSubmit)="guardar()">
+
+      <input type="text"
+        placeholder="Descripción del tratamiento"
+        [(ngModel)]="form.descripcion_Tratamiento"
+        name="descripcion">
+
+      <input type="text"
+        placeholder="Indicaciones médicas"
+        [(ngModel)]="form.indicaciones_Tratamiento"
+        name="indicaciones">
+
+      <input type="number"
+        placeholder="ID Consulta"
+        [(ngModel)]="form.consultaId"
+        name="consultaId">
+
+      <div class="actions">
+        <button class="btn-primary" type="submit">
+          {{ editando ? 'Actualizar' : 'Guardar' }}
+        </button>
+
+        <button class="btn-secondary" type="button" (click)="reset()">
+          Cancelar
+        </button>
+      </div>
+
+    </form>
+
+  </div>
+
+  <div class="table-card">
+
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Descripción</th>
+          <th>Indicaciones</th>
+          <th>Consulta</th>
+          <th></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let t of tratamientos">
+          <td>{{ t.idTratamiento }}</td>
+          <td>{{ t.descripcion_Tratamiento }}</td>
+          <td>{{ t.indicaciones_Tratamiento }}</td>
+          <td>{{ t.consultaId }}</td>
+
+          <td class="acciones">
+            <button class="edit" (click)="editar(t)">Editar</button>
+            <button class="delete" (click)="eliminar(t.idTratamiento)">Eliminar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+
+</div>
