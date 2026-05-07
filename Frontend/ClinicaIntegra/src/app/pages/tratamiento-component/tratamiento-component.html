@@ -1,77 +1,165 @@
-<div class="main-container">
+<div class="page">
 
-  <div class="hero">
+  <!-- HERO -->
+  <section class="hero">
 
-    <div class="hero-image"></div>
+    <div class="hero-info">
 
-    <div class="hero-text">
-      <h1>Tratamientos Médicos</h1>
-      <p>Gestiona los tratamientos de tus pacientes de forma simple y rápida</p>
+      <span class="badge">
+        Sistema Clínico
+      </span>
+
+      <h1>
+        Gestión de Tratamientos
+      </h1>
+
+      <p>
+        Administra tratamientos médicos de manera moderna,
+        segura y profesional.
+      </p>
+
     </div>
 
-  </div>
+    <div class="hero-image">
 
-  <div class="card">
+      <img src="img/doctor.jpg" alt="">
 
-    <form (ngSubmit)="guardar()">
+    </div>
 
-      <input type="text"
-        placeholder="Descripción del tratamiento"
-        [(ngModel)]="form.descripcion_Tratamiento"
-        name="descripcion">
+  </section>
 
-      <input type="text"
-        placeholder="Indicaciones médicas"
-        [(ngModel)]="form.indicaciones_Tratamiento"
-        name="indicaciones">
+  <!-- FORM -->
+  <section class="form-card">
 
-      <input type="number"
-        placeholder="ID Consulta"
-        [(ngModel)]="form.consultaId"
-        name="consultaId">
+    <div class="card-header">
 
-      <div class="actions">
-        <button class="btn-primary" type="submit">
+      <h2>
+        {{ editando ? 'Actualizar Tratamiento' : 'Registrar Tratamiento' }}
+      </h2>
+
+    </div>
+
+    <form (ngSubmit)="guardarTratamiento()">
+
+      <div class="input-box">
+
+        <label>Descripción</label>
+
+        <input
+          type="text"
+          [(ngModel)]="tratamiento.descripcion_Tratamiento"
+          name="descripcion">
+
+      </div>
+
+      <div class="input-box">
+
+        <label>Indicaciones</label>
+
+        <input
+          type="text"
+          [(ngModel)]="tratamiento.indicaciones_Tratamiento"
+          name="indicaciones">
+
+      </div>
+
+      <div class="input-box">
+
+        <label>ID Consulta</label>
+
+        <input
+          type="number"
+          [(ngModel)]="tratamiento.consultaId"
+          name="consultaId">
+
+      </div>
+
+      <div class="buttons">
+
+        <button class="save-btn" type="submit">
+
           {{ editando ? 'Actualizar' : 'Guardar' }}
+
         </button>
 
-        <button class="btn-secondary" type="button" (click)="reset()">
-          Cancelar
+        <button
+          class="clean-btn"
+          type="button"
+          (click)="limpiar()">
+
+          Limpiar
+
         </button>
+
       </div>
 
     </form>
 
-  </div>
+  </section>
 
-  <div class="table-card">
+  <!-- TABLA -->
+  <section class="table-card">
+
+    <div class="table-header">
+
+      <h2>Tratamientos Registrados</h2>
+
+    </div>
 
     <table>
+
       <thead>
+
         <tr>
+
           <th>ID</th>
           <th>Descripción</th>
           <th>Indicaciones</th>
           <th>Consulta</th>
-          <th></th>
+          <th>Acciones</th>
+
         </tr>
+
       </thead>
 
       <tbody>
+
         <tr *ngFor="let t of tratamientos">
+
           <td>{{ t.idTratamiento }}</td>
+
           <td>{{ t.descripcion_Tratamiento }}</td>
+
           <td>{{ t.indicaciones_Tratamiento }}</td>
+
           <td>{{ t.consultaId }}</td>
 
           <td class="acciones">
-            <button class="edit" (click)="editar(t)">Editar</button>
-            <button class="delete" (click)="eliminar(t.idTratamiento)">Eliminar</button>
+
+            <button
+              class="edit-btn"
+              (click)="editarTratamiento(t)">
+
+              Editar
+
+            </button>
+
+            <button
+              class="delete-btn"
+              (click)="eliminarTratamiento(t.idTratamiento)">
+
+              Eliminar
+
+            </button>
+
           </td>
+
         </tr>
+
       </tbody>
+
     </table>
 
-  </div>
+  </section>
 
 </div>

@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.ConsultaMedica.model.ConsultaMedica;
+import com.example.ConsultaMedica.models.entities.ConsultaMedica;
 import com.example.ConsultaMedica.repository.ConsultaMedicaRepository;
 
 @Service

@@ -1,4 +1,4 @@
-package com.example.CitaMedica.model;
+package com.example.ConsultaMedica.models.entities;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -10,29 +10,28 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "cita_medica")
-public class CitaMedica {
+@Table(name = "consulta_medica")
+public class ConsultaMedica {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-     private int id_cita;
+    private Integer idConsulta;
 
     @Column(nullable = false)
-     private String fecha_cita;
+    private String fechaConsulta_ConsultaMedica;
 
     @Column(nullable = false)
-     private String hora_agendada;
+    private String sintomas_ConsultaMedica;
 
     @Column(nullable = false)
-     private String motivo_cita;
+    private String observaciones_ConsultaMedica;
 
     @Column(nullable = false)
-     private String estado_cita;
+    private String diagnostico_ConsultaMedica;
 
     @Column(nullable = false)
-     private int paciente_id_paciente;
+    private Integer pacienteId;
 
     @Column(nullable = false)
-     private int medico_id_medico;
-
+    private Integer medicoId;
 }

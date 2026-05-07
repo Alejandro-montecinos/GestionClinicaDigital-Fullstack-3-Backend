@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.CitaMedica.model.CitaMedica;
+import com.example.CitaMedica.models.entities.CitaMedica;
 import com.example.CitaMedica.repository.CitaMedicaRepository;
 
 @Service
@@ -29,7 +29,7 @@ public class CitaMedicaService {
     public CitaMedica actualizar(int id, CitaMedica citaMedica) {
         CitaMedica existente = obtenerId(id);
         existente.setFecha_cita(citaMedica.getFecha_cita());
-        existente.setHora_agendada(citaMedica.getHora_agendada());
+        existente.setHora_agendada_cita(citaMedica.getHora_agendada_cita());
         existente.setMotivo_cita(citaMedica.getMotivo_cita());
         existente.setEstado_cita(citaMedica.getEstado_cita());
         existente.setPaciente_id_paciente(citaMedica.getPaciente_id_paciente());

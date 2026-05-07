@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.Tratamiento.model.Tratamiento;
+import com.example.Tratamiento.models.entities.Tratamiento;
 import com.example.Tratamiento.repository.TratamientoRepository;
 
 @Service

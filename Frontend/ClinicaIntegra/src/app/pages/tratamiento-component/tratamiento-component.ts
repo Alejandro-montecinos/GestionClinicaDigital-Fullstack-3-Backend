@@ -1,107 +1,144 @@
-/*import { Component } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-tratamiento-component',
-  imports: [],
-  templateUrl: './tratamiento-component.html',
-  styleUrl: './tratamiento-component.scss',
-})
-export class TratamientoComponent {}*/
-
-import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
-
-@Component({
-  selector: 'app-tratamiento',
   standalone: true,
   imports: [CommonModule, FormsModule, HttpClientModule],
-  templateUrl: './tratamiento-component.html',
-  styleUrls: ['./tratamiento-component.scss'] // 👈 AQUÍ ESTABA EL ERROR
+  templateUrl: './Tratamiento-component.html',
+  styleUrls: ['./Tratamiento-component.scss'],
 })
 export class TratamientoComponent implements OnInit {
 
-  apiUrl = 'http://localhost:6666/api/tratamientos';
+  private http = inject(HttpClient);
+
+  apiUrl = 'http://localhost:6666/tratamiento';
+
 
   tratamientos: any[] = [];
 
-  form = {
+  tratamiento = {
+    idTratamiento: 0,
     descripcion_Tratamiento: '',
     indicaciones_Tratamiento: '',
     consultaId: 0
   };
 
   editando = false;
-  idEditando: number | null = null;
-
-  constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
-    this.cargar();
+    this.obtenerTratamientos();
   }
 
-  cargar() {
-  this.http.get<any[]>(this.apiUrl)
-    .subscribe({
-      next: data => {
-        console.log("DATOS:", data);
-        this.tratamientos = data;
-      },
-      error: err => {
-        console.error("ERROR GET:", err);
-      }
-    });
+  // LISTAR
+  obtenerTratamientos() {
+
+    this.http.get<any[]>(this.apiUrl)
+      .subscribe({
+        next: (data) => {
+          this.tratamientos = data;
+        },
+        error: (err) => {
+          console.error('ERROR GET:', err);
+        }
+      });
+
   }
 
-  guardar() {
-  console.log("ENVIANDO:", this.form);
+  // GUARDAR
+  guardarTratamiento() {
 
-  if (this.editando) {
-    this.http.put(`${this.apiUrl}/${this.idEditando}`, this.form)
-      .subscribe({
-        next: res => {
-          console.log("ACTUALIZADO:", res);
-          this.reset();
-          this.cargar();
+    if(this.editando){
+
+      this.http.put(
+        `${this.apiUrl}/${this.tratamiento.idTratamiento}`,
+        this.tratamiento
+      ).subscribe({
+
+        next: () => {
+
+          this.obtenerTratamientos();
+          this.limpiar();
+
         },
-        error: err => {
-          console.error("ERROR PUT:", err);
+
+        error: (err) => {
+          console.error('ERROR PUT:', err);
         }
+
       });
-  } else {
-    this.http.post(this.apiUrl, this.form)
-      .subscribe({
-        next: res => {
-          console.log("GUARDADO:", res);
-          this.reset();
-          this.cargar();
-        },
-        error: err => {
-          console.error("ERROR POST:", err);
-        }
-      });
+
+    }else{
+
+      this.http.post(this.apiUrl, this.tratamiento)
+        .subscribe({
+
+          next: () => {
+
+            this.obtenerTratamientos();
+            this.limpiar();
+
+          },
+
+          error: (err) => {
+            console.error('ERROR POST:', err);
+          }
+
+        });
+
     }
-  } 
 
-  editar(t: any) {
+  }
+
+  // EDITAR
+  editarTratamiento(t: any){
+
     this.editando = true;
-    this.idEditando = t.idTratamiento;
-    this.form = { ...t };
+
+    this.tratamiento = {
+      ...t
+    };
+
   }
 
-  eliminar(id: number) {
-    this.http.delete(`${this.apiUrl}/${id}`)
-      .subscribe(() => this.cargar());
+  // ELIMINAR
+  eliminarTratamiento(id: number){
+
+    if(confirm("¿Eliminar tratamiento?")){
+
+      this.http.delete(`${this.apiUrl}/${id}`)
+        .subscribe({
+
+          next: () => {
+
+            this.obtenerTratamientos();
+
+          },
+
+          error: (err) => {
+            console.error('ERROR DELETE:', err);
+          }
+
+        });
+
+    }
+
   }
 
-  reset() {
-    this.form = {
+  // LIMPIAR
+  limpiar(){
+
+    this.tratamiento = {
+      idTratamiento: 0,
       descripcion_Tratamiento: '',
       indicaciones_Tratamiento: '',
       consultaId: 0
     };
+
     this.editando = false;
-    this.idEditando = null;
+
   }
+
 }

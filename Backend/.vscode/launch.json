@@ -2,6 +2,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "RolApplication",
+            "request": "launch",
+            "mainClass": "com.example.Rol.RolApplication",
+            "projectName": "Rol"
+        },
+        {
+            "type": "java",
             "name": "ConsultaMedicaApplication",
             "request": "launch",
             "mainClass": "com.example.ConsultaMedica.ConsultaMedicaApplication",

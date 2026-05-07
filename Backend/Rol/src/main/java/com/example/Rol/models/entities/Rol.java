@@ -1,4 +1,4 @@
-package com.example.Tratamiento.model;
+package com.example.Rol.models.entities;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -10,19 +10,19 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "tratamiento")
-public class Tratamiento {
+@Table(name = "rol")
+public class Rol {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idTratamiento;
-    
-    @Column(nullable = false)
-    private String descripcion_Tratamiento;
+     private int id_rol;
 
     @Column(nullable = false)
-    private String indicaciones_Tratamiento;
-    
+     private String nombre_rol;
+
     @Column(nullable = false)
-    private Integer consultaId;
+     private String descripcion_rol;
+     
 }
+
+

@@ -12,7 +12,7 @@ Content-Type: application/json
   "telefono": "+56912345678",
   "correo": "hola1235@gmail.com",
   "direccion": "av./////holahola",
-  "COMUNA_id_comuna": 9,
+  "COMUNA_id_comuna": 1,
   "ROL_id_rol": 666
 }
 

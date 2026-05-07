@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.ConsultaMedica.model.ConsultaMedica;
+import com.example.ConsultaMedica.models.entities.ConsultaMedica;
 import com.example.ConsultaMedica.service.ConsultaMedicaService;
 
 @RestController

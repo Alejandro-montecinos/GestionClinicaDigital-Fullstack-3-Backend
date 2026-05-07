@@ -1,0 +1,44 @@
+## Agregar persona 
+
+POST http://localhost:6161/consultas HTTP/1.1
+Content-Type: application/json
+
+{
+  "fechaConsulta_ConsultaMedica": "2023-10-10",
+  "sintomas_ConsultaMedica": "dolor de cabeza",
+  "observaciones_ConsultaMedica": "el paciente se queja de dolor de cabeza",
+  "diagnostico_ConsultaMedica": "migraña",
+  "pacienteId": 1,
+  "medicoId": 1
+}
+
+
+
+
+### Entregar persona
+GET  http://localhost:6161/consultas HTTP/1.1
+Content-Type: application/json
+
+
+### Obtener persona segun id 
+GET http://localhost:6161/consultas HTTP/1.1
+Content-Type: application/json
+
+
+### Actualizar persona
+PUT http://localhost:6161/consultas HTTP/1.1
+Content-Type: application/json
+
+{
+  "fechaConsulta_ConsultaMedica": "2023-10-10",
+  "sintomas_ConsultaMedica": "dolor de cabeza",
+  "observaciones_ConsultaMedica": "el paciente se queja de dolor de cabeza",
+  "diagnostico_ConsultaMedica": "migraña",
+  "pacienteId": 1,
+  "medicoId": 1
+}
+
+
+### Eliminar persona
+DELETE http://localhost:6161/consultas HTTP/1.1
+Content-Type: application/json
