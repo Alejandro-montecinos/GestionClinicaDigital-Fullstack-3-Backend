@@ -1,0 +1,37 @@
+## Agregar persona 
+@baseURL = http://localhost:6363/region
+
+POST {{baseURL}} HTTP/1.1
+Content-Type: application/json
+
+{
+ "nombre_region":"region metropolitana",
+ "pais_id_pais":"1"
+}
+
+
+
+
+### Entregar region
+GET  {{baseURL}} HTTP/1.1
+Content-Type: application/json
+
+
+### Obtener region segun id 
+GET {{baseURL}}/1 HTTP/1.1
+Content-Type: application/json
+
+
+### Actualizar region
+PUT {{baseURL}}/1 HTTP/1.1
+Content-Type: application/json
+
+{
+ "nombre_region":"region tarapaca",
+ "pais_id_pais":"5"
+}
+
+
+### Eliminar region
+DELETE {{baseURL}}/1 HTTP/1.1
+Content-Type: application/json
