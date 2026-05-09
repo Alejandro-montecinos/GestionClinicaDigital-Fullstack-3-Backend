@@ -1,0 +1,24 @@
+#### CREAR CONVENIO
+POST http://localhost:8080/convenio_salud HTTP/1.1
+content-type: application/json
+
+{
+  "nombre_convenio_salud": "Fonasa"
+}
+
+#### OBTENER CONVENIOS
+GET http://localhost:8080/convenio_salud HTTP/1.1
+content-type: application/json
+
+#### ACTUALIZAR CONVENIO
+PUT http://localhost:8080/convenio_salud HTTP/1.1
+Content-Type: application/json
+
+{
+  "id_convenio_salud": 1,
+  "nombre_convenio_salud": "Isapre"
+}
+
+#### ELIMINAR CONVENIO
+DELETE http://localhost:8080/convenio_salud/1 HTTP/1.1
+content-type: application/json
