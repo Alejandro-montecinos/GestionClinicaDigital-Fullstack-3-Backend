@@ -3,7 +3,9 @@ package com.example.Tratamiento.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import com.example.Tratamiento.models.entities.Tratamiento;
 import com.example.Tratamiento.repository.TratamientoRepository;
@@ -22,8 +24,14 @@ public class TratamientoService {
         return repository.save(t);
     }
 
-    public List<Tratamiento> buscarPorConsulta(Integer consultaId) {
-        return repository.findByConsultaId(consultaId);
+    public Tratamiento buscarPorConsulta(Integer consultaId) {
+        Tratamiento tratamiento = repository.findById(consultaId).orElse(null);
+        if (tratamiento == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND," Tratamiento no encontrado");
+        
+            
+        }
+        return tratamiento;
     }
 
     public void eliminar(Integer id) {
@@ -34,7 +42,7 @@ public class TratamientoService {
         return repository.findById(id).map(t -> {
             t.setDescripcion_Tratamiento(nuevo.getDescripcion_Tratamiento());
             t.setIndicaciones_Tratamiento(nuevo.getIndicaciones_Tratamiento());
-            t.setConsultaId(nuevo.getConsultaId());
+            t.setConsulta_medica_id_consulta(nuevo.getConsulta_medica_id_consulta());
             return repository.save(t);
         }).orElse(null);
     }

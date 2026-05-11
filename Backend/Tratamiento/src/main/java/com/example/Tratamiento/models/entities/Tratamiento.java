@@ -24,5 +24,5 @@ public class Tratamiento {
     private String indicaciones_Tratamiento;
     
     @Column(nullable = false)
-    private Integer consultaId;
+    private Integer consulta_medica_id_consulta;
 }

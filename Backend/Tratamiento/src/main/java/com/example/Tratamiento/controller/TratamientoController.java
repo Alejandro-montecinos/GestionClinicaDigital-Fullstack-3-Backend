@@ -34,8 +34,8 @@ public class TratamientoController {
         return service.guardar(t);
     }
 
-    @GetMapping("/consulta/{id}")
-    public List<Tratamiento> porConsulta(@PathVariable Integer id) {
+    @GetMapping("/{id}")
+    public Tratamiento porConsulta(@PathVariable Integer id) {
         return service.buscarPorConsulta(id);
     }
 
