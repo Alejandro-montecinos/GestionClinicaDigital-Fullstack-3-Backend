@@ -15,7 +15,7 @@ public class ConsultaMedica {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idConsulta;
+    private int idConsulta;
 
     @Column(nullable = false)
     private String fechaConsulta_ConsultaMedica;
@@ -30,8 +30,8 @@ public class ConsultaMedica {
     private String diagnostico_ConsultaMedica;
 
     @Column(nullable = false)
-    private Integer pacienteId;
+    private int pacienteId;
 
     @Column(nullable = false)
-    private Integer medicoId;
+    private int medicoId;
 }

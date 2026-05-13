@@ -1,4 +1,4 @@
-package com.example.Tratamiento.models.entities;
+package com.clinica.integral.receta.models.entities;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -10,19 +10,17 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "tratamiento")
-public class Tratamiento {
+@Table(name = "receta")
+public class Receta {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idTratamiento;
-    
-    @Column(nullable = false)
-    private String descripcion_Tratamiento;
+    private int id_receta;
 
     @Column(nullable = false)
-    private String indicaciones_Tratamiento;
-    
+    private String descripcion;
+
     @Column(nullable = false)
-    private int consulta_medica_id_consulta;
+    private String fecha_emision;
+
 }

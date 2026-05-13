@@ -26,7 +26,10 @@ public class ConsultaMedicaController {
     public List<ConsultaMedica> listar() {
         return service.listar();
     }
-
+    @GetMapping("/consulta/{id}")
+    public ConsultaMedica buscar(@PathVariable Integer id){
+        return service.buscarPorId(id);
+    }
     @PostMapping
     public ConsultaMedica guardar(@RequestBody ConsultaMedica consulta) {
         return service.guardar(consulta);

@@ -2,6 +2,20 @@
     "configurations": [
         {
             "type": "java",
+            "name": "ConsultaMedicaApplication",
+            "request": "launch",
+            "mainClass": "com.example.ConsultaMedica.ConsultaMedicaApplication",
+            "projectName": "com.example-ConsultaMedica"
+        },
+        {
+            "type": "java",
+            "name": "TratamientoApplication",
+            "request": "launch",
+            "mainClass": "com.example.Tratamiento.TratamientoApplication",
+            "projectName": "com.example-Traramiento"
+        },
+        {
+            "type": "java",
             "name": "RolApplication",
             "request": "launch",
             "mainClass": "com.example.Rol.RolApplication",
