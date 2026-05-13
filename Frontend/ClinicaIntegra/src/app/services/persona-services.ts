@@ -8,12 +8,14 @@ import { lastValueFrom } from 'rxjs';
   providedIn: 'root',
 })
 export class PersonaServices {
+  private http = inject(HttpClient);
+  private apiUrl = `${environment.apiUrl}`; // ajusta esta ruta según tu backend
 
-   private http = inject(HttpClient);
-
-  async obtenerPersona(){
-    return await lastValueFrom(this.http.get<PersonaModel>(environment.apiUrl));
-    
+  async obtenerPersona() {
+    return await lastValueFrom(this.http.get<PersonaModel>(this.apiUrl));
   }
 
+  async crearPersona(persona: PersonaModel) {
+    return await lastValueFrom(this.http.post<PersonaModel>(this.apiUrl, persona));
+  }
 }

@@ -1,10 +1,10 @@
 ## Agregar persona 
 
-POST http://127.0.0.1:2020/persona HTTP/1.1
+POST http://localhost:2020/persona HTTP/1.1
 Content-Type: application/json
 
 {
-  "run": "66666-6",
+  "run": "66644446-6",
   "nombre": "alejandro",
   "apellido_paterno": "montecinos",
   "apellido_materno": "pavez",
@@ -12,7 +12,7 @@ Content-Type: application/json
   "telefono": "+56912345678",
   "correo": "hola1235@gmail.com",
   "direccion": "av./////holahola",
-  "COMUNA_id_comuna": 1,
+  "COMUNA_id_comuna": 9,
   "ROL_id_rol": 666
 }
 
