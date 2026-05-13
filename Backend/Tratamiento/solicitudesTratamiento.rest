@@ -6,7 +6,7 @@ Content-Type: application/json
 {
   "descripcion_Tratamiento": "paracetal",
   "indicaciones_Tratamiento": "1 a la semana",
-  "consulta_medica_id_consulta": 1
+  "consulta_medica_id_consulta": 2
 }
 
 

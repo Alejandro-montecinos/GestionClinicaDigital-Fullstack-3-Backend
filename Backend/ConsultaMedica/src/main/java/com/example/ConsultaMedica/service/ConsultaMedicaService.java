@@ -3,7 +3,9 @@ package com.example.ConsultaMedica.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import com.example.ConsultaMedica.models.entities.ConsultaMedica;
 import com.example.ConsultaMedica.repository.ConsultaMedicaRepository;
@@ -14,8 +16,23 @@ public class ConsultaMedicaService {
     @Autowired
     private ConsultaMedicaRepository repository;
 
+
     public List<ConsultaMedica> listar() {
         return repository.findAll();
+    }
+
+    public ConsultaMedica buscarPorId(Integer id) {
+
+        ConsultaMedica consulta = repository.findById(id).orElse(null);
+
+        if (consulta == null) {
+            throw new ResponseStatusException(
+                HttpStatus.NOT_FOUND,
+                "Consulta Médica no encontrada"
+            );
+        }
+
+        return consulta;
     }
 
     public ConsultaMedica guardar(ConsultaMedica consulta) {
