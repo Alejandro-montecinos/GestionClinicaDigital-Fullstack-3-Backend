@@ -1,0 +1,183 @@
+<app-navbar></app-navbar>
+<div class="registro-wrapper">
+
+  <div class="registro-card">
+
+    <div class="brand-panel">
+      <img
+          src="img/doctor 2.jpg"
+          alt="Logo Clínica"
+          class="logo-clinica"
+        />
+      <div class="brand-badge">
+        Clínica VitalCare
+      </div>
+
+      <h1>Registro Consulta Médica</h1>
+
+      <p>
+        Ingresa la información de la consulta médica del paciente.
+      </p>
+
+    </div>
+
+    <div class="form-panel">
+
+      <form
+        [formGroup]="consultaForm"
+        (ngSubmit)="registrarConsulta()"
+      >
+      
+
+        <div class="form-grid">
+
+          <div class="input-group">
+
+            <label>Fecha Consulta</label>
+
+            <input
+              type="date"
+              formControlName="fechaConsulta_ConsultaMedica"
+            >
+
+          </div>
+
+          <div class="input-group">
+
+            <label>Síntomas</label>
+
+            <input
+              type="text"
+              formControlName="sintomas_ConsultaMedica"
+            >
+
+          </div>
+
+          <div class="input-group full-width">
+
+            <label>Observaciones</label>
+
+            <input
+              type="text"
+              formControlName="observaciones_ConsultaMedica"
+            >
+
+          </div>
+
+          <div class="input-group full-width">
+
+            <label>Diagnóstico</label>
+
+            <input
+              type="text"
+              formControlName="diagnostico_ConsultaMedica"
+            >
+
+          </div>
+
+          <div class="input-group">
+
+            <label>ID Paciente</label>
+
+            <input
+              type="number"
+              formControlName="pacienteId"
+            >
+
+          </div>
+
+          <div class="input-group">
+
+            <label>ID Médico</label>
+
+            <input
+              type="number"
+              formControlName="medicoId"
+            >
+
+          </div>
+
+        </div>
+
+        <div
+          class="estado-box exito fade-message"
+          *ngIf="mensajeExito"
+        >
+          {{ mensajeExito }}
+        </div>
+
+        <div
+          class="estado-box error fade-message"
+          *ngIf="mensajeError"
+        >
+          {{ mensajeError }}
+        </div>
+
+        <button
+          type="submit"
+          class="btn-registrar"
+          [disabled]="cargando"
+        >
+
+          <span *ngIf="!cargando">
+            Registrar Consulta
+          </span>
+
+          <span *ngIf="cargando">
+            Registrando...
+          </span>
+
+        </button>
+
+      </form>
+
+      <div class="tabla-container" *ngIf="consultas.length > 0">
+
+  <h2>Consultas Registradas</h2>
+
+  <table>
+
+    <thead>
+
+      <tr>
+
+        <th>ID</th>
+        <th>Fecha</th>
+        <th>Diagnóstico</th>
+        <th>Síntomas</th>
+        <th>Paciente</th>
+        <th>Médico</th>
+
+      </tr>
+
+    </thead>
+
+    <tbody>
+
+      <tr *ngFor="let consulta of consultas">
+
+        <td>{{ consulta.idConsulta }}</td>
+
+        <td>{{ consulta.fechaConsulta_ConsultaMedica }}</td>
+
+        <td>{{ consulta.diagnostico_ConsultaMedica }}</td>
+
+        <td>{{ consulta.sintomas_ConsultaMedica }}</td>
+
+        <td>{{ consulta.pacienteId }}</td>
+
+        <td>{{ consulta.medicoId }}</td>
+
+      </tr>
+
+    </tbody>
+
+  </table>
+
+</div>
+
+    </div>
+
+  </div>
+
+</div>

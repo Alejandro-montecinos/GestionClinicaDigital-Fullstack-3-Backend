@@ -3,11 +3,12 @@ import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angula
 import { PersonaServices } from '../../services/persona-services';
 import { PersonaModel } from '../../models/PersonaModel';
 import { CommonModule } from '@angular/common';
+import { NavbarComponent } from '../navbar-component/navbar-component';
 
 @Component({
   selector: 'app-persona-component',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule],
+  imports: [ReactiveFormsModule, CommonModule, NavbarComponent],
   templateUrl: './persona-component.html',
   styleUrl: './persona-component.scss',
 })

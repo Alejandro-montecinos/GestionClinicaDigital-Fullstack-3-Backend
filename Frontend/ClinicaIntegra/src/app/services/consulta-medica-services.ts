@@ -1,19 +1,32 @@
 import { inject, Injectable } from '@angular/core';
-import { environment } from '../../environments/environment.development';
+
 import { HttpClient } from '@angular/common/http';
+
 import { lastValueFrom } from 'rxjs';
+
 import { ConsultaMedicaModel } from '../models/consultaMedicaModel';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class ConsultaMedicaServices {
 
-   private http = inject(HttpClient);
+  private http = inject(HttpClient);
 
-  async obtenerConsultaMedica(){
-    return await lastValueFrom(this.http.get<ConsultaMedicaModel>(environment.apiUrlConsultaMedica));
-    
+  private apiUrl = 'http://localhost:6161/consultas';
+
+  async obtenerConsultas() {
+
+    return await lastValueFrom(
+      this.http.get<ConsultaMedicaModel[]>(this.apiUrl)
+    );
+  }
+
+  async crearConsulta(consulta: ConsultaMedicaModel) {
+
+    return await lastValueFrom(
+      this.http.post<ConsultaMedicaModel>(this.apiUrl, consulta)
+    );
   }
 
 }

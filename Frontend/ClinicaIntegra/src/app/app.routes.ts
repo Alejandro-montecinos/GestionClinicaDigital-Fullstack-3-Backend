@@ -6,36 +6,41 @@ import { TratamientoComponent } from './pages/tratamiento-component/tratamiento-
 import { RolComponent } from './pages/rol-component/rol-component';
 import { CitaMedicaComponent } from './pages/citaMedica-component/cita-medica-component';
 import { ConsultaMedicaComponent } from './pages/consultaMedica-component/consulta-medica-component';
+import { InicioComponent } from './pages/inicio-component/inicio-component';
 
 export const routes: Routes = [
 
-    {
+     {
     path: '',
+    component: InicioComponent,
+  },
+  {
+    path: 'Persona',
     component: PersonaComponent,
-    },
-    {
-    path: 'Tratamiento',
-    component: TratamientoComponent,
-    },
-    {
-    path: 'Rol',
-    component: RolComponent,
-    },
-    {
-    path: 'CitaMedica',
-    component: CitaMedicaComponent,
-    },
-    {
+  },
+  {
     path: 'ConsultaMedica',
     component: ConsultaMedicaComponent,
-    },
-    {
+  },
+  {
+    path: 'Tratamiento',
+    component: TratamientoComponent,
+  },
+  {
+    path: 'Rol',
+    component: RolComponent,
+  },
+  {
+    path: 'CitaMedica',
+    component: CitaMedicaComponent,
+  },
+  {
     path: '404',
     component: NotFoundComponent,
-    },
-    {
+  },
+  {
     path: '**',
-    redirectTo:"404"
-    }
+    redirectTo: '404'
+  }
 
 ];
