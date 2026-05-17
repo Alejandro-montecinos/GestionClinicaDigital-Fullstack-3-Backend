@@ -1,5 +1,13 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import {
+  AbstractControl,
+  FormBuilder,
+  FormGroup,
+  ReactiveFormsModule,
+  ValidationErrors,
+  ValidatorFn,
+  Validators
+} from '@angular/forms';
 import { PersonaServices } from '../../services/persona-services';
 import { PersonaModel } from '../../models/PersonaModel';
 import { CommonModule } from '@angular/common';
@@ -16,31 +24,35 @@ export class PersonaComponent implements OnInit {
   private fb = inject(FormBuilder);
   private personaService = inject(PersonaServices);
 
-  personaForm: FormGroup;
   cargando = false;
   mensajeExito = '';
   mensajeError = '';
 
-  constructor() {
-    this.personaForm = this.fb.group({
-      idPersona: [0],
+  verContrasenia = false;
+  verConfirmacion = false;
+
+  personaForm: FormGroup = this.fb.group(
+    {
+      idPersona: [null],
       nombre: ['', [Validators.required, Validators.minLength(2)]],
       apellido_paterno: ['', [Validators.required, Validators.minLength(2)]],
       apellido_materno: ['', [Validators.required, Validators.minLength(2)]],
       run: ['', [Validators.required, Validators.pattern(/^\d{7,8}-[\dkK]$/)]],
       correo: ['', [Validators.required, Validators.email]],
+      contrasenia: ['', [Validators.required, Validators.minLength(8)]],
+      confirmarContrasenia: ['', [Validators.required]],
       direccion: ['', [Validators.required, Validators.minLength(5)]],
       fecha_nacimiento: ['', Validators.required],
       telefono: ['', [Validators.required, Validators.pattern(/^\+569\d{8}$/)]],
       COMUNA_id_comuna: [null, Validators.required],
       ROL_id_rol: [2]
-    });
-  }
+    },
+    {
+      validators: this.passwordsIgualesValidator('contrasenia', 'confirmarContrasenia')
+    }
+  );
 
-  async ngOnInit() {
-    // Si quieres precargar datos en modo edición, usa este bloque.
-    // Si será solo registro, puedes eliminar todo el contenido de ngOnInit.
-  }
+  async ngOnInit() {}
 
   get f() {
     return this.personaForm.controls;
@@ -49,6 +61,31 @@ export class PersonaComponent implements OnInit {
   campoInvalido(campo: string): boolean {
     const control = this.personaForm.get(campo);
     return !!control && control.invalid && control.touched;
+  }
+
+  contraseniasNoCoinciden(): boolean {
+    const confirm = this.personaForm.get('confirmarContrasenia');
+    return !!confirm && confirm.touched && this.personaForm.hasError('passwordMismatch');
+  }
+
+  passwordsIgualesValidator(passwordKey: string, confirmPasswordKey: string): ValidatorFn {
+    return (formGroup: AbstractControl): ValidationErrors | null => {
+      const passwordControl = formGroup.get(passwordKey);
+      const confirmPasswordControl = formGroup.get(confirmPasswordKey);
+
+      if (!passwordControl || !confirmPasswordControl) {
+        return null;
+      }
+
+      const password = passwordControl.value;
+      const confirmPassword = confirmPasswordControl.value;
+
+      if (!confirmPassword) {
+        return null;
+      }
+
+      return password === confirmPassword ? null : { passwordMismatch: true };
+    };
   }
 
   async registrarPersona() {
@@ -63,9 +100,19 @@ export class PersonaComponent implements OnInit {
     this.cargando = true;
 
     try {
+      const formValue = this.personaForm.getRawValue();
+
       const nuevaPersona: PersonaModel = {
-        ...this.personaForm.getRawValue(),
-        idPersona: 0,
+        nombre: formValue.nombre,
+        apellido_paterno: formValue.apellido_paterno,
+        apellido_materno: formValue.apellido_materno,
+        run: formValue.run,
+        correo: formValue.correo,
+        contrasenia: formValue.contrasenia,
+        direccion: formValue.direccion,
+        fecha_nacimiento: formValue.fecha_nacimiento,
+        telefono: formValue.telefono,
+        COMUNA_id_comuna: formValue.COMUNA_id_comuna,
         ROL_id_rol: 2
       };
 
@@ -74,12 +121,14 @@ export class PersonaComponent implements OnInit {
 
       this.mensajeExito = 'Usuario registrado correctamente en la clínica.';
       this.personaForm.reset({
-        idPersona: 0,
+        idPersona: null,
         nombre: '',
         apellido_paterno: '',
         apellido_materno: '',
         run: '',
         correo: '',
+        contrasenia: '',
+        confirmarContrasenia: '',
         direccion: '',
         fecha_nacimiento: '',
         telefono: '',

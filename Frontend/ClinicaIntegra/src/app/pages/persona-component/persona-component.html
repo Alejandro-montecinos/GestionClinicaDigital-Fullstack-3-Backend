@@ -1,4 +1,5 @@
 <app-navbar></app-navbar>
+
 <div class="registro-wrapper">
   <div class="registro-card">
     <div class="brand-panel">
@@ -20,61 +21,159 @@
         <div class="form-grid">
           <div class="input-group">
             <label for="nombre">Nombre</label>
-            <input id="nombre" type="text" formControlName="nombre" placeholder="Ingresa tu nombre" />
-            <small *ngIf="campoInvalido('nombre')">El nombre es obligatorio.</small>
+            <input
+              id="nombre"
+              type="text"
+              formControlName="nombre"
+              placeholder="Ingresa tu nombre"
+            />
+            <small *ngIf="campoInvalido('nombre')">
+              El nombre es obligatorio.
+            </small>
           </div>
 
           <div class="input-group">
             <label for="apellido_paterno">Apellido paterno</label>
-            <input id="apellido_paterno" type="text" formControlName="apellido_paterno" placeholder="Ingresa tu apellido paterno" />
-            <small *ngIf="campoInvalido('apellido_paterno')">El apellido paterno es obligatorio.</small>
+            <input
+              id="apellido_paterno"
+              type="text"
+              formControlName="apellido_paterno"
+              placeholder="Ingresa tu apellido paterno"
+            />
+            <small *ngIf="campoInvalido('apellido_paterno')">
+              El apellido paterno es obligatorio.
+            </small>
           </div>
 
           <div class="input-group">
             <label for="apellido_materno">Apellido materno</label>
-            <input id="apellido_materno" type="text" formControlName="apellido_materno" placeholder="Ingresa tu apellido materno" />
-            <small *ngIf="campoInvalido('apellido_materno')">El apellido materno es obligatorio.</small>
+            <input
+              id="apellido_materno"
+              type="text"
+              formControlName="apellido_materno"
+              placeholder="Ingresa tu apellido materno"
+            />
+            <small *ngIf="campoInvalido('apellido_materno')">
+              El apellido materno es obligatorio.
+            </small>
           </div>
 
           <div class="input-group">
             <label for="run">RUN</label>
-            <input id="run" type="text" formControlName="run" placeholder="12345678-9" />
-            <small *ngIf="campoInvalido('run')">Formato válido: 12345678-9</small>
+            <input
+              id="run"
+              type="text"
+              formControlName="run"
+              placeholder="12345678-9"
+            />
+            <small *ngIf="campoInvalido('run')">
+              Formato válido: 12345678-9
+            </small>
           </div>
 
           <div class="input-group">
             <label for="correo">Correo</label>
-            <input id="correo" type="email" formControlName="correo" placeholder="correo@ejemplo.com" />
-            <small *ngIf="campoInvalido('correo')">Ingresa un correo válido.</small>
+            <input
+              id="correo"
+              type="email"
+              formControlName="correo"
+              placeholder="correo@ejemplo.com"
+            />
+            <small *ngIf="campoInvalido('correo')">
+              Ingresa un correo válido.
+            </small>
+          </div>
+
+          <div class="input-group">
+            <label for="contrasenia">Contraseña</label>
+            <input
+              id="contrasenia"
+              type="password"
+              formControlName="contrasenia"
+              placeholder="Mínimo 8 caracteres"
+              autocomplete="new-password"
+            />
+            <small *ngIf="campoInvalido('contrasenia')">
+              La contraseña debe tener al menos 8 caracteres.
+            </small>
+          </div>
+
+          <div class="input-group">
+            <label for="confirmarContrasenia">Confirmar contraseña</label>
+            <input
+              id="confirmarContrasenia"
+              type="password"
+              formControlName="confirmarContrasenia"
+              placeholder="Repite la contraseña"
+              autocomplete="new-password"
+            />
+            <small *ngIf="campoInvalido('confirmarContrasenia')">
+              Debes confirmar la contraseña.
+            </small>
+            <small *ngIf="contraseniasNoCoinciden()">
+              Las contraseñas no coinciden.
+            </small>
           </div>
 
           <div class="input-group">
             <label for="telefono">Teléfono</label>
-            <input id="telefono" type="text" formControlName="telefono" placeholder="+56912345678" />
-            <small *ngIf="campoInvalido('telefono')">Formato válido: +56912345678</small>
+            <input
+              id="telefono"
+              type="text"
+              formControlName="telefono"
+              placeholder="+56912345678"
+            />
+            <small *ngIf="campoInvalido('telefono')">
+              Formato válido: +56912345678
+            </small>
           </div>
 
           <div class="input-group full-width">
             <label for="direccion">Dirección</label>
-            <input id="direccion" type="text" formControlName="direccion" placeholder="Ingresa tu dirección" />
-            <small *ngIf="campoInvalido('direccion')">La dirección es obligatoria.</small>
+            <input
+              id="direccion"
+              type="text"
+              formControlName="direccion"
+              placeholder="Ingresa tu dirección"
+            />
+            <small *ngIf="campoInvalido('direccion')">
+              La dirección es obligatoria.
+            </small>
           </div>
 
           <div class="input-group">
             <label for="fecha_nacimiento">Fecha de nacimiento</label>
-            <input id="fecha_nacimiento" type="date" formControlName="fecha_nacimiento" />
-            <small *ngIf="campoInvalido('fecha_nacimiento')">La fecha de nacimiento es obligatoria.</small>
+            <input
+              id="fecha_nacimiento"
+              type="date"
+              formControlName="fecha_nacimiento"
+            />
+            <small *ngIf="campoInvalido('fecha_nacimiento')">
+              La fecha de nacimiento es obligatoria.
+            </small>
           </div>
 
           <div class="input-group">
             <label for="comuna">ID Comuna</label>
-            <input id="comuna" type="number" formControlName="COMUNA_id_comuna" placeholder="Ej: 9" />
-            <small *ngIf="campoInvalido('COMUNA_id_comuna')">La comuna es obligatoria.</small>
+            <input
+              id="comuna"
+              type="number"
+              formControlName="COMUNA_id_comuna"
+              placeholder="Ej: 9"
+            />
+            <small *ngIf="campoInvalido('COMUNA_id_comuna')">
+              La comuna es obligatoria.
+            </small>
           </div>
 
           <div class="input-group">
             <label for="rol">Rol asignado</label>
-            <input id="rol" type="number" formControlName="ROL_id_rol" readonly />
+            <input
+              id="rol"
+              type="number"
+              formControlName="ROL_id_rol"
+              readonly
+            />
             <small>Este valor lo define el sistema.</small>
           </div>
         </div>

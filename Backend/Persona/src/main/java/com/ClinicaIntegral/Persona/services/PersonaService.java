@@ -72,6 +72,7 @@ public class PersonaService {
         personaNueva.setApellido_materno(nuevaP.getApellido_materno());
         personaNueva.setTelefono(nuevaP.getTelefono());
         personaNueva.setCorreo(nuevaP.getCorreo());
+        personaNueva.setContrasenia(nuevaP.getContrasenia());
         personaNueva.setFecha_nacimiento(nuevaP.getFecha_nacimiento());
         personaNueva.setDireccion(nuevaP.getDireccion());
         personaNueva.setCOMUNA_id_comuna(nuevaP.getCOMUNA_id_comuna());
@@ -103,13 +104,14 @@ public class PersonaService {
     personaModel.setApellido_materno(nuevaP.getApellido_materno());
     personaModel.setTelefono(nuevaP.getTelefono());
     personaModel.setCorreo(nuevaP.getCorreo());
+    personaModel.setContrasenia(nuevaP.getContrasenia());
     personaModel.setFecha_nacimiento(nuevaP.getFecha_nacimiento());
     personaModel.setDireccion(nuevaP.getDireccion());
     personaModel.setCOMUNA_id_comuna(nuevaP.getCOMUNA_id_comuna());
     personaModel.setROL_id_rol(nuevaP.getROL_id_rol());
 
     return personaRepositories.save(personaModel);
-}
+    }
 
 
 

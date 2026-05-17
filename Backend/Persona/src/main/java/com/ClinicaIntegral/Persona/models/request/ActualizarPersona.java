@@ -31,6 +31,9 @@ public class ActualizarPersona {
     private String correo;
 
     @NotBlank
+    private String contrasenia;
+
+    @NotBlank
     private String direccion;
 
     @NotBlank

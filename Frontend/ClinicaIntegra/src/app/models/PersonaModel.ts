@@ -5,9 +5,10 @@ export interface PersonaModel{
     "apellido_materno": string;
     "apellido_paterno": string;
     "correo": string;
+    "contrasenia":String;
     "direccion": string;
     "fecha_nacimiento": string;
-    "idPersona":number;
+    "idPersona"?:number;
     "nombre": string;
     "run": string;
     "telefono":string;
