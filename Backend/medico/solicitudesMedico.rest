@@ -1,0 +1,50 @@
+#### CREAR MEDICO
+POST http://localhost:8087/medico HTTP/1.1
+content-type: application/json
+
+{
+  "personaRun": "12345678-9",
+  "nombre": "Juan",
+  "apellido_paterno": "Pérez",
+  "apellido_materno": "González",
+  "fecha_nacimiento": "1985-06-15",
+  "telefono": "+56912345678",
+  "correo": "juan.perez@clinica.com",
+  "direccion": "Av. Providencia 1234",
+  "COMUNA_id_comuna": 5,
+  "ROL_id_rol": 2,
+  "nombre_cargo": "Médico General",
+  "nombre_especialidad": "Medicina General"
+}
+
+#### OBTENER TODOS LOS MEDICOS
+GET http://localhost:8087/medico HTTP/1.1
+content-type: application/json
+
+#### OBTENER MEDICO POR ID
+GET http://localhost:8087/medico/1 HTTP/1.1
+content-type: application/json
+
+#### ACTUALIZAR MEDICO
+PUT http://localhost:8087/medico HTTP/1.1
+content-type: application/json
+
+{
+  "idMedico": 1,
+  "personaRun": "12345678-9",
+  "nombre": "Pedro",
+  "apellido_paterno": "González",
+  "apellido_materno": "Rojas",
+  "fecha_nacimiento": "1990-01-10",
+  "telefono": "+56999888777",
+  "correo": "pedro.gonzalez@clinica.com",
+  "direccion": "Las Condes 123",
+  "COMUNA_id_comuna": 3,
+  "ROL_id_rol": 2,
+  "nombre_cargo": "Médico Cirujano",
+  "nombre_especialidad": "Medicina Cirugía"
+}
+
+#### ELIMINAR MEDICO
+DELETE http://localhost:8087/medico/1 HTTP/1.1
+content-type: application/json
