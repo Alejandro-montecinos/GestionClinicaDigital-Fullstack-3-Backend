@@ -8,6 +8,7 @@ import { CitaMedicaComponent } from './pages/citaMedica-component/cita-medica-co
 import { ConsultaMedicaComponent } from './pages/consultaMedica-component/consulta-medica-component';
 import { InicioComponent } from './pages/inicio-component/inicio-component';
 import { LoginComponent } from './pages/login-component/login-component';
+import { DashboardPersonaComponent } from './pages/dashboard-persona-component/dashboard-persona-component';
 
 export const routes: Routes = [
 
@@ -18,6 +19,10 @@ export const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent,
+  },
+  {
+    path: 'dashboard-persona',
+    component: DashboardPersonaComponent,
   },
   {
     path: 'Persona',
