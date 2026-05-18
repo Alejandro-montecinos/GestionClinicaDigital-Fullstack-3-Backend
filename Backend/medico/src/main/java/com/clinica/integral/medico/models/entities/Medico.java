@@ -18,7 +18,7 @@ public class Medico {
     private int idMedico;
 
     @Column(nullable = false, unique = true)
-    private String persona_run;
+    private String personaRun;
 
     @Column(nullable = false)
     private String nombre;

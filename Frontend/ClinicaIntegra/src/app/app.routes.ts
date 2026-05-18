@@ -9,6 +9,7 @@ import { ConsultaMedicaComponent } from './pages/consultaMedica-component/consul
 import { InicioComponent } from './pages/inicio-component/inicio-component';
 import { LoginComponent } from './pages/login-component/login-component';
 import { DashboardPersonaComponent } from './pages/dashboard-persona-component/dashboard-persona-component';
+import { MedicoComponent } from './pages/medico-component/medico-component';
 
 export const routes: Routes = [
 
@@ -27,6 +28,10 @@ export const routes: Routes = [
   {
     path: 'Persona',
     component: PersonaComponent,
+  },
+  {
+    path: 'Medico',
+    component: MedicoComponent,
   },
   {
     path: 'ConsultaMedica',

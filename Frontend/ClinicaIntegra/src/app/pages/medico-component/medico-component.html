@@ -1,0 +1,110 @@
+<app-navbar></app-navbar>
+
+<div class="registro-wrapper">
+  <div class="registro-card">
+    <div class="brand-panel">
+      <div class="brand-badge">Clínica VitalCare</div>
+      <h1>Registro de médicos</h1>
+      <p>
+        Completa la información profesional y personal del médico
+        para incorporarlo correctamente al sistema de la clínica.
+      </p>
+
+      <div class="brand-decoration">
+        <div class="pulse-circle"></div>
+        <div class="pulse-circle delay"></div>
+      </div>
+    </div>
+
+    <div class="form-panel">
+      <form [formGroup]="medicoForm" (ngSubmit)="registrarMedico()">
+        <div class="form-grid">
+          <div class="input-group">
+            <label for="nombre">Nombre</label>
+            <input id="nombre" type="text" formControlName="nombre" placeholder="Ingresa el nombre" />
+            <small *ngIf="campoInvalido('nombre')">El nombre es obligatorio.</small>
+          </div>
+
+          <div class="input-group">
+            <label for="apellido_paterno">Apellido paterno</label>
+            <input id="apellido_paterno" type="text" formControlName="apellido_paterno" placeholder="Ingresa el apellido paterno" />
+            <small *ngIf="campoInvalido('apellido_paterno')">El apellido paterno es obligatorio.</small>
+          </div>
+
+          <div class="input-group">
+            <label for="apellido_materno">Apellido materno</label>
+            <input id="apellido_materno" type="text" formControlName="apellido_materno" placeholder="Ingresa el apellido materno" />
+            <small *ngIf="campoInvalido('apellido_materno')">El apellido materno es obligatorio.</small>
+          </div>
+
+          <div class="input-group">
+              <label for="personaRun">RUN</label>
+              <input id="personaRun"type="text"formControlName="personaRun"placeholder="12345678-9"/>
+              <small *ngIf="campoInvalido('personaRun')">Formato válido: 12345678-9</small>
+          </div>
+
+          <div class="input-group">
+            <label for="correo">Correo</label>
+            <input id="correo" type="email" formControlName="correo" placeholder="correo@ejemplo.com" />
+            <small *ngIf="campoInvalido('correo')">Ingresa un correo válido.</small>
+          </div>
+
+          <div class="input-group">
+            <label for="telefono">Teléfono</label>
+            <input id="telefono" type="text" formControlName="telefono" placeholder="+56912345678" />
+            <small *ngIf="campoInvalido('telefono')">Formato válido: +56912345678</small>
+          </div>
+
+          <div class="input-group full-width">
+            <label for="direccion">Dirección</label>
+            <input id="direccion" type="text" formControlName="direccion" placeholder="Ingresa la dirección" />
+            <small *ngIf="campoInvalido('direccion')">La dirección es obligatoria.</small>
+          </div>
+
+          <div class="input-group">
+            <label for="fecha_nacimiento">Fecha de nacimiento</label>
+            <input id="fecha_nacimiento" type="date" formControlName="fecha_nacimiento" />
+            <small *ngIf="campoInvalido('fecha_nacimiento')">La fecha de nacimiento es obligatoria.</small>
+          </div>
+
+          <div class="input-group">
+            <label for="comuna">ID Comuna</label>
+            <input id="comuna" type="number" formControlName="COMUNA_id_comuna" placeholder="Ej: 5" />
+            <small *ngIf="campoInvalido('COMUNA_id_comuna')">La comuna es obligatoria.</small>
+          </div>
+
+          <div class="input-group">
+            <label for="nombre_cargo">Cargo</label>
+            <input id="nombre_cargo" type="text" formControlName="nombre_cargo" placeholder="Ej: Médico General" />
+            <small *ngIf="campoInvalido('nombre_cargo')">El cargo es obligatorio.</small>
+          </div>
+
+          <div class="input-group">
+            <label for="nombre_especialidad">Especialidad</label>
+            <input id="nombre_especialidad" type="text" formControlName="nombre_especialidad" placeholder="Ej: Medicina General" />
+            <small *ngIf="campoInvalido('nombre_especialidad')">La especialidad es obligatoria.</small>
+          </div>
+
+          <div class="input-group">
+            <label for="rol">Rol asignado</label>
+            <input id="rol" type="number" formControlName="ROL_id_rol" readonly />
+            <small>Este valor lo define el sistema.</small>
+          </div>
+        </div>
+
+        <div class="estado-box exito" *ngIf="mensajeExito">
+          {{ mensajeExito }}
+        </div>
+
+        <div class="estado-box error" *ngIf="mensajeError">
+          {{ mensajeError }}
+        </div>
+
+        <button type="submit" class="btn-registrar" [disabled]="cargando">
+          <span *ngIf="!cargando">Registrar médico</span>
+          <span *ngIf="cargando">Registrando...</span>
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

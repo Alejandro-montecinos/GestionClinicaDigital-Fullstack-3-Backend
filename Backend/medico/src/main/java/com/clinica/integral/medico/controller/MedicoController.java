@@ -37,22 +37,20 @@ public class MedicoController {
         return medicoService.agregarMedico(medicoNuevo);
     }
     
-    @PutMapping("")
-    public Medico actualizarMedico(@RequestBody MedicoRequest medicoEditado ){
-
-        return medicoService.actualizarMedico(medicoEditado);
-
+    @PutMapping("/{idMedico}")
+    public Medico actualizarMedico(@RequestBody MedicoRequest medicoEditado,@PathVariable int idMedico){
+        return medicoService.actualizarMedico(medicoEditado,idMedico);
     }
 
-    @GetMapping("/{id_medico}")
-    public Medico obtenerMedicoPorId(@PathVariable int id_medico){
-        return medicoService.obtenerMedicoPorId(id_medico);
+    @GetMapping("/{idMedico}")
+    public Medico obtenerMedicoPorId(@PathVariable int idMedico){
+        return medicoService.obtenerMedicoPorId(idMedico);
     }
     
 
-    @DeleteMapping("/{id_medico}")
-    public String eliminarMedico( @PathVariable int id_medico ){
-        return medicoService.eliminarMedico(id_medico);
+    @DeleteMapping("/{idMedico}")
+    public String eliminarMedico( @PathVariable int idMedico ){
+        return medicoService.eliminarMedico(idMedico);
     }
 
 }

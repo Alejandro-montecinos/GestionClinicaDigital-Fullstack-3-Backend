@@ -5,10 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.server.ResponseStatusException;
 
-import com.clinica.integral.medico.models.dto.PersonaDto;
 import com.clinica.integral.medico.models.entities.Medico;
 import com.clinica.integral.medico.models.request.MedicoRequest;
 import com.clinica.integral.medico.repositories.MedicoRepository;
@@ -64,8 +62,7 @@ public class MedicoService {
         
         Medico medico = new Medico();
 
-        medico.setIdMedico(medicoNuevo.getIdMedico());
-        medico.setPersona_run(medicoNuevo.getPersonaRun());
+        medico.setPersonaRun(medicoNuevo.getPersonaRun());
         medico.setNombre(medicoNuevo.getNombre());
         medico.setApellido_paterno(medicoNuevo.getApellido_paterno());
         medico.setApellido_materno(medicoNuevo.getApellido_materno());
@@ -81,14 +78,13 @@ public class MedicoService {
 
     }
 
-    public Medico actualizarMedico( MedicoRequest medicoActualizado ){
-        Medico medicoExiste = medicoRepo.findById(medicoActualizado.getIdMedico()).orElse(null);
+    public Medico actualizarMedico( MedicoRequest medicoActualizado, int idMedico ){
+        Medico medicoExiste = medicoRepo.findById(idMedico).orElse(null);
         if (medicoExiste == null){
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,"Médico no encontrado.");
         }
 
-        medicoExiste.setIdMedico(medicoActualizado.getIdMedico());
-        medicoExiste.setPersona_run(medicoActualizado.getPersonaRun());
+        medicoExiste.setPersonaRun(medicoActualizado.getPersonaRun());
         medicoExiste.setNombre(medicoActualizado.getNombre());
         medicoExiste.setApellido_paterno(medicoActualizado.getApellido_paterno());
         medicoExiste.setApellido_materno(medicoActualizado.getApellido_materno());
