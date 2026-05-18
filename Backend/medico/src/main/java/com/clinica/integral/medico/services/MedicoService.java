@@ -1,0 +1,99 @@
+package com.clinica.integral.medico.services;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Service;
+import org.springframework.web.reactive.function.client.WebClient;
+import org.springframework.web.server.ResponseStatusException;
+
+import com.clinica.integral.medico.models.dto.PersonaDto;
+import com.clinica.integral.medico.models.entities.Medico;
+import com.clinica.integral.medico.models.request.MedicoRequest;
+import com.clinica.integral.medico.repositories.MedicoRepository;
+
+@Service
+public class MedicoService {
+
+    @Autowired
+    private MedicoRepository medicoRepo;
+
+    @Autowired
+    private WebClient personaWebClient;
+
+    public List<Medico> obtenerTodosLosMedicos(){
+        return medicoRepo.findAll();
+    }
+
+    public Medico agregarMedico(MedicoRequest crearMedico){
+        PersonaDto personaDto = null;
+
+        try {
+            personaDto = personaWebClient.get()
+            .uri("persona/{run}", crearMedico.getPersonaRun())
+            .retrieve()
+            .bodyToMono(PersonaDto.class)
+            .block();
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "ENDPOINT ---> Error al obtener la persona: " + e.getMessage());
+        }
+
+        if (personaDto == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No se encontró la persona con RUN: " + crearMedico.getPersonaRun());
+        }
+
+        Medico medico = new Medico();
+
+        medico.setPersona_run(crearMedico.getPersonaRun());
+        medico.setNombre(crearMedico.getNombre());
+        medico.setApellido_paterno(crearMedico.getApellido_paterno());
+        medico.setApellido_materno(crearMedico.getApellido_materno());
+        medico.setFecha_nacimiento(crearMedico.getFecha_nacimiento());
+        medico.setTelefono(crearMedico.getTelefono());
+        medico.setCorreo(crearMedico.getCorreo());
+        medico.setDireccion(crearMedico.getDireccion());
+        medico.setCOMUNA_id_comuna(crearMedico.getCOMUNA_id_comuna());
+        medico.setROL_id_rol(crearMedico.getROL_id_rol());
+
+        return medicoRepo.save(medico);
+
+    }
+
+    public Medico actualizarMedico( MedicoRequest medicoActualizado ){
+        Medico medicoExiste = medicoRepo.findById(medicoActualizado.getIdMedico()).orElse(null);
+        if (medicoExiste == null){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"Médico no encontrado.");
+        }
+
+        medicoExiste.setIdMedico(medicoActualizado.getIdMedico());
+        medicoExiste.setPersona_run(medicoActualizado.getPersonaRun());
+        medicoExiste.setNombre(medicoActualizado.getNombre());
+        medicoExiste.setApellido_paterno(medicoActualizado.getApellido_paterno());
+        medicoExiste.setApellido_materno(medicoActualizado.getApellido_materno());
+        medicoExiste.setFecha_nacimiento(medicoActualizado.getFecha_nacimiento());
+        medicoExiste.setTelefono(medicoActualizado.getTelefono());
+        medicoExiste.setCorreo(medicoActualizado.getCorreo());
+        medicoExiste.setDireccion(medicoActualizado.getDireccion());
+        medicoExiste.setCOMUNA_id_comuna(medicoActualizado.getCOMUNA_id_comuna());
+        medicoExiste.setROL_id_rol(medicoActualizado.getROL_id_rol());
+        return medicoRepo.save(medicoExiste);
+
+    }
+
+    public Medico obtenerMedicoPorId(int idMedico){
+        return medicoRepo.findById(idMedico).orElse(null);
+    }
+
+    public String eliminarMedico( int id_medico ){
+        Medico medicoExiste = medicoRepo.findById(id_medico).orElse(null);
+        if ( medicoExiste == null ){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Médico no encontrado");
+        }
+
+        medicoRepo.deleteById(id_medico);
+        return "Médico eliminado";
+
+    }
+
+}

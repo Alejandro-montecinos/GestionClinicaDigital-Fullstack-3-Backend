@@ -1,0 +1,35 @@
+#### CREAR MEDICO
+POST http://localhost:8087/medico HTTP/1.1
+content-type: application/json
+
+{
+  "personaRun": "12345678-9",
+  "nombre": "Juan",
+  "apellido_paterno": "Pérez",
+  "apellido_materno": "González",
+  "fecha_nacimiento": "1985-06-15",
+  "telefono": "+56912345678",
+  "correo": "juan.perez@clinica.com",
+  "direccion": "Av. Providencia 1234",
+  "COMUNA_id_comuna": 5,
+  "ROL_id_rol": 2
+}
+
+#### OBTENER MEDICOS
+GET http://localhost:8087/medico HTTP/1.1
+content-type: application/json
+
+#### EDITAR MEDICO
+PUT http://localhost:8087/medico HTTP/1.1
+Content-Type: application/json
+
+{
+  "id_medico": 1,
+  "nombre": "Dr. Juan Pérez",
+  "especialidad": "Cardiología",
+  "cedula": "1234567890"
+}
+
+#### ELIMINAR MEDICO
+DELETE http://localhost:8087/medico/1 HTTP/1.1
+content-type: application/json
