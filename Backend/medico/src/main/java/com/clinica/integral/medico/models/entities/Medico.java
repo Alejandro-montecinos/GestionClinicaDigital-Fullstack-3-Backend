@@ -47,4 +47,9 @@ public class Medico {
     @Column(nullable = false)
     private int ROL_id_rol;
 
+    @Column(nullable = false)
+    private String nombre_cargo;
+
+    @Column(nullable = false)
+    private String nombre_especialidad;
 }

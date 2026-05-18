@@ -75,7 +75,8 @@ public class MedicoService {
         medico.setDireccion(medicoNuevo.getDireccion());
         medico.setCOMUNA_id_comuna(medicoNuevo.getCOMUNA_id_comuna());
         medico.setROL_id_rol(medicoNuevo.getROL_id_rol());
-
+        medico.setNombre_cargo(medicoNuevo.getNombre_cargo());
+        medico.setNombre_especialidad(medicoNuevo.getNombre_especialidad());
         return medicoRepo.save(medico);
 
     }
@@ -97,6 +98,8 @@ public class MedicoService {
         medicoExiste.setDireccion(medicoActualizado.getDireccion());
         medicoExiste.setCOMUNA_id_comuna(medicoActualizado.getCOMUNA_id_comuna());
         medicoExiste.setROL_id_rol(medicoActualizado.getROL_id_rol());
+        medicoExiste.setNombre_cargo(medicoActualizado.getNombre_cargo());
+        medicoExiste.setNombre_especialidad(medicoActualizado.getNombre_especialidad());
         return medicoRepo.save(medicoExiste);
 
     }

@@ -12,7 +12,9 @@ content-type: application/json
   "correo": "juan.perez@clinica.com",
   "direccion": "Av. Providencia 1234",
   "COMUNA_id_comuna": 5,
-  "ROL_id_rol": 2
+  "ROL_id_rol": 2,
+  "nombre_cargo": "Médico General",
+  "nombre_especialidad": "Medicina General"
 }
 
 #### OBTENER TODOS LOS MEDICOS
@@ -38,7 +40,9 @@ content-type: application/json
   "correo": "pedro.gonzalez@clinica.com",
   "direccion": "Las Condes 123",
   "COMUNA_id_comuna": 3,
-  "ROL_id_rol": 2
+  "ROL_id_rol": 2,
+  "nombre_cargo": "Médico Cirujano",
+  "nombre_especialidad": "Medicina Cirugía"
 }
 
 #### ELIMINAR MEDICO

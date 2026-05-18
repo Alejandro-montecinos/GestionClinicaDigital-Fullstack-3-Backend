@@ -16,5 +16,7 @@ public class MedicoRequest {
     private String direccion;
     private int COMUNA_id_comuna;
     private int ROL_id_rol;
+    private String nombre_cargo;
+    private String nombre_especialidad;
     
 }
