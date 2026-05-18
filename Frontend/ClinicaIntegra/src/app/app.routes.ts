@@ -7,12 +7,17 @@ import { RolComponent } from './pages/rol-component/rol-component';
 import { CitaMedicaComponent } from './pages/citaMedica-component/cita-medica-component';
 import { ConsultaMedicaComponent } from './pages/consultaMedica-component/consulta-medica-component';
 import { InicioComponent } from './pages/inicio-component/inicio-component';
+import { LoginComponent } from './pages/login-component/login-component';
 
 export const routes: Routes = [
 
      {
     path: '',
     component: InicioComponent,
+  },
+  {
+    path: 'login',
+    component: LoginComponent,
   },
   {
     path: 'Persona',

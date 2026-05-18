@@ -52,3 +52,14 @@ Content-Type: application/json
 ### Eliminar persona
 DELETE http://127.0.0.1:2020/persona/3 HTTP/1.1
 Content-Type: application/json
+
+
+### Login Persona
+
+POST http://localhost:2020/persona/login HTTP/1.1
+Content-Type: application/json
+
+{
+  "correo": "111111@gmail.com",
+  "contrasenia": "12345678"
+}

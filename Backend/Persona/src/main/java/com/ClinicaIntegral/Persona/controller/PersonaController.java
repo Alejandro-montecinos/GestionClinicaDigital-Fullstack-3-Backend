@@ -3,6 +3,7 @@ package com.ClinicaIntegral.Persona.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ClinicaIntegral.Persona.models.entities.PersonaModel;
 import com.ClinicaIntegral.Persona.models.request.ActualizarPersona;
 import com.ClinicaIntegral.Persona.models.request.AgregarPersona;
+import com.ClinicaIntegral.Persona.models.request.LoginPersonaRequest;
 import com.ClinicaIntegral.Persona.services.PersonaService;
 
 @RequestMapping("persona")
@@ -47,6 +49,12 @@ public class PersonaController {
     @DeleteMapping("/{idPersona}")
     public String eliminarPersona(@PathVariable int idPersona){
         return personaService.eliminarPersona(idPersona);
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<PersonaModel> loginPersona(@RequestBody LoginPersonaRequest request) {
+        PersonaModel persona = personaService.loginPersona(request);
+        return ResponseEntity.ok(persona);
     }
 
 

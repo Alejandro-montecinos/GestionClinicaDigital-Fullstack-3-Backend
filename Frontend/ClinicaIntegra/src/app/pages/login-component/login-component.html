@@ -1,1 +1,66 @@
-<p>login-component works!</p>
+<app-navbar></app-navbar>
+
+<div class="login-wrapper">
+  <div class="login-card">
+    <div class="brand-panel">
+      <div class="brand-badge">Clínica VitalCare</div>
+      <h1>Inicia sesión</h1>
+      <p>
+        Accede con tu correo y contraseña para revisar tu información
+        y continuar con tus atenciones en la clínica.
+      </p>
+
+      <div class="brand-decoration">
+        <div class="pulse-circle"></div>
+        <div class="pulse-circle delay"></div>
+      </div>
+    </div>
+
+    <div class="form-panel">
+      <form [formGroup]="loginForm" (ngSubmit)="iniciarSesion()">
+        <div class="form-grid">
+          <div class="input-group full-width">
+            <label for="correo">Correo</label>
+            <input
+              id="correo"
+              type="email"
+              formControlName="correo"
+              placeholder="correo@ejemplo.com"
+              autocomplete="email"
+            />
+            <small *ngIf="campoInvalido('correo')">
+              Ingresa un correo válido.
+            </small>
+          </div>
+
+          <div class="input-group full-width">
+            <label for="contrasenia">Contraseña</label>
+            <input
+              id="contrasenia"
+              type="password"
+              formControlName="contrasenia"
+              placeholder="Ingresa tu contraseña"
+              autocomplete="current-password"
+            />
+            <small *ngIf="campoInvalido('contrasenia')">
+              La contraseña es obligatoria y debe tener al menos 8 caracteres.
+            </small>
+          </div>
+        </div>
+
+        <div class="estado-box exito" *ngIf="mensajeExito">
+          {{ mensajeExito }}
+        </div>
+
+        <div class="estado-box error" *ngIf="mensajeError">
+          {{ mensajeError }}
+        </div>
+
+        <button type="submit" class="btn-login" [disabled]="cargando">
+          <span *ngIf="!cargando">Ingresar</span>
+          <span *ngIf="cargando">Ingresando...</span>
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

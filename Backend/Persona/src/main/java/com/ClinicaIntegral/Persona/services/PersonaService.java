@@ -15,6 +15,7 @@ import com.ClinicaIntegral.Persona.models.dto.ComunaDto;
 import com.ClinicaIntegral.Persona.models.entities.PersonaModel;
 import com.ClinicaIntegral.Persona.models.request.ActualizarPersona;
 import com.ClinicaIntegral.Persona.models.request.AgregarPersona;
+import com.ClinicaIntegral.Persona.models.request.LoginPersonaRequest;
 import com.ClinicaIntegral.Persona.repositories.PersonaRepositories;
 
 @Service
@@ -112,6 +113,19 @@ public class PersonaService {
 
     return personaRepositories.save(personaModel);
     }
+
+
+
+    public PersonaModel loginPersona(LoginPersonaRequest request) {
+    PersonaModel persona = personaRepositories.findByCorreo(request.getCorreo())
+            .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
+
+    if (!persona.getContrasenia().equals(request.getContrasenia())) {
+        throw new RuntimeException("Correo o contraseña incorrectos");
+    }
+
+    return persona;
+}
 
 
 
