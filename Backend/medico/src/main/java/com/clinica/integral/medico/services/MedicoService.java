@@ -19,14 +19,10 @@ public class MedicoService {
     @Autowired
     private MedicoRepository medicoRepo;
 
-    @Autowired
-    private WebClient personaWebClient;
+/*     @Autowired
+    private WebClient personaWebClient; */
 
-    public List<Medico> obtenerTodosLosMedicos(){
-        return medicoRepo.findAll();
-    }
-
-    public Medico agregarMedico(MedicoRequest crearMedico){
+    /* public Medico agregarMedico(MedicoRequest crearMedico){
         PersonaDto personaDto = null;
 
         try {
@@ -55,6 +51,30 @@ public class MedicoService {
         medico.setDireccion(crearMedico.getDireccion());
         medico.setCOMUNA_id_comuna(crearMedico.getCOMUNA_id_comuna());
         medico.setROL_id_rol(crearMedico.getROL_id_rol());
+
+        return medicoRepo.save(medico);
+
+    } */
+
+    public List<Medico> obtenerTodosLosMedicos(){
+        return medicoRepo.findAll();
+    }
+
+    public Medico agregarMedico( MedicoRequest medicoNuevo ){
+        
+        Medico medico = new Medico();
+
+        medico.setIdMedico(medicoNuevo.getIdMedico());
+        medico.setPersona_run(medicoNuevo.getPersonaRun());
+        medico.setNombre(medicoNuevo.getNombre());
+        medico.setApellido_paterno(medicoNuevo.getApellido_paterno());
+        medico.setApellido_materno(medicoNuevo.getApellido_materno());
+        medico.setFecha_nacimiento(medicoNuevo.getFecha_nacimiento());
+        medico.setTelefono(medicoNuevo.getTelefono());
+        medico.setCorreo(medicoNuevo.getCorreo());
+        medico.setDireccion(medicoNuevo.getDireccion());
+        medico.setCOMUNA_id_comuna(medicoNuevo.getCOMUNA_id_comuna());
+        medico.setROL_id_rol(medicoNuevo.getROL_id_rol());
 
         return medicoRepo.save(medico);
 

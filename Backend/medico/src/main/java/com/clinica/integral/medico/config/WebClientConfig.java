@@ -1,4 +1,4 @@
-package com.clinica.integral.medico.config;
+/* package com.clinica.integral.medico.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,3 +12,4 @@ public class WebClientConfig {
                 .baseUrl("http://localhost:2020/").build();
     }
 }
+ */
