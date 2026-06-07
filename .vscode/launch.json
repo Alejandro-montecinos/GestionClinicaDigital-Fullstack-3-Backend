@@ -8,7 +8,8 @@
             "mainClass": "com.ClinicaIntegral.Persona.PersonaApplication",
             "projectName": "Persona",
             "args": "",
-            "envFile": "${workspaceFolder}/.env"
+            "envFile": "${workspaceFolder}/.env",
+            "vmArgs": " -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=63452 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dspring.jmx.enabled=true -Djava.rmi.server.hostname=localhost -Dspring.application.admin.enabled=true -Dspring.boot.project.name=Persona"
         },
         {
             "type": "java",
@@ -17,6 +18,26 @@
             "cwd": "${workspaceFolder}",
             "mainClass": "com.ClinicaIntegral.comuna.ComunaApplication",
             "projectName": "comuna",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-MedicoApplication<medico>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.clinica.integral.medico.MedicoApplication",
+            "projectName": "medico",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-ConsultaMedicaApplication<ConsultaMedica>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.example.ConsultaMedica.ConsultaMedicaApplication",
+            "projectName": "ConsultaMedica",
             "args": "",
             "envFile": "${workspaceFolder}/.env"
         }
