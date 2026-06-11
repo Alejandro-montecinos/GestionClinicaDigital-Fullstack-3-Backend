@@ -26,12 +26,12 @@ Content-Type: application/json
 
 
 ### Obtener persona segun id 
-GET http://127.0.0.1:2020/persona/3 HTTP/1.1
+GET http://localhost:2020/persona/3 HTTP/1.1
 Content-Type: application/json
 
 
 ### Actualizar persona
-PUT http://127.0.0.1:2020/persona/3 HTTP/1.1
+PUT http://localhost:2020/persona/3 HTTP/1.1
 Content-Type: application/json
 
 {
@@ -50,7 +50,7 @@ Content-Type: application/json
 
 
 ### Eliminar persona
-DELETE http://127.0.0.1:2020/persona/3 HTTP/1.1
+DELETE http://localhost:2020/persona/3 HTTP/1.1
 Content-Type: application/json
 
 
