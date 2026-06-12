@@ -4,8 +4,7 @@ import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 @Data
 public class AgregarTratamiento {
-    @NotBlank
-    private Integer idTratamiento;
+    
     @NotBlank
     private String descripcion_Tratamiento;
     @NotBlank

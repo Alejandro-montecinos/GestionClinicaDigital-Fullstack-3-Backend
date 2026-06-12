@@ -27,8 +27,8 @@ Content-Type: application/json
 
 {
   
-    "nombreCiudad":"Talca",
-    "region_id_region":7
+    "nombreCiudad":"santiago",
+    "region_id_region":13
 }
 
 

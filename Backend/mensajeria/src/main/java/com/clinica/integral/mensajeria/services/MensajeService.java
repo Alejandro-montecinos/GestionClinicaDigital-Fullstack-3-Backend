@@ -25,20 +25,18 @@ public class MensajeService {
     public Mensaje enviarMensaje( MensajeRequest mensajeNuevo ){
         
         Mensaje mensaje = new Mensaje();
-        mensaje.setId_mensaje(mensajeNuevo.getId_mensaje());
         mensaje.setContenido(mensajeNuevo.getContenido());
 
         return mensajeRepo.save(mensaje);
 
     }
 
-    public Mensaje actualizarConvenioSalud( MensajeEditarRequest mensajeEditado ){
-        Mensaje mensajeExiste = mensajeRepo.findById(mensajeEditado.getId_mensaje()).orElse(null);
+    public Mensaje actualizarConvenioSalud( MensajeEditarRequest mensajeEditado, int idMen ){
+        Mensaje mensajeExiste = mensajeRepo.findById(idMen).orElse(null);
         if (mensajeExiste == null){
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,"Mensaje no encontrado.");
         }
 
-        mensajeExiste.setId_mensaje(mensajeEditado.getId_mensaje());
         mensajeExiste.setContenido(mensajeEditado.getContenido());
         return mensajeRepo.save(mensajeExiste);
 

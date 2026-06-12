@@ -11,6 +11,7 @@ import com.clinica.integral.mensajeria.models.request.MensajeEditarRequest;
 import com.clinica.integral.mensajeria.models.request.MensajeRequest;
 import com.clinica.integral.mensajeria.services.MensajeService;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,6 +23,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 @RequestMapping("/mensajes") //localhost:8081/mensajes
 @RestController
+@CrossOrigin(origins = "*")
 public class MensajeController {
 
     @Autowired
@@ -37,10 +39,10 @@ public class MensajeController {
         return mensajeService.enviarMensaje(mensajeNuevo);
     }
 
-    @PutMapping("")
-    public Mensaje editarMensaje(@RequestBody MensajeEditarRequest mensajeEditado ){
+    @PutMapping("/{idMen}")
+    public Mensaje editarMensaje(@RequestBody MensajeEditarRequest mensajeEditado, @PathVariable int idMen ){
 
-        return mensajeService.actualizarConvenioSalud(mensajeEditado);
+        return mensajeService.actualizarConvenioSalud(mensajeEditado, idMen);
 
     }
 

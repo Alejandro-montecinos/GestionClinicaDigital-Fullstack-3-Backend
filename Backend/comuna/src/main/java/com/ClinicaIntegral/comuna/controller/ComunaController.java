@@ -11,6 +11,7 @@ import com.ClinicaIntegral.comuna.model.request.AgregarComunaRequest;
 import com.ClinicaIntegral.comuna.model.request.EditarComunaRequest;
 import com.ClinicaIntegral.comuna.service.ComunaService;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,7 +21,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 
 
-
+@CrossOrigin(origins = "*")
 @RequestMapping("comuna")
 @RestController
 public class ComunaController {

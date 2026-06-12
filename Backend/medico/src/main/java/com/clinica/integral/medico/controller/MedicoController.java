@@ -10,6 +10,7 @@ import com.clinica.integral.medico.models.entities.Medico;
 import com.clinica.integral.medico.models.request.MedicoRequest;
 import com.clinica.integral.medico.services.MedicoService;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 @RequestMapping("/medico") //localhost:8087/medico
 @RestController
+@CrossOrigin(origins = "*")
 public class MedicoController {
 
     @Autowired

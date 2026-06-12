@@ -2,81 +2,10 @@
     "configurations": [
         {
             "type": "java",
-            "name": "ConsultaMedicaApplication",
+            "name": "RecetaApplication",
             "request": "launch",
-            "mainClass": "com.example.ConsultaMedica.ConsultaMedicaApplication",
-            "projectName": "com.example-ConsultaMedica"
-        },
-        {
-            "type": "java",
-            "name": "TratamientoApplication",
-            "request": "launch",
-            "mainClass": "com.example.Tratamiento.TratamientoApplication",
-            "projectName": "com.example-Traramiento"
-        },
-        {
-            "type": "java",
-            "name": "RolApplication",
-            "request": "launch",
-            "mainClass": "com.example.Rol.RolApplication",
-            "projectName": "Rol"
-        },
-        {
-            "type": "java",
-            "name": "ConsultaMedicaApplication",
-            "request": "launch",
-            "mainClass": "com.example.ConsultaMedica.ConsultaMedicaApplication",
-            "projectName": "ConsultaMedica"
-        },
-        {
-            "type": "java",
-            "name": "TratamientoApplication",
-            "request": "launch",
-            "mainClass": "com.example.Tratamiento.TratamientoApplication",
-            "projectName": "Traramiento"
-        },
-        {
-            "type": "java",
-            "name": "Spring Boot-HistorialClinicoApplication<HistorialClinico>",
-            "request": "launch",
-            "cwd": "${workspaceFolder}",
-            "mainClass": "com.ClinicaIntegral.HistorialClinico.HistorialClinicoApplication",
-            "projectName": "HistorialClinico",
-            "args": "",
-            "envFile": "${workspaceFolder}/.env",
-            "vmArgs": " -Dcom.sun.management.jmxremote"
-        },
-        {
-            "type": "java",
-            "name": "Spring Boot-PersonaApplication<Persona>",
-            "request": "launch",
-            "cwd": "${workspaceFolder}",
-            "mainClass": "com.ClinicaIntegral.Persona.PersonaApplication",
-            "projectName": "Persona",
-            "args": "",
-            "envFile": "${workspaceFolder}/.env",
-            "vmArgs": " -Dcom.sun.management.jmxremote"
-        },
-        {
-            "type": "java",
-            "name": "Spring Boot-ComunaApplication<comuna>",
-            "request": "launch",
-            "cwd": "${workspaceFolder}",
-            "mainClass": "com.ClinicaIntegral.comuna.ComunaApplication",
-            "projectName": "comuna",
-            "args": "",
-            "envFile": "${workspaceFolder}/.env",
-            "vmArgs": " -Dcom.sun.management.jmxremote"
-        },
-        {
-            "type": "java",
-            "name": "Spring Boot-ConsultaMedicaApplication<ConsultaMedica>",
-            "request": "launch",
-            "cwd": "${workspaceFolder}",
-            "mainClass": "com.example.ConsultaMedica.ConsultaMedicaApplication",
-            "projectName": "ConsultaMedica",
-            "args": "",
-            "envFile": "${workspaceFolder}/.env"
+            "mainClass": "com.clinica.integral.receta.RecetaApplication",
+            "projectName": ""
         },
         {
             "type": "java",
@@ -90,11 +19,169 @@
         },
         {
             "type": "java",
+            "name": "Spring Boot-CiudadApplication<ciudad>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.ClinicaIntegral.ciudad.CiudadApplication",
+            "projectName": "ciudad",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-ComunaApplication<comuna>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.ClinicaIntegral.comuna.ComunaApplication",
+            "projectName": "comuna",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env",
+            "vmArgs": " -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=51208 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dspring.jmx.enabled=true -Djava.rmi.server.hostname=localhost -Dspring.application.admin.enabled=true -Dspring.boot.project.name=comuna"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-ConsultaMedicaApplication<ConsultaMedica>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.example.ConsultaMedica.ConsultaMedicaApplication",
+            "projectName": "ConsultaMedica",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env",
+            "vmArgs": " -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=61967 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dspring.jmx.enabled=true -Djava.rmi.server.hostname=localhost -Dspring.application.admin.enabled=true -Dspring.boot.project.name=ConsultaMedica"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-ConvenioSaludApplication<convenio-salud>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.clinica.integral.convenio_salud.ConvenioSaludApplication",
+            "projectName": "convenio-salud",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env",
+            "vmArgs": " -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=63247 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dspring.jmx.enabled=true -Djava.rmi.server.hostname=localhost -Dspring.application.admin.enabled=true -Dspring.boot.project.name=convenio-salud"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-EspecialidadMedicaApplication<especialidadMedica>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.clinica.integral.especialidadMedica.EspecialidadMedicaApplication",
+            "projectName": "especialidadMedica",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-HistorialClinicoApplication<HistorialClinico>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.ClinicaIntegral.HistorialClinico.HistorialClinicoApplication",
+            "projectName": "HistorialClinico",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-MedicoApplication<medico>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.clinica.integral.medico.MedicoApplication",
+            "projectName": "medico",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env",
+            "vmArgs": " -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=64470 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dspring.jmx.enabled=true -Djava.rmi.server.hostname=localhost -Dspring.application.admin.enabled=true -Dspring.boot.project.name=medico"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-MensajeriaApplication<mensajeria>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.clinica.integral.mensajeria.MensajeriaApplication",
+            "projectName": "mensajeria",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-PacienteApplication<paciente>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.ClinicaIntegral.paciente.PacienteApplication",
+            "projectName": "paciente",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env",
+            "vmArgs": " -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=63553 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dspring.jmx.enabled=true -Djava.rmi.server.hostname=localhost -Dspring.application.admin.enabled=true -Dspring.boot.project.name=paciente"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-PaisApplication<pais>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.ClinicaIntegral.pais.PaisApplication",
+            "projectName": "pais",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env",
+            "vmArgs": " -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=60781 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dspring.jmx.enabled=true -Djava.rmi.server.hostname=localhost -Dspring.application.admin.enabled=true -Dspring.boot.project.name=pais"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-PersonaApplication<Persona>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.ClinicaIntegral.Persona.PersonaApplication",
+            "projectName": "Persona",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-RecetaApplication<receta>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.ClinicaIntegral.receta.RecetaApplication",
+            "projectName": "receta",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-RegionApplication<region>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.ClinicaIntegral.region.RegionApplication",
+            "projectName": "region",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-RolApplication<Rol>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.example.Rol.RolApplication",
+            "projectName": "Rol",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env",
+            "vmArgs": " -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=49987 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dspring.jmx.enabled=true -Djava.rmi.server.hostname=localhost -Dspring.application.admin.enabled=true -Dspring.boot.project.name=Rol"
+        },
+        {
+            "type": "java",
             "name": "Spring Boot-TratamientoApplication<Traramiento>",
             "request": "launch",
             "cwd": "${workspaceFolder}",
             "mainClass": "com.example.Tratamiento.TratamientoApplication",
             "projectName": "Traramiento",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env",
+            "vmArgs": " -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=64198 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dspring.jmx.enabled=true -Djava.rmi.server.hostname=localhost -Dspring.application.admin.enabled=true -Dspring.boot.project.name=Traramiento"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-AdministrativoApplication<administrativo>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.ClinicaIntegral.administrativo.AdministrativoApplication",
+            "projectName": "administrativo",
             "args": "",
             "envFile": "${workspaceFolder}/.env"
         }

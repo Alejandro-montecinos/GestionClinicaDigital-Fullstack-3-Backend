@@ -11,11 +11,10 @@ GET http://localhost:8081/mensajes HTTP/1.1
 content-type: application/json
 
 #### EDITAR MENSAJE
-PUT http://localhost:8081/mensajes HTTP/1.1
+PUT http://localhost:8081/mensajes/1 HTTP/1.1
 Content-Type: application/json
 
 {
-  "id_mensaje": 1,
   "contenido": "Hola, este es un mensaje de prueba actualizado."
 }
 

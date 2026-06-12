@@ -49,7 +49,7 @@ public class TratamientoService {
         try {
 
             consultaDto = consultaMedicaWebClient.get()
-            .uri("consultas/consulta/{idCon}", nuevoT.getConsulta_medica_id_consulta())
+            .uri("consultas/{idCon}", nuevoT.getConsulta_medica_id_consulta())
             .retrieve()
             .bodyToMono(ConsultaMedicaDto.class)
             .block();

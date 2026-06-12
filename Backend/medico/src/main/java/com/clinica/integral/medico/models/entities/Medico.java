@@ -17,39 +17,20 @@ public class Medico {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idMedico;
 
-    @Column(nullable = false, unique = true)
-    private String personaRun;
+    @Column(nullable = false)
+    private String nombreMedico;
 
     @Column(nullable = false)
-    private String nombre;
+    private int persona_idPersona;
 
     @Column(nullable = false)
-    private String apellido_paterno;
+    private int cargoMedico_idCargoMedico;
 
     @Column(nullable = false)
-    private String apellido_materno;
+    private int especialidadMedica_idEspecialidad;
 
-    @Column(nullable = false)
-    private String fecha_nacimiento;
 
-    @Column(nullable = false)
-    private String telefono;
 
-    @Column(nullable = false)
-    private String correo;
 
-    @Column(nullable = false)
-    private String direccion;
-
-    @Column(nullable = false)
-    private int COMUNA_id_comuna;
-
-    @Column(nullable = false)
-    private int ROL_id_rol;
-
-    @Column(nullable = false)
-    private String nombre_cargo;
-
-    @Column(nullable = false)
-    private String nombre_especialidad;
+    
 }

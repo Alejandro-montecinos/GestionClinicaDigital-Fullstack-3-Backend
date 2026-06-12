@@ -16,9 +16,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.ConsultaMedica.models.entities.ConsultaMedica;
 import com.example.ConsultaMedica.service.ConsultaMedicaService;
 
-@CrossOrigin(origins = "http://localhost:6161")
+
 @RestController
 @RequestMapping("/consultas")
+@CrossOrigin(origins = "*")
 public class ConsultaMedicaController {
 
     @Autowired
@@ -28,7 +29,7 @@ public class ConsultaMedicaController {
     public List<ConsultaMedica> listar() {
         return service.listar();
     }
-    @GetMapping("/consulta/{id}")
+    @GetMapping("/{id}")
     public ConsultaMedica buscar(@PathVariable Integer id){
         return service.buscarPorId(id);
     }

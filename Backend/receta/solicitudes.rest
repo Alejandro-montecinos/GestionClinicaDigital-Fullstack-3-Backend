@@ -1,0 +1,25 @@
+#### CREAR RECETA
+POST http://localhost:8082/receta HTTP/1.1
+content-type: application/json
+
+{
+  "descripcion": "Esta es una descripcion de prueba",
+  "fecha_emision": "2024-06-01"
+}
+
+#### OBTENER RECETAS
+GET http://localhost:8082/receta HTTP/1.1
+content-type: application/json
+
+#### EDITAR RECETA
+PUT http://localhost:8082/receta/1 HTTP/1.1
+Content-Type: application/json
+
+{
+  "descripcion": "Esta es una descripcion de prueba actualizada",
+  "fecha_emision": "2024-06-01"
+}
+
+#### ELIMINAR RECETA
+DELETE http://localhost:8082/receta/1 HTTP/1.1
+content-type: application/json
