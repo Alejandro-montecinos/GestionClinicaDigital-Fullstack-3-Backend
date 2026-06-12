@@ -11,4 +11,9 @@ public class WebClientConfigPersona {
     public WebClient comunaWebClient(){
         return WebClient.builder().baseUrl("http://localhost:2121/").build();
     }
+
+    @Bean
+    public WebClient rolWebClient(){
+        return WebClient.builder().baseUrl("http://localhost:7575/").build();
+    }
 }

@@ -5,8 +5,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.reactive.function.client.WebClient;
+import org.springframework.web.reactive.function.client.WebClientResponseException;
 import org.springframework.web.server.ResponseStatusException;
 
+import com.clinica.integral.medico.models.dto.PersonaDTO;
 import com.clinica.integral.medico.models.entities.Medico;
 import com.clinica.integral.medico.models.request.MedicoRequest;
 import com.clinica.integral.medico.repositories.MedicoRepository;
@@ -17,56 +20,49 @@ public class MedicoService {
     @Autowired
     private MedicoRepository medicoRepo;
 
-/*     @Autowired
-    private WebClient personaWebClient; */
+    @Autowired
+    private WebClient webClient;
 
-    /* public Medico agregarMedico(MedicoRequest crearMedico){
-        PersonaDto personaDto = null;
 
-        try {
-            personaDto = personaWebClient.get()
-            .uri("persona/{run}", crearMedico.getPersonaRun())
-            .retrieve()
-            .bodyToMono(PersonaDto.class)
-            .block();
-        } catch (Exception e) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "ENDPOINT ---> Error al obtener la persona: " + e.getMessage());
-        }
 
-        if (personaDto == null) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No se encontró la persona con RUN: " + crearMedico.getPersonaRun());
-        }
 
-        Medico medico = new Medico();
-
-        medico.setPersona_run(crearMedico.getPersonaRun());
-        medico.setNombre(crearMedico.getNombre());
-        medico.setApellido_paterno(crearMedico.getApellido_paterno());
-        medico.setApellido_materno(crearMedico.getApellido_materno());
-        medico.setFecha_nacimiento(crearMedico.getFecha_nacimiento());
-        medico.setTelefono(crearMedico.getTelefono());
-        medico.setCorreo(crearMedico.getCorreo());
-        medico.setDireccion(crearMedico.getDireccion());
-        medico.setCOMUNA_id_comuna(crearMedico.getCOMUNA_id_comuna());
-        medico.setROL_id_rol(crearMedico.getROL_id_rol());
-
-        return medicoRepo.save(medico);
-
-    } */
 
     public List<Medico> obtenerTodosLosMedicos(){
         return medicoRepo.findAll();
     }
 
     public Medico agregarMedico( MedicoRequest medicoNuevo ){
+
+        PersonaDTO personaDTO = null;
         
+        try {
+            personaDTO = webClient.get()
+            .uri("persona/{idP}",medicoNuevo.getPersona_idPersona())
+            .retrieve()
+            .bodyToMono(PersonaDTO.class)
+            .block();
+        } catch (WebClientResponseException e) {
+            throw new ResponseStatusException(HttpStatus.valueOf(e.getStatusCode().value()),
+            "Error al obtener la Persona: " + e.getStatusText());
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.SERVICE_UNAVAILABLE,"Error de conexión con el servicio de Persona");
+        }
+
+        if (personaDTO == null) {
+            throw new ResponseStatusException(HttpStatus.NO_CONTENT,"DTO sin contenido");
+        }
+
+        if (personaDTO.idPersona() != medicoNuevo.getPersona_idPersona()) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Persona inválida");
+        }
+
+
         Medico medico = new Medico();
 
         medico.setNombreMedico(medicoNuevo.getNombreMedico());
         medico.setPersona_idPersona(medicoNuevo.getPersona_idPersona());
         medico.setCargoMedico_idCargoMedico(medicoNuevo.getCargoMedico_idCargoMedico());
         medico.setEspecialidadMedica_idEspecialidad(medicoNuevo.getEspecialidadMedica_idEspecialidad());
-        medico.setRol_idRol(medicoNuevo.getRol_idRol());
 
         return medicoRepo.save(medico);
 
@@ -78,11 +74,34 @@ public class MedicoService {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,"Médico no encontrado.");
         }
 
+        PersonaDTO personaDTO = null;
+        
+        try {
+            personaDTO = webClient.get()
+            .uri("persona/{idP}",medicoActualizado.getPersona_idPersona())
+            .retrieve()
+            .bodyToMono(PersonaDTO.class)
+            .block();
+        } catch (WebClientResponseException e) {
+            throw new ResponseStatusException(HttpStatus.valueOf(e.getStatusCode().value()),
+            "Error al obtener la Persona: " + e.getStatusText());
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.SERVICE_UNAVAILABLE,"Error de conexión con el servicio de Persona");
+        }
+
+        if (personaDTO == null) {
+            throw new ResponseStatusException(HttpStatus.NO_CONTENT,"DTO sin contenido");
+        }
+
+        if (personaDTO.idPersona() != medicoActualizado.getPersona_idPersona()) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Persona inválida");
+        }
+
+
         medicoExiste.setNombreMedico(medicoActualizado.getNombreMedico());
         medicoExiste.setPersona_idPersona(medicoActualizado.getPersona_idPersona());
         medicoExiste.setCargoMedico_idCargoMedico(medicoActualizado.getCargoMedico_idCargoMedico());
         medicoExiste.setEspecialidadMedica_idEspecialidad(medicoActualizado.getEspecialidadMedica_idEspecialidad());
-        medicoExiste.setRol_idRol(medicoActualizado.getRol_idRol());
 
         return medicoRepo.save(medicoExiste);
 

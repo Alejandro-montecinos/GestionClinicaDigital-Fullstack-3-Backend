@@ -27,9 +27,6 @@ public class Medico {
     private int cargoMedico_idCargoMedico;
 
     @Column(nullable = false)
-    private int rol_idRol;
-
-    @Column(nullable = false)
     private int especialidadMedica_idEspecialidad;
 
 

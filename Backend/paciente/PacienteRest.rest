@@ -4,8 +4,8 @@ POST http://localhost:8089/paciente HTTP/1.1
 Content-Type: application/json
 
 {
-  "nombrePaciente":"paciente Federico",
-  "perosna_idPersona":2,
+  "nombrePaciente":"paciente alexander ",
+  "persona_idPersona":1,
   "convenio_id_convenio":3
 }
 
@@ -28,8 +28,8 @@ Content-Type: application/json
 
 {
   "nombrePaciente":"paciente pedrero",
-  "perosna_idPersona":2,
-  "convenio_id_convenio":3
+  "persona_idPersona":1,
+  "convenio_id_convenio":4444
 }
 
 

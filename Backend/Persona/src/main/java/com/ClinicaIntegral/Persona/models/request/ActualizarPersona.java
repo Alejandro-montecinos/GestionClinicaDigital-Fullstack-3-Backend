@@ -1,5 +1,7 @@
 package com.ClinicaIntegral.Persona.models.request;
 
+import org.hibernate.validator.constraints.UniqueElements;
+
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
@@ -10,6 +12,7 @@ public class ActualizarPersona {
     private int idPersona;
 
     @NotBlank
+    @UniqueElements(message = "El run no se puede repetir ")
     private String run;
 
     @NotBlank
@@ -28,6 +31,7 @@ public class ActualizarPersona {
     private String telefono;
 
     @NotBlank
+    @UniqueElements(message = "El correo no se puede repetir ")
     private String correo;
 
     @NotBlank

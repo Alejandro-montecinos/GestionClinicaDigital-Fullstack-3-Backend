@@ -3,6 +3,7 @@ package com.ClinicaIntegral.Persona.services;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -12,6 +13,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 
 import com.ClinicaIntegral.Persona.models.dto.ComunaDto;
+import com.ClinicaIntegral.Persona.models.dto.RolDto;
 import com.ClinicaIntegral.Persona.models.entities.PersonaModel;
 import com.ClinicaIntegral.Persona.models.request.ActualizarPersona;
 import com.ClinicaIntegral.Persona.models.request.AgregarPersona;
@@ -25,7 +27,31 @@ public class PersonaService {
     private PersonaRepositories personaRepositories;
 
     @Autowired
-    private WebClient webClient;
+    @Qualifier("comunaWebClient")
+    private WebClient comunaWebClient;
+
+    
+    @Autowired
+    @Qualifier("rolWebClient")
+    private WebClient RolWebClient;
+
+
+    private <T> T obtenerEntidad(WebClient cliente,String uri,Class<T> clase,String nombreEntidad) {
+
+    try {
+        return cliente.get()
+                .uri(uri)
+                .retrieve()
+                .bodyToMono(clase)
+                .block();
+
+    } catch (WebClientResponseException e) {
+        throw new ResponseStatusException(HttpStatus.valueOf(e.getStatusCode().value()),"Error al obtener " + nombreEntidad);
+
+    } catch (Exception e) {
+        throw new ResponseStatusException(HttpStatus.SERVICE_UNAVAILABLE,"Error de conexión con el servicio de " + nombreEntidad);
+    }
+}
 
 
     public List<PersonaModel> obtenerTodasLasPersonas(){
@@ -40,31 +66,14 @@ public class PersonaService {
         return personaM;
     }
 
+    
+
     public PersonaModel agregarPersona (AgregarPersona nuevaP){
         
-        ComunaDto comunaDto = null;
+        ComunaDto comunaDto = obtenerEntidad(comunaWebClient,"comuna/"+ nuevaP.getCOMUNA_id_comuna() , ComunaDto.class, "Comuna");
+        RolDto rolDto = obtenerEntidad(RolWebClient,"rol/"+nuevaP.getROL_id_rol(), RolDto.class, "Rol"); 
         
 
-        try {
-            comunaDto = webClient.get()
-            .uri("comuna/{idCom}",nuevaP.getCOMUNA_id_comuna())
-            .retrieve()
-            .bodyToMono(ComunaDto.class)
-            .block();
-        } catch (WebClientResponseException e) {
-            throw new ResponseStatusException(HttpStatus.valueOf(e.getStatusCode().value()),
-            "Error al obtener la Comuna: " + e.getStatusText());
-        } catch (Exception e) {
-            throw new ResponseStatusException(HttpStatus.SERVICE_UNAVAILABLE,"Error de conexión con el servicio de comuna");
-        }
-
-        if (comunaDto == null) {
-            throw new ResponseStatusException(HttpStatus.NO_CONTENT,"DTO sin contenido");
-        }
-
-        if (comunaDto.id_comuna() != nuevaP.getCOMUNA_id_comuna()) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Comuna inválida");
-        }
 
         PersonaModel personaNueva = new PersonaModel();
         personaNueva.setRun(nuevaP.getRun());
@@ -98,6 +107,11 @@ public class PersonaService {
     if (personaModel == null) {
         throw new ResponseStatusException(HttpStatus.NOT_FOUND,"Persona no encontrada");
     }
+
+
+    ComunaDto comunaDto = obtenerEntidad(comunaWebClient,"comuna/"+ nuevaP.getCOMUNA_id_comuna() , ComunaDto.class, "Comuna");
+    RolDto rolDto = obtenerEntidad(RolWebClient,"rol/"+nuevaP.getROL_id_rol(), RolDto.class, "Rol"); 
+        
 
     personaModel.setRun(nuevaP.getRun());
     personaModel.setNombre(nuevaP.getNombre());

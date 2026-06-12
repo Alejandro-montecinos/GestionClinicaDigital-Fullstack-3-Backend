@@ -9,7 +9,7 @@ public class AgregarPaciente {
     private String nombrePaciente;
 
     @NotBlank
-    private int perosna_idPersona;
+    private int persona_idPersona;
 
     @NotBlank
     private int convenio_id_convenio;

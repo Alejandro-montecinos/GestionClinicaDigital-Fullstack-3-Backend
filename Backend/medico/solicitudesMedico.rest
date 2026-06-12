@@ -6,7 +6,6 @@ content-type: application/json
  "nombreMedico":"juanMedico",
  "persona_idPersona":1 ,
  "cargoMedico_idCargoMedico":1 ,
- "rol_idRol":1 ,
  "especialidadMedica_idEspecialidad":1
 }
 
@@ -26,7 +25,6 @@ content-type: application/json
  "nombreMedico":"juanMedico444444444444",
  "persona_idPersona":1 ,
  "cargoMedico_idCargoMedico":1 ,
- "rol_idRol":1 ,
  "especialidadMedica_idEspecialidad":1
 }
 

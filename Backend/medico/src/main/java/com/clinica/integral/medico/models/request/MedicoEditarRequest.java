@@ -16,9 +16,6 @@ public class MedicoEditarRequest {
     private int cargoMedico_idCargoMedico;
 
     @NotBlank
-    private int rol_idRol;
-
-    @NotBlank
     private int especialidadMedica_idEspecialidad;
 
 }

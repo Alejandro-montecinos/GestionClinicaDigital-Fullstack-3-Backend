@@ -23,7 +23,7 @@ public class PacienteModel {
     private String nombrePaciente;
 
     @Column(nullable = false)
-    private int perosna_idPersona;
+    private int persona_idPersona;
 
     @Column(nullable = false)
     private int convenio_id_convenio;

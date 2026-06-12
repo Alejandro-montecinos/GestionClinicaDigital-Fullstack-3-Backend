@@ -4,17 +4,17 @@ POST http://localhost:2020/persona HTTP/1.1
 Content-Type: application/json
 
 {
-  "run": "6-6",
+  "run": "6-88886",
   "nombre": "alejandro",
   "apellido_paterno": "montecinos",
   "apellido_materno": "pavez",
   "fecha_nacimiento": "2005-06-15",
   "telefono": "+56912345678",
-  "correo": "hola1235@gmail.com",
+  "correo": "hola1il.com",
   "contrasenia":"123456789",
   "direccion": "av./////holahola",
   "COMUNA_id_comuna": 2,
-  "ROL_id_rol": 666
+  "ROL_id_rol": 1
 }
 
 
@@ -31,21 +31,21 @@ Content-Type: application/json
 
 
 ### Actualizar persona
-PUT http://localhost:2020/persona/1 HTTP/1.1
+PUT http://localhost:2020/persona/4 HTTP/1.1
 Content-Type: application/json
 
 {
-  "run": "6-6",
+  "run": "6-5555556",
   "nombre": "alejandro",
   "apellido_paterno": "montecinos",
-  "apellido_materno": "pavez",
+  "apellido_materno":"fedelobo",
   "fecha_nacimiento": "2005-06-15",
   "telefono": "+56912345678",
-  "correo": "hola1235@gmail.com",
+  "correo": "gmail.com",
   "contrasenia":"555555",
   "direccion": "av./////holahola",
   "COMUNA_id_comuna": 2,
-  "ROL_id_rol": 666
+  "ROL_id_rol": 3
 }
 
 
