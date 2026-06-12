@@ -5,8 +5,7 @@ import lombok.Data;
 
 @Data
 public class ActualizarTratamiento {
-    @NotBlank
-    private Integer idTratamiento;
+    
     @NotBlank
     private String descripcion_Tratamiento;
     @NotBlank

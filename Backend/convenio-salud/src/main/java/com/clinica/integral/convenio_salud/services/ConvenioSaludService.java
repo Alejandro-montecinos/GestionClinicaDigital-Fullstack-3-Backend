@@ -25,20 +25,18 @@ public class ConvenioSaludService {
     public ConvenioSalud agregarConvenioSalud( ConvenioSaludRequest convenioNuevo ){
         
         ConvenioSalud convenio = new ConvenioSalud();
-        convenio.setId_convenio_salud(convenioNuevo.getId_convenio_salud());
         convenio.setNombre_convenio_salud(convenioNuevo.getNombre_convenio_salud());
 
         return convenioRepo.save(convenio);
 
     }
 
-    public ConvenioSalud actualizarConvenioSalud( ConvenioSaludActualizarRequest convenioEditado ){
-        ConvenioSalud convenioExiste = convenioRepo.findById(convenioEditado.getId_convenio_salud()).orElse(null);
+    public ConvenioSalud actualizarConvenioSalud( int idCon ,ConvenioSaludActualizarRequest convenioEditado ){
+        ConvenioSalud convenioExiste = convenioRepo.findById(idCon).orElse(null);
         if (convenioExiste == null){
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,"Convenio no encontrado.");
         }
 
-        convenioExiste.setId_convenio_salud(convenioEditado.getId_convenio_salud());
         convenioExiste.setNombre_convenio_salud(convenioEditado.getNombre_convenio_salud());
         return convenioRepo.save(convenioExiste);
 

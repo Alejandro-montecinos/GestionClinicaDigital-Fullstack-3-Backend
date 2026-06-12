@@ -25,20 +25,18 @@ public class EspecialidadMedicaService {
     public EspecialidadMedica agregarEspecialidad( EspecialidadMedicaRequest especialidadNueva ){
         
         EspecialidadMedica especialidad = new EspecialidadMedica();
-        especialidad.setId_especialidad_medica(especialidadNueva.getId_especialidad_medica());
         especialidad.setNombre_especialidad_medica(especialidadNueva.getNombre_especialidad_medica());
 
         return especialidadRepo.save(especialidad);
 
     }
 
-    public EspecialidadMedica actualizarEspecialidad( EspecialidadMedicaRequest especialidadEditada ){
-        EspecialidadMedica especialidadExiste = especialidadRepo.findById(especialidadEditada.getId_especialidad_medica()).orElse(null);
+    public EspecialidadMedica actualizarEspecialidad( EspecialidadMedicaRequest especialidadEditada, int idEspe ){
+        EspecialidadMedica especialidadExiste = especialidadRepo.findById(idEspe).orElse(null);
         if (especialidadExiste == null){
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,"Especialidad no encontrada.");
         }
-
-        especialidadExiste.setId_especialidad_medica(especialidadEditada.getId_especialidad_medica());
+        
         especialidadExiste.setNombre_especialidad_medica(especialidadEditada.getNombre_especialidad_medica());
         return especialidadRepo.save(especialidadExiste);
 

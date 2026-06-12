@@ -23,10 +23,10 @@ public class AdministrativoServices {
         return administrativoRepositories.findAll();
     }
 
-    public AdministrativoModel ObtenerAdministrativoPorId(String runAd){
+    public AdministrativoModel ObtenerAdministrativoPorId(int runAd){
         AdministrativoModel am = administrativoRepositories.findById(runAd).orElse(null);
         if (am == null) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"Administrativo no encontrada");
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"Administrativo no encontra");
         }
         return am;
     }
@@ -43,9 +43,9 @@ public class AdministrativoServices {
     }
 
 
-    public String eliminarAdministrativo (String run){
-        if (administrativoRepositories.existsById(run)) {
-            administrativoRepositories.deleteById(run);
+    public String eliminarAdministrativo (int idadmin){
+        if (administrativoRepositories.existsById(idadmin)) {
+            administrativoRepositories.deleteById(idadmin);
             return "Administrativo eliminado";
         } else {
             return "Administrativo no encntrado";    
@@ -53,19 +53,17 @@ public class AdministrativoServices {
     }
 
 
-    public AdministrativoModel editarAdministrativo (String runAd, ActualizarAdministrativo newAd){
-        AdministrativoModel am = administrativoRepositories.findById(runAd).orElse(null);
+    public AdministrativoModel editarAdministrativo (int idAdmin, ActualizarAdministrativo newAd){
+        AdministrativoModel am = administrativoRepositories.findById(idAdmin).orElse(null);
         if (am == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,"Administrativo no encontrada");
         }
 
-        AdministrativoModel administrativoModel= new AdministrativoModel();
+        am.setRun(newAd.getRun());
+        am.setNombreAdministrativo(newAd.getNombreAdministrativo());
+        am.setRol_id_rol(newAd.getRol_id_rol());
 
-        administrativoModel.setRun(newAd.getRun());
-        administrativoModel.setNombreAdministrativo(newAd.getNombreAdministrativo());
-        administrativoModel.setRol_id_rol(newAd.getRol_id_rol());
-
-        return administrativoRepositories.save(administrativoModel);
+        return administrativoRepositories.save(am);
 
 
     }

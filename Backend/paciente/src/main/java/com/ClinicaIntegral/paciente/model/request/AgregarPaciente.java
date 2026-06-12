@@ -6,10 +6,10 @@ import lombok.Data;
 public class AgregarPaciente {
     
     @NotBlank
-    private String run;
+    private String nombrePaciente;
 
     @NotBlank
-    private int idPaciente;
+    private int perosna_idPersona;
 
     @NotBlank
     private int convenio_id_convenio;

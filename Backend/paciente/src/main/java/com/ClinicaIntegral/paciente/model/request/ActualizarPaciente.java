@@ -1,5 +1,6 @@
 package com.ClinicaIntegral.paciente.model.request;
 
+import jakarta.persistence.Column;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
@@ -7,10 +8,10 @@ import lombok.Data;
 public class ActualizarPaciente {
     
     @NotBlank
-    private String run;
+    private String nombrePaciente;
 
     @NotBlank
-    private int idPaciente;
+    private int perosna_idPersona;
 
     @NotBlank
     private int convenio_id_convenio;

@@ -35,7 +35,9 @@ public class PacienteService {
 
     public PacienteModel agregarPaciente (AgregarPaciente agregarPaciente){
         PacienteModel model = new PacienteModel();
-        model.setRun(agregarPaciente.getRun());
+        
+        model.setPerosna_idPersona(agregarPaciente.getPerosna_idPersona());
+        model.setNombrePaciente(agregarPaciente.getNombrePaciente());
         model.setConvenio_id_convenio(agregarPaciente.getConvenio_id_convenio());
         return pacienteRepositories.save(model);
     }
@@ -56,7 +58,8 @@ public class PacienteService {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,"Paciente no encontrado");
         }
         
-        pam.setRun(actualizarPaciente.getRun());
+        pam.setPerosna_idPersona(actualizarPaciente.getPerosna_idPersona());
+        pam.setNombrePaciente(actualizarPaciente.getNombrePaciente());
         pam.setConvenio_id_convenio(actualizarPaciente.getConvenio_id_convenio());
         
         return pacienteRepositories.save(pam);

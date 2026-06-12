@@ -62,18 +62,12 @@ public class MedicoService {
         
         Medico medico = new Medico();
 
-        medico.setPersonaRun(medicoNuevo.getPersonaRun());
-        medico.setNombre(medicoNuevo.getNombre());
-        medico.setApellido_paterno(medicoNuevo.getApellido_paterno());
-        medico.setApellido_materno(medicoNuevo.getApellido_materno());
-        medico.setFecha_nacimiento(medicoNuevo.getFecha_nacimiento());
-        medico.setTelefono(medicoNuevo.getTelefono());
-        medico.setCorreo(medicoNuevo.getCorreo());
-        medico.setDireccion(medicoNuevo.getDireccion());
-        medico.setCOMUNA_id_comuna(medicoNuevo.getCOMUNA_id_comuna());
-        medico.setROL_id_rol(medicoNuevo.getROL_id_rol());
-        medico.setNombre_cargo(medicoNuevo.getNombre_cargo());
-        medico.setNombre_especialidad(medicoNuevo.getNombre_especialidad());
+        medico.setNombreMedico(medicoNuevo.getNombreMedico());
+        medico.setPersona_idPersona(medicoNuevo.getPersona_idPersona());
+        medico.setCargoMedico_idCargoMedico(medicoNuevo.getCargoMedico_idCargoMedico());
+        medico.setEspecialidadMedica_idEspecialidad(medicoNuevo.getEspecialidadMedica_idEspecialidad());
+        medico.setRol_idRol(medicoNuevo.getRol_idRol());
+
         return medicoRepo.save(medico);
 
     }
@@ -84,18 +78,12 @@ public class MedicoService {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,"Médico no encontrado.");
         }
 
-        medicoExiste.setPersonaRun(medicoActualizado.getPersonaRun());
-        medicoExiste.setNombre(medicoActualizado.getNombre());
-        medicoExiste.setApellido_paterno(medicoActualizado.getApellido_paterno());
-        medicoExiste.setApellido_materno(medicoActualizado.getApellido_materno());
-        medicoExiste.setFecha_nacimiento(medicoActualizado.getFecha_nacimiento());
-        medicoExiste.setTelefono(medicoActualizado.getTelefono());
-        medicoExiste.setCorreo(medicoActualizado.getCorreo());
-        medicoExiste.setDireccion(medicoActualizado.getDireccion());
-        medicoExiste.setCOMUNA_id_comuna(medicoActualizado.getCOMUNA_id_comuna());
-        medicoExiste.setROL_id_rol(medicoActualizado.getROL_id_rol());
-        medicoExiste.setNombre_cargo(medicoActualizado.getNombre_cargo());
-        medicoExiste.setNombre_especialidad(medicoActualizado.getNombre_especialidad());
+        medicoExiste.setNombreMedico(medicoActualizado.getNombreMedico());
+        medicoExiste.setPersona_idPersona(medicoActualizado.getPersona_idPersona());
+        medicoExiste.setCargoMedico_idCargoMedico(medicoActualizado.getCargoMedico_idCargoMedico());
+        medicoExiste.setEspecialidadMedica_idEspecialidad(medicoActualizado.getEspecialidadMedica_idEspecialidad());
+        medicoExiste.setRol_idRol(medicoActualizado.getRol_idRol());
+
         return medicoRepo.save(medicoExiste);
 
     }

@@ -18,12 +18,12 @@ Content-Type: application/json
 
 
 ### Obtener region segun id 
-GET {{baseURL}}/1 HTTP/1.1
+GET {{baseURL}}/2 HTTP/1.1
 Content-Type: application/json
 
 
 ### Actualizar region
-PUT {{baseURL}}/1 HTTP/1.1
+PUT {{baseURL}}/2 HTTP/1.1
 Content-Type: application/json
 
 {
@@ -33,5 +33,5 @@ Content-Type: application/json
 
 
 ### Eliminar region
-DELETE {{baseURL}}/1 HTTP/1.1
+DELETE {{baseURL}}/2 HTTP/1.1
 Content-Type: application/json

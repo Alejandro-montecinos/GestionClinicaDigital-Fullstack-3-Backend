@@ -1,4 +1,4 @@
-package com.clinica.integral.receta.models.entities;
+package com.ClinicaIntegral.receta.models.entities;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

@@ -11,6 +11,7 @@ import com.ClinicaIntegral.HistorialClinico.models.request.ActualizarHistorial;
 import com.ClinicaIntegral.HistorialClinico.models.request.AgregarHistorial;
 import com.ClinicaIntegral.HistorialClinico.services.HistorialService;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,6 +24,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 
 @RequestMapping("historial")
 @RestController
+@CrossOrigin(origins = "*")
 public class HistorialController {
 
     @Autowired

@@ -11,6 +11,7 @@ import com.clinica.integral.convenio_salud.models.request.ConvenioSaludActualiza
 import com.clinica.integral.convenio_salud.models.request.ConvenioSaludRequest;
 import com.clinica.integral.convenio_salud.services.ConvenioSaludService;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,6 +23,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 @RequestMapping("/convenio_salud") //localhost:8080/convenio_salud
 @RestController
+@CrossOrigin(origins = "*")
 public class ConvenioSaludController {
 
     @Autowired
@@ -37,16 +39,16 @@ public class ConvenioSaludController {
         return convenioService.agregarConvenioSalud(convenioNuevo);
     }
 
-    @PutMapping("")
-    public ConvenioSalud actualizarConvenioSalud(@RequestBody ConvenioSaludActualizarRequest convenioEditado ){
+    @PutMapping("/{idCon}")
+    public ConvenioSalud actualizarConvenioSalud(@PathVariable int idCon,@RequestBody ConvenioSaludActualizarRequest convenioEditado ){
 
-        return convenioService.actualizarConvenioSalud(convenioEditado);
+        return convenioService.actualizarConvenioSalud(idCon,convenioEditado);
 
     }
 
-    @DeleteMapping("/{id_convenio_salud}")
-    public String eliminarConvenioSalud( @PathVariable int id_convenio_salud ){
-        return convenioService.eliminarConvenioSalud(id_convenio_salud);
+    @DeleteMapping("/{idCon}")
+    public String eliminarConvenioSalud( @PathVariable int idCon ){
+        return convenioService.eliminarConvenioSalud(idCon);
     }
 
 }

@@ -10,6 +10,7 @@ import com.clinica.integral.especialidadMedica.models.entities.EspecialidadMedic
 import com.clinica.integral.especialidadMedica.models.request.EspecialidadMedicaRequest;
 import com.clinica.integral.especialidadMedica.services.EspecialidadMedicaService;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 @RequestMapping("/especialidadMedica") //localhost:8085/especialidadMedica
 @RestController
+@CrossOrigin(origins = "*")
 public class EspecialidadMedicaController {
 
     @Autowired
@@ -30,16 +32,18 @@ public class EspecialidadMedicaController {
     public List<EspecialidadMedica> obtenerEspecialidades() {
         return especialidadMedicaService.ObtenerEspecialidades();
     }
+
+    
     
     @PostMapping("")
     public EspecialidadMedica agregarEspecialidad(@RequestBody EspecialidadMedicaRequest especialidadNueva ){
         return especialidadMedicaService.agregarEspecialidad(especialidadNueva);
     }
 
-    @PutMapping("")
-    public EspecialidadMedica editarEspecialidad(@RequestBody EspecialidadMedicaRequest especialidadEditada ){
+    @PutMapping("/{idEspe}")
+    public EspecialidadMedica editarEspecialidad(@RequestBody EspecialidadMedicaRequest especialidadEditada, @PathVariable int idEspe ){
 
-        return especialidadMedicaService.actualizarEspecialidad(especialidadEditada);
+        return especialidadMedicaService.actualizarEspecialidad(especialidadEditada, idEspe);
 
     }
 

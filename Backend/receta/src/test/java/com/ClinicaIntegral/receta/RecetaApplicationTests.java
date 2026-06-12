@@ -1,4 +1,4 @@
-package com.clinica.integral.receta;
+package com.ClinicaIntegral.receta;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

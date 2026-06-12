@@ -1,4 +1,4 @@
-package com.clinica.integral.receta;
+package com.ClinicaIntegral.receta;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

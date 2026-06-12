@@ -17,7 +17,7 @@ import com.example.Tratamiento.models.entities.Tratamiento;
 import com.example.Tratamiento.service.TratamientoService;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "*")
 @RequestMapping("/tratamiento")
 public class TratamientoController {
 

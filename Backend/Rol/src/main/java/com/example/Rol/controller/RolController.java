@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,37 +15,40 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.Rol.models.entities.Rol;
+import com.example.Rol.models.request.ActualizarRol;
+import com.example.Rol.models.request.AgregarRol;
 import com.example.Rol.service.RolService;
 
 @RequestMapping("rol")
 @RestController
+@CrossOrigin(origins = "*")
 public class RolController {
     
 @Autowired
-    private RolService service;
+    private RolService rolService;
 
     @GetMapping
-    public List<Rol> listar() {
-        return service.listar();
+    public List<Rol> obtenerTodosLosRoles() {
+        return rolService.obtenerTodosLosRoles();
     }
 
     @PostMapping
-    public Rol guardar(@RequestBody Rol r) {
-        return service.guardar(r);
+    public Rol guardarRol (@RequestBody AgregarRol agregarRol) {
+        return rolService.guardarRol(agregarRol);
     }
 
-    @GetMapping("/consulta/{id}")
-    public Optional<Rol> porConsulta(@PathVariable Integer id) {
-        return service.buscarPorConsulta(id);
+    @GetMapping("/{idRol}")
+    public Rol obtenerRolPorId (@PathVariable int idRol) {
+        return rolService.obtenerRolPorId(idRol);
     }
 
-    @PutMapping("/{id}")
-    public Rol actualizar(@PathVariable Integer id, @RequestBody Rol r) {
-        return service.actualizar(id, r);
+    @PutMapping("/{idRol}")
+    public Rol actualizarRol(@PathVariable int idRol, @RequestBody ActualizarRol actualizarRol) {
+        return rolService.actualizarRol(idRol, actualizarRol);
     }
 
-    @DeleteMapping("/{id}")
-    public void eliminar(@PathVariable Integer id) {
-        service.eliminar(id);
+    @DeleteMapping("/{idRol}")
+    public String eliminarRol (@PathVariable int idRol) {
+        return rolService.eliminarRol(idRol); 
     }
 }

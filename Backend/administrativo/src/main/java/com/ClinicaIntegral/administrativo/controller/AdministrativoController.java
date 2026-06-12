@@ -11,6 +11,7 @@ import com.ClinicaIntegral.administrativo.models.request.ActualizarAdministrativ
 import com.ClinicaIntegral.administrativo.models.request.AgregarAdministrativo;
 import com.ClinicaIntegral.administrativo.services.AdministrativoServices;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,6 +26,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 
 @RequestMapping("administrativo")
 @RestController
+@CrossOrigin(origins = "*")
 public class AdministrativoController {
 
     @Autowired
@@ -36,7 +38,7 @@ public class AdministrativoController {
     }
 
     @GetMapping("/{idAdmin}")
-    public AdministrativoModel obtenerAdministrativoPorId (@PathVariable String idAdmin) {
+    public AdministrativoModel obtenerAdministrativoPorId (@PathVariable int idAdmin) {
         return administrativoServices.ObtenerAdministrativoPorId(idAdmin);
     }
 
@@ -46,12 +48,12 @@ public class AdministrativoController {
     }
 
     @PutMapping("/{idAdmin}")
-    public AdministrativoModel editarAdministrativo (@PathVariable String idAdmin, @RequestBody ActualizarAdministrativo actualizarAdministrativo) {
+    public AdministrativoModel editarAdministrativo (@PathVariable int idAdmin, @RequestBody ActualizarAdministrativo actualizarAdministrativo) {
         return administrativoServices.editarAdministrativo(idAdmin, actualizarAdministrativo);
     }
 
     @DeleteMapping("/{idAdmin}")
-    public String eliminarAdministrativo (@PathVariable String idAdmin){
+    public String eliminarAdministrativo (@PathVariable int idAdmin){
         return administrativoServices.eliminarAdministrativo(idAdmin);
     }
 
