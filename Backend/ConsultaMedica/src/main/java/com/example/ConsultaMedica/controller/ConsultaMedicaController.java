@@ -3,6 +3,7 @@ package com.example.ConsultaMedica.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.ConsultaMedica.models.entities.ConsultaMedica;
 import com.example.ConsultaMedica.service.ConsultaMedicaService;
 
+@CrossOrigin(origins = "http://localhost:6161")
 @RestController
 @RequestMapping("/consultas")
 public class ConsultaMedicaController {
