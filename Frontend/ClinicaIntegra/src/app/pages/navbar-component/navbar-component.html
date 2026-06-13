@@ -5,12 +5,23 @@
   </div>
 
   <nav>
-    <a routerLink="/"routerLinkActive="activo"[routerLinkActiveOptions]="{ exact: true }">Inicio</a>
-    <a routerLink="/Persona"routerLinkActive="activo">Personas</a>
-    <a routerLink="/ConsultaMedica"routerLinkActive="activo">Consultas</a>
-    <a routerLink="/Medico"routerLinkActive="activo"class="activo">Medico</a>
-    <a routerLink="/login"routerLinkActive="activo"class="login-link">Iniciar sesión</a>
+    <a *ngIf="!estaEnDashboard" routerLink="/" routerLinkActive="activo" [routerLinkActiveOptions]="{ exact: true }">Inicio</a>
+
+    <a *ngIf="estaEnDashboard" routerLink="/cita-medica" routerLinkActive="activo">Cita Médica</a>
+
+    <ng-content select="[extra-links]"></ng-content>
     
-    
+    <a *ngIf="!estaEnDashboard" routerLink="/seleccionarUsuario" routerLinkActive="activo" class="login-link">Iniciar sesión</a>
+    <a *ngIf="estaEnDashboard" (click)="abrirModal()" class="login-link" style="cursor: pointer;">Cerrar sesión</a>
   </nav>
 </header>
+
+<div *ngIf="mostrarModal" class="modal-logout-overlay">
+  <div class="modal-logout-card">
+    <h3>¿Desea cerrar sesión?</h3>
+    <div class="modal-logout-buttons">
+      <button (click)="confirmarSalida()" class="btn-logout-si">Sí, salir</button>
+      <button (click)="cerrarModal()" class="btn-logout-no">No, quedarme</button>
+    </div>
+  </div>
+</div>

@@ -6,7 +6,7 @@ Content-Type: application/json
 {
     "nombre_comuna":"macum",
     
-    "ciudad_id_ciudad":666
+    "ciudad_id_ciudad":1
 }
 
 

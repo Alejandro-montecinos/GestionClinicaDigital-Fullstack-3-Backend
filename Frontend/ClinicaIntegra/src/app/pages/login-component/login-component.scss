@@ -27,8 +27,8 @@
 }
 
 .brand-panel {
-  position: relative;
-  padding: 3rem;
+  position: relative; /* 👈 Esto permite anclar el link abajo a la izquierda */
+  padding: 3rem 3rem 6rem 3rem; /* Añadimos espacio abajo para el link */
   background: linear-gradient(160deg, #75D5FF 0%, #70E0D0 100%);
   color: #ffffff;
   display: flex;
@@ -214,48 +214,65 @@
 }
 
 @keyframes pulse {
-  0% {
-    transform: scale(0.95);
-    opacity: 0.5;
-  }
-  50% {
-    transform: scale(1.08);
-    opacity: 0.9;
-  }
-  100% {
-    transform: scale(0.95);
-    opacity: 0.5;
-  }
+  0% { transform: scale(0.95); opacity: 0.5; }
+  50% { transform: scale(1.08); opacity: 0.9; }
+  100% { transform: scale(0.95); opacity: 0.5; }
 }
 
 @keyframes fadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(25px);
-  }
-  to {
+  from { opacity: 0; transform: translateY(25px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 900px) {
+  .login-card { grid-template-columns: 1fr; }
+  .brand-panel, .form-panel { padding: 2rem; }
+}
+
+@media (max-width: 640px) {
+  .login-wrapper { padding: 1rem; }
+  .brand-panel h1 { font-size: 1.9rem; }
+}
+
+/* ==========================================================================
+   AGREGADO: LINK EN EL CÍRCULO ROJO (SOLO PARA EL PACIENTE)
+   ========================================================================== */
+
+.registro-brand-container {
+  position: absolute;
+  bottom: 2.5rem;   /* Posición vertical en la esquina */
+  left: 3rem;       /* Alineado al margen del texto */
+  animation: fadeUp 0.5s ease; /* Reutiliza tu animación fadeUp */
+  z-index: 20;      /* Prioridad por sobre los pulse-circles */
+}
+
+.link-registro-brand {
+  background: none;
+  border: none;
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 700;
+  text-decoration: underline;
+  cursor: pointer;
+  padding: 0;
+  opacity: 0.9;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+
+  &:hover {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(-1px); /* Sutil efecto hacia arriba */
+  }
+
+  &:active {
+    transform: scale(0.98);
   }
 }
 
 @media (max-width: 900px) {
-  .login-card {
-    grid-template-columns: 1fr;
-  }
-
-  .brand-panel,
-  .form-panel {
-    padding: 2rem;
-  }
-}
-
-@media (max-width: 640px) {
-  .login-wrapper {
-    padding: 1rem;
-  }
-
-  .brand-panel h1 {
-    font-size: 1.9rem;
+  .registro-brand-container {
+    position: relative;
+    bottom: auto;
+    left: auto;
+    margin-top: 1.5rem;
   }
 }

@@ -13,7 +13,7 @@ Content-Type: application/json
   "correo": "hola1il.com",
   "contrasenia":"123456789",
   "direccion": "av./////holahola",
-  "COMUNA_id_comuna": 2,
+  "COMUNA_id_comuna": 1,
   "ROL_id_rol": 1
 }
 
