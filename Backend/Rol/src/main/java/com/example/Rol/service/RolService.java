@@ -53,7 +53,7 @@ public class RolService {
     public Rol actualizarRol(int idRol, ActualizarRol actualizarRol) {
         Rol rol = rolRepository.findById(idRol).orElse(null);
         if (rol == null) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"Persona no encontrada");
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"rol no encontrada");
         }
         rol.setNombre_rol(actualizarRol.getNombre_rol());
         rol.setDescripcion_rol(actualizarRol.getDescripcion_rol());
