@@ -2,7 +2,18 @@
     "configurations": [
         {
             "type": "java",
+<<<<<<< HEAD
+            "name": "ConsultaMedicaApplication",
+            "request": "launch",
+            "mainClass": "com.example.ConsultaMedica.ConsultaMedicaApplication",
+            "projectName": "com.example-ConsultaMedica"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-PersonaApplication<Persona>",
+=======
             "name": "Spring Boot-PaisApplication<pais>",
+>>>>>>> 0b005e2ce498332601af87a7b1aefc4367cb3734
             "request": "launch",
             "cwd": "${workspaceFolder}",
             "mainClass": "com.ClinicaIntegral.pais.PaisApplication",
