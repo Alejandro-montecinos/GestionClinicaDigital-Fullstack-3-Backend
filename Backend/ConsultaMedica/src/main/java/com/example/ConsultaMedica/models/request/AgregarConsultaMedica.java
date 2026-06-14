@@ -6,12 +6,6 @@ import lombok.Data;
 @Data
 public class AgregarConsultaMedica {
     
-    
-    @NotBlank
-    private int idPersona;
-    
-    @NotBlank
-    private Integer idConsulta;
 
     @NotBlank
     private String fechaConsulta_ConsultaMedica;
@@ -26,9 +20,6 @@ public class AgregarConsultaMedica {
     private String diagnostico_ConsultaMedica;
 
     @NotBlank
-    private Integer pacienteId;
-
-    @NotBlank
-    private Integer medicoId;
+    private Integer medico_idMedico;
 
 }

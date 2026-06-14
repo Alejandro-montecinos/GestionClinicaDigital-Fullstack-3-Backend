@@ -30,8 +30,5 @@ public class ConsultaMedica {
     private String diagnostico_ConsultaMedica;
 
     @Column(nullable = false)
-    private int pacienteId;
-
-    @Column(nullable = false)
-    private int medicoId;
+    private int medico_idMedico;
 }

@@ -14,36 +14,38 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.ConsultaMedica.models.entities.ConsultaMedica;
+import com.example.ConsultaMedica.models.request.ActualizarConsultaMedica;
+import com.example.ConsultaMedica.models.request.AgregarConsultaMedica;
 import com.example.ConsultaMedica.service.ConsultaMedicaService;
 
 @RestController
-@RequestMapping("/consultas")
+@RequestMapping("/consultaMedica")
 @CrossOrigin(origins = "*")
 public class ConsultaMedicaController {
 
     @Autowired
-    private ConsultaMedicaService service;
+    private ConsultaMedicaService consultaMedicaService;
 
     @GetMapping
-    public List<ConsultaMedica> listar() {
-        return service.listar();
+    public List<ConsultaMedica> obtenerTodasLasConsultas() {
+       return consultaMedicaService.obtenerTodasLasConsultas();
     }
-    @GetMapping("/{id}")
-    public ConsultaMedica buscar(@PathVariable Integer id){
-        return service.buscarPorId(id);
+    @GetMapping("/{idConsulta}")
+    public ConsultaMedica obtenerConsultaMedicaPorId(@PathVariable int idConsulta){
+        return consultaMedicaService.obtenerTodasLasConsultasPorId(idConsulta);
     }
     @PostMapping
-    public ConsultaMedica guardar(@RequestBody ConsultaMedica consulta) {
-        return service.guardar(consulta);
+    public ConsultaMedica guardarConsultasMedicas(@RequestBody AgregarConsultaMedica agregarConsultaMedica) {
+        return consultaMedicaService.guardarConsultaMedica(agregarConsultaMedica);
     }
 
-    @PutMapping("/{id}")
-    public ConsultaMedica actualizar(@PathVariable Integer id, @RequestBody ConsultaMedica consulta) {
-        return service.actualizar(id, consulta);
+    @PutMapping("/{idConsulta}")
+    public ConsultaMedica actualizarConsultaMedica(@PathVariable int idConsulta, @RequestBody ActualizarConsultaMedica actualizarConsultaMedica) {
+       return consultaMedicaService.editarConsultaMedica(idConsulta, actualizarConsultaMedica);
     }
 
-    @DeleteMapping("/{id}")
-    public void eliminar(@PathVariable Integer id) {
-        service.eliminar(id);
+    @DeleteMapping("/{idConsulta}")
+    public String eliminarConsultaMedica(@PathVariable int idConsulta) {
+        return consultaMedicaService.eliminarConsultaMedica(idConsulta);
     }
 }

@@ -9,12 +9,6 @@ public class ActualizarConsultaMedica {
 
 
     @NotBlank
-    private int idPersona;
-    
-    @NotBlank
-    private Integer idConsulta;
-
-    @NotBlank
     private String fechaConsulta_ConsultaMedica;
 
     @NotBlank
@@ -27,8 +21,5 @@ public class ActualizarConsultaMedica {
     private String diagnostico_ConsultaMedica;
 
     @NotBlank
-    private Integer pacienteId;
-
-    @NotBlank
-    private Integer medicoId;
+    private Integer medico_idMedico;
 }

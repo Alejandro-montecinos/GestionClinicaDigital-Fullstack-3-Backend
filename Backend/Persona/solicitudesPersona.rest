@@ -4,16 +4,16 @@ POST http://localhost:2020/persona HTTP/1.1
 Content-Type: application/json
 
 {
-  "run": "6-88886",
+  "run": "runtest",
   "nombre": "alejandro",
   "apellido_paterno": "montecinos",
   "apellido_materno": "pavez",
   "fecha_nacimiento": "2005-06-15",
   "telefono": "+56912345678",
-  "correo": "hola1il.com",
+  "correo": "correotest",
   "contrasenia":"123456789",
   "direccion": "av./////holahola",
-  "COMUNA_id_comuna": 2,
+  "COMUNA_id_comuna": 88,
   "ROL_id_rol": 1
 }
 
