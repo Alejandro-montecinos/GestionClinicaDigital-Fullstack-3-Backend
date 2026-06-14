@@ -14,10 +14,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ClinicaIntegral.Persona.models.dto.LoginPersonaRequest;
+import com.ClinicaIntegral.Persona.models.dto.LoginPersonaResponse;
 import com.ClinicaIntegral.Persona.models.entities.PersonaModel;
 import com.ClinicaIntegral.Persona.models.request.ActualizarPersona;
 import com.ClinicaIntegral.Persona.models.request.AgregarPersona;
-import com.ClinicaIntegral.Persona.models.request.LoginPersonaRequest;
+
 import com.ClinicaIntegral.Persona.services.PersonaService;
 
 @RequestMapping("persona")
@@ -46,7 +48,7 @@ public class PersonaController {
     @PutMapping("/{idPersona}")
         public PersonaModel actualizarPersona(@PathVariable int idPersona,@RequestBody ActualizarPersona actualizarP){
     return personaService.actualizarPersona(idPersona, actualizarP);
-}
+    }
 
     @DeleteMapping("/{idPersona}")
     public String eliminarPersona(@PathVariable int idPersona){
@@ -54,9 +56,8 @@ public class PersonaController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<PersonaModel> loginPersona(@RequestBody LoginPersonaRequest request) {
-        PersonaModel persona = personaService.loginPersona(request);
-        return ResponseEntity.ok(persona);
+    public LoginPersonaResponse loginPersona(@RequestBody LoginPersonaRequest request) {
+    return personaService.loginPersona(request);
     }
 
 

@@ -8,9 +8,15 @@ import {
   ValidatorFn,
   Validators
 } from '@angular/forms';
-import { PersonaServices } from '../../services/persona-services';
-import { PersonaModel } from '../../models/PersonaModel';
 import { CommonModule } from '@angular/common';
+import { ActivatedRoute } from '@angular/router';
+
+import { PersonaServices } from '../../services/persona-services';
+import { ComunaService } from '../../services/comuna-service';
+
+import { PersonaModel } from '../../models/PersonaModel';
+import { ComunaModel } from '../../models/comunaModel';
+
 import { NavbarComponent } from '../navbar-component/navbar-component';
 
 @Component({
@@ -23,13 +29,19 @@ import { NavbarComponent } from '../navbar-component/navbar-component';
 export class PersonaComponent implements OnInit {
   private fb = inject(FormBuilder);
   private personaService = inject(PersonaServices);
+  private comunaService = inject(ComunaService);
+  private route = inject(ActivatedRoute);
 
   cargando = false;
+  cargandoComunas = false;
   mensajeExito = '';
   mensajeError = '';
 
   verContrasenia = false;
   verConfirmacion = false;
+
+  rolIdRol = 2;
+  comunas: ComunaModel[] = [];
 
   personaForm: FormGroup = this.fb.group(
     {
@@ -44,15 +56,39 @@ export class PersonaComponent implements OnInit {
       direccion: ['', [Validators.required, Validators.minLength(5)]],
       fecha_nacimiento: ['', Validators.required],
       telefono: ['', [Validators.required, Validators.pattern(/^\+569\d{8}$/)]],
-      COMUNA_id_comuna: [null, Validators.required],
-      ROL_id_rol: [2]
+      comunaIdComuna: [null, Validators.required],
+      rolIdRol: [2]
     },
     {
       validators: this.passwordsIgualesValidator('contrasenia', 'confirmarContrasenia')
     }
   );
 
-  async ngOnInit() {}
+  ngOnInit(): void {
+    this.route.queryParamMap.subscribe(params => {
+      const rol = Number(params.get('rolIdRol')) || 2;
+      this.rolIdRol = rol;
+
+      this.personaForm.patchValue({
+        rolIdRol: rol
+      });
+    });
+
+    this.cargarComunas();
+  }
+
+  async cargarComunas() {
+    this.cargandoComunas = true;
+
+    try {
+      this.comunas = await this.comunaService.obtenerComunas();
+    } catch (error) {
+      console.error('Error al cargar comunas', error);
+      this.mensajeError = 'No se pudieron cargar las comunas.';
+    } finally {
+      this.cargandoComunas = false;
+    }
+  }
 
   get f() {
     return this.personaForm.controls;
@@ -112,14 +148,15 @@ export class PersonaComponent implements OnInit {
         direccion: formValue.direccion,
         fecha_nacimiento: formValue.fecha_nacimiento,
         telefono: formValue.telefono,
-        COMUNA_id_comuna: formValue.COMUNA_id_comuna,
-        ROL_id_rol: 2
+        comunaIdComuna: Number(formValue.comunaIdComuna),
+        rolIdRol: Number(formValue.rolIdRol)
       };
 
       const respuesta = await this.personaService.crearPersona(nuevaPersona);
       console.log('Persona registrada:', respuesta);
 
       this.mensajeExito = 'Usuario registrado correctamente en la clínica.';
+
       this.personaForm.reset({
         idPersona: null,
         nombre: '',
@@ -132,8 +169,8 @@ export class PersonaComponent implements OnInit {
         direccion: '',
         fecha_nacimiento: '',
         telefono: '',
-        COMUNA_id_comuna: null,
-        ROL_id_rol: 2
+        comunaIdComuna: null,
+        rolIdRol: this.rolIdRol
       });
     } catch (error) {
       console.error('Error al registrar persona', error);

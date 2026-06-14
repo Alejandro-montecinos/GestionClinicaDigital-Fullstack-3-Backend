@@ -9,20 +9,14 @@ import { Router } from '@angular/router';
   styleUrl: './seleccion-usuario-component.scss',
 })
 export class SeleccionUsuarioComponent {
-  
+
   constructor(private router: Router) {}
 
-seleccionarRol(rol: string) {
-  console.log('Rol seleccionado:', rol);
-  
-  if (rol === 'paciente') {
-    this.router.navigate(['/login', { tipo: rol }]);
+  seleccionarRol(idRol: number): void {
+    console.log('Rol seleccionado:', idRol);
 
-  } else if (rol === 'doctor') {
-    this.router.navigate(['/login']);
-    
-  } else {
-    this.router.navigate(['/login']); 
+    this.router.navigate(['/login'], {
+      queryParams: { rolIdRol: idRol }
+    });
   }
-}
 }

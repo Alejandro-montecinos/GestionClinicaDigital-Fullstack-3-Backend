@@ -6,14 +6,17 @@
     <div class="brand-panel">
       <div class="brand-badge">Clínica VitalCare</div>
       <h1>Inicia sesión</h1>
-      <p>Accede con tu correo y contraseña para revisar tu información y continuar con tus atenciones en la clínica.</p>
-      
+      <p>
+        Accede con tu correo y contraseña para revisar tu información y continuar
+        con tus atenciones en la clínica.
+      </p>
+
       <div class="brand-decoration">
         <div class="pulse-circle"></div>
         <div class="pulse-circle delay"></div>
       </div>
 
-      <div *ngIf="esPaciente" class="registro-brand-container">
+      <div class="registro-brand-container">
         <button type="button" class="link-registro-brand" (click)="irARegistro()">
           ¿Desea registrarse?
         </button>
@@ -21,16 +24,15 @@
     </div>
 
     <div class="form-panel">
-      
       <form [formGroup]="loginForm" (ngSubmit)="iniciarSesion()">
         <div class="form-grid">
-          
+
           <div class="input-group full-width">
             <label for="correo">Correo</label>
-            <input 
+            <input
               id="correo"
-              type="email" 
-              formControlName="correo" 
+              type="email"
+              formControlName="correo"
               placeholder="correo@ejemplo.com"
             >
             <small *ngIf="campoInvalido('correo')">Ingresa un correo válido.</small>
@@ -38,18 +40,21 @@
 
           <div class="input-group full-width">
             <label for="contrasenia">Contraseña</label>
-            <input 
+            <input
               id="contrasenia"
-              type="password" 
-              formControlName="contrasenia" 
+              type="password"
+              formControlName="contrasenia"
               placeholder="Ingresa tu contraseña"
             >
-            <small *ngIf="campoInvalido('contrasenia')">La contraseña es obligatoria y debe tener al menos 8 caracteres.</small>
+            <small *ngIf="campoInvalido('contrasenia')">
+              La contraseña es obligatoria y debe tener al menos 8 caracteres.
+            </small>
           </div>
 
           <div *ngIf="mensajeExito" class="estado-box exito full-width">
             {{ mensajeExito }}
           </div>
+
           <div *ngIf="mensajeError" class="estado-box error full-width">
             {{ mensajeError }}
           </div>
@@ -63,7 +68,6 @@
 
         </div>
       </form>
-
     </div>
 
   </div>

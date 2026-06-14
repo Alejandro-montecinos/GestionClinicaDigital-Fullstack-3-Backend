@@ -1,4 +1,3 @@
-
 <div class="login-wrapper">
   <div class="login-card">
 
@@ -11,7 +10,7 @@
       </div>
       <h1>Hospital Salud+</h1>
       <p>Tu bienestar primero</p>
-      
+
       <div class="brand-decoration">
         <div class="pulse-circle"></div>
         <div class="pulse-circle delay"></div>
@@ -27,7 +26,7 @@
         </div>
 
         <div class="roles-grid">
-          <button class="role-card full-width" (click)="seleccionarRol('paciente')">
+          <button class="role-card full-width" (click)="seleccionarRol(3)">
             <div class="role-icon-wrapper paciente-bg">
               <span class="role-icon">👤</span>
             </div>
@@ -38,7 +37,7 @@
             <span class="arrow-indicator">→</span>
           </button>
 
-          <button class="role-card full-width" (click)="seleccionarRol('doctor')">
+          <button class="role-card full-width" (click)="seleccionarRol(2)">
             <div class="role-icon-wrapper doctor-bg">
               <span class="role-icon">🩺</span>
             </div>
@@ -49,7 +48,7 @@
             <span class="arrow-indicator">→</span>
           </button>
 
-          <button class="role-card full-width" (click)="seleccionarRol('admin')">
+          <button class="role-card full-width" (click)="seleccionarRol(1)">
             <div class="role-icon-wrapper admin-bg">
               <span class="role-icon">⚙️</span>
             </div>

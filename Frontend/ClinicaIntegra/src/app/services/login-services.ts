@@ -2,8 +2,8 @@ import { inject, Injectable } from '@angular/core';
 import { environment } from '../../environments/environment.development';
 import { HttpClient } from '@angular/common/http';
 import { lastValueFrom } from 'rxjs';
-import { LoginModel } from '../models/LoginModel';
-import { PersonaModel } from '../models/PersonaModel';
+import { LoginRequest } from '../models/LoginRequest';
+import { LoginResponse } from '../models/LoginResponse';
 
 @Injectable({
   providedIn: 'root',
@@ -12,18 +12,18 @@ export class LoginService {
   private http = inject(HttpClient);
   private apiUrl = `${environment.apiUrl}/login`;
 
-  private usuarioLogueado: PersonaModel | null = null;
+  private usuarioLogueado: LoginResponse | null = null;
 
-  async iniciarSesion(login: LoginModel) {
+  async iniciarSesion(login: LoginRequest): Promise<LoginResponse> {
     const respuesta = await lastValueFrom(
-      this.http.post<PersonaModel>(this.apiUrl, login)
+      this.http.post<LoginResponse>(this.apiUrl, login)
     );
 
     this.usuarioLogueado = respuesta;
     return respuesta;
   }
 
-  obtenerUsuarioLogueado(): PersonaModel | null {
+  obtenerUsuarioLogueado(): LoginResponse | null {
     return this.usuarioLogueado;
   }
 

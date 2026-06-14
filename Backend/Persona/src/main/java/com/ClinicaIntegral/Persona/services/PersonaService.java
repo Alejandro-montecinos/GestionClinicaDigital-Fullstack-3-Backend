@@ -13,11 +13,13 @@ import org.springframework.web.server.ResponseStatusException;
 
 
 import com.ClinicaIntegral.Persona.models.dto.ComunaDto;
+import com.ClinicaIntegral.Persona.models.dto.LoginPersonaRequest;
+import com.ClinicaIntegral.Persona.models.dto.LoginPersonaResponse;
 import com.ClinicaIntegral.Persona.models.dto.RolDto;
 import com.ClinicaIntegral.Persona.models.entities.PersonaModel;
 import com.ClinicaIntegral.Persona.models.request.ActualizarPersona;
 import com.ClinicaIntegral.Persona.models.request.AgregarPersona;
-import com.ClinicaIntegral.Persona.models.request.LoginPersonaRequest;
+
 import com.ClinicaIntegral.Persona.repositories.PersonaRepositories;
 
 @Service
@@ -69,9 +71,10 @@ public class PersonaService {
     
 
     public PersonaModel agregarPersona (AgregarPersona nuevaP){
+
         
-        ComunaDto comunaDto = obtenerEntidad(comunaWebClient,"comuna/"+ nuevaP.getCOMUNA_id_comuna() , ComunaDto.class, "Comuna");
-        RolDto rolDto = obtenerEntidad(RolWebClient,"rol/"+nuevaP.getROL_id_rol(), RolDto.class, "Rol"); 
+        ComunaDto comunaDto = obtenerEntidad(comunaWebClient,"comuna/"+ nuevaP.getComunaIdComuna() , ComunaDto.class, "Comuna");
+        RolDto rolDto = obtenerEntidad(RolWebClient,"rol/"+nuevaP.getRolIdRol(), RolDto.class, "Rol"); 
         
 
 
@@ -85,8 +88,8 @@ public class PersonaService {
         personaNueva.setContrasenia(nuevaP.getContrasenia());
         personaNueva.setFecha_nacimiento(nuevaP.getFecha_nacimiento());
         personaNueva.setDireccion(nuevaP.getDireccion());
-        personaNueva.setCOMUNA_id_comuna(nuevaP.getCOMUNA_id_comuna());
-        personaNueva.setROL_id_rol(nuevaP.getROL_id_rol());
+        personaNueva.setComunaIdComuna(nuevaP.getComunaIdComuna());
+        personaNueva.setRolIdRol(nuevaP.getRolIdRol());
 
 
         return personaRepositories.save(personaNueva);
@@ -109,8 +112,8 @@ public class PersonaService {
     }
 
 
-    ComunaDto comunaDto = obtenerEntidad(comunaWebClient,"comuna/"+ nuevaP.getCOMUNA_id_comuna() , ComunaDto.class, "Comuna");
-    RolDto rolDto = obtenerEntidad(RolWebClient,"rol/"+nuevaP.getROL_id_rol(), RolDto.class, "Rol"); 
+    ComunaDto comunaDto = obtenerEntidad(comunaWebClient,"comuna/"+ nuevaP.getComunaIdComuna() , ComunaDto.class, "Comuna");
+    RolDto rolDto = obtenerEntidad(RolWebClient,"rol/"+nuevaP.getRolIdRol(), RolDto.class, "Rol"); 
         
 
     personaModel.setRun(nuevaP.getRun());
@@ -122,24 +125,37 @@ public class PersonaService {
     personaModel.setContrasenia(nuevaP.getContrasenia());
     personaModel.setFecha_nacimiento(nuevaP.getFecha_nacimiento());
     personaModel.setDireccion(nuevaP.getDireccion());
-    personaModel.setCOMUNA_id_comuna(nuevaP.getCOMUNA_id_comuna());
-    personaModel.setROL_id_rol(nuevaP.getROL_id_rol());
+    personaModel.setComunaIdComuna(nuevaP.getComunaIdComuna());
+    personaModel.setRolIdRol(nuevaP.getRolIdRol());
 
     return personaRepositories.save(personaModel);
     }
 
 
 
-    public PersonaModel loginPersona(LoginPersonaRequest request) {
-    PersonaModel persona = personaRepositories.findByCorreo(request.getCorreo())
-            .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
+    public LoginPersonaResponse loginPersona(LoginPersonaRequest request) {
+        PersonaModel persona = personaRepositories.findByCorreo(request.getCorreo())
+                .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
 
-    if (!persona.getContrasenia().equals(request.getContrasenia())) {
-        throw new RuntimeException("Correo o contraseña incorrectos");
-    }
+        if (!persona.getContrasenia().equals(request.getContrasenia())) {
+            throw new RuntimeException("Correo o contraseña incorrectos");
+        }
 
-    return persona;
-}
+        LoginPersonaResponse response = new LoginPersonaResponse();
+        response.setIdPersona(persona.getIdPersona());
+        response.setNombre(persona.getNombre());
+        response.setApellido_paterno(persona.getApellido_paterno());
+        response.setApellido_materno(persona.getApellido_materno());
+        response.setCorreo(persona.getCorreo());
+        response.setRun(persona.getRun());
+        response.setTelefono(persona.getTelefono());
+        response.setDireccion(persona.getDireccion());
+        response.setFecha_nacimiento(persona.getFecha_nacimiento());
+        response.setComunaIdComuna(persona.getComunaIdComuna());
+        response.setRolIdRol(persona.getRolIdRol());
+
+        return response;
+    }   
 
 
 

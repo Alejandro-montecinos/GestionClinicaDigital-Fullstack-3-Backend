@@ -154,14 +154,18 @@
           </div>
 
           <div class="input-group">
-            <label for="comuna">ID Comuna</label>
-            <input
-              id="comuna"
-              type="number"
-              formControlName="COMUNA_id_comuna"
-              placeholder="Ej: 9"
-            />
-            <small *ngIf="campoInvalido('COMUNA_id_comuna')">
+            <label for="comuna">Comuna</label>
+            <select id="comuna" formControlName="comunaIdComuna">
+              <option [ngValue]="null" disabled>
+                {{ cargandoComunas ? 'Cargando comunas...' : 'Selecciona una comuna' }}
+              </option>
+
+              <option *ngFor="let comuna of comunas" [ngValue]="comuna.id_comuna">
+                {{ comuna.nombre_comuna }}
+              </option>
+            </select>
+
+            <small *ngIf="campoInvalido('comunaIdComuna')">
               La comuna es obligatoria.
             </small>
           </div>
@@ -171,7 +175,7 @@
             <input
               id="rol"
               type="number"
-              formControlName="ROL_id_rol"
+              formControlName="rolIdRol"
               readonly
             />
             <small>Este valor lo define el sistema.</small>

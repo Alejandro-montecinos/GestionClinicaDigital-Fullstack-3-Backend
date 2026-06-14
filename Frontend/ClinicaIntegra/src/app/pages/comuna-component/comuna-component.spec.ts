@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CitaMedicaComponent } from './cita-medica-component';
+import { ComunaComponent } from './comuna-component';
 
-describe('CitaMedicaComponent', () => {
-  let component: CitaMedicaComponent;
-  let fixture: ComponentFixture<CitaMedicaComponent>;
+describe('ComunaComponent', () => {
+  let component: ComunaComponent;
+  let fixture: ComponentFixture<ComunaComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CitaMedicaComponent],
+      imports: [ComunaComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(CitaMedicaComponent);
+    fixture = TestBed.createComponent(ComunaComponent);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });

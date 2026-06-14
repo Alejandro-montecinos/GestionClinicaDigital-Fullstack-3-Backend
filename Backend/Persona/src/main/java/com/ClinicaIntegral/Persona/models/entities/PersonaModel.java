@@ -45,9 +45,9 @@ public class PersonaModel {
     private String direccion;
 
     @Column(nullable = false)
-    private int COMUNA_id_comuna;
+    private int comunaIdComuna;
 
     @Column(nullable = false)
-    private int ROL_id_rol;
+    private int rolIdRol;
     
 }

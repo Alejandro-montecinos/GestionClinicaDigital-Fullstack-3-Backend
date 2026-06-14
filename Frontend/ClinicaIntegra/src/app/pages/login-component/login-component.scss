@@ -27,8 +27,7 @@
 }
 
 .brand-panel {
-  position: relative; /* 👈 Esto permite anclar el link abajo a la izquierda */
-  padding: 3rem 3rem 6rem 3rem; /* Añadimos espacio abajo para el link */
+  padding: 3rem;
   background: linear-gradient(160deg, #75D5FF 0%, #70E0D0 100%);
   color: #ffffff;
   display: flex;
@@ -82,6 +81,33 @@
   left: 70px;
   bottom: 10px;
   animation-delay: 0.8s;
+}
+
+.registro-brand-container {
+  margin-top: 1.5rem;
+  animation: fadeUp 0.5s ease;
+}
+
+.link-registro-brand {
+  background: none;
+  border: none;
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 700;
+  text-decoration: underline;
+  cursor: pointer;
+  padding: 0;
+  opacity: 0.92;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.link-registro-brand:hover {
+  opacity: 1;
+  transform: translateY(-1px);
+}
+
+.link-registro-brand:active {
+  transform: scale(0.98);
 }
 
 .form-panel {
@@ -225,54 +251,34 @@
 }
 
 @media (max-width: 900px) {
-  .login-card { grid-template-columns: 1fr; }
-  .brand-panel, .form-panel { padding: 2rem; }
+  .login-card {
+    grid-template-columns: 1fr;
+  }
+
+  .brand-panel,
+  .form-panel {
+    padding: 2rem;
+  }
+
+  .registro-brand-container {
+    margin-top: 1.25rem;
+  }
 }
 
 @media (max-width: 640px) {
-  .login-wrapper { padding: 1rem; }
-  .brand-panel h1 { font-size: 1.9rem; }
-}
-
-/* ==========================================================================
-   AGREGADO: LINK EN EL CÍRCULO ROJO (SOLO PARA EL PACIENTE)
-   ========================================================================== */
-
-.registro-brand-container {
-  position: absolute;
-  bottom: 2.5rem;   /* Posición vertical en la esquina */
-  left: 3rem;       /* Alineado al margen del texto */
-  animation: fadeUp 0.5s ease; /* Reutiliza tu animación fadeUp */
-  z-index: 20;      /* Prioridad por sobre los pulse-circles */
-}
-
-.link-registro-brand {
-  background: none;
-  border: none;
-  color: #ffffff;
-  font-size: 1rem;
-  font-weight: 700;
-  text-decoration: underline;
-  cursor: pointer;
-  padding: 0;
-  opacity: 0.9;
-  transition: opacity 0.2s ease, transform 0.2s ease;
-
-  &:hover {
-    opacity: 1;
-    transform: translateY(-1px); /* Sutil efecto hacia arriba */
+  .login-wrapper {
+    padding: 1rem;
   }
 
-  &:active {
-    transform: scale(0.98);
+  .brand-panel h1 {
+    font-size: 1.9rem;
   }
-}
 
-@media (max-width: 900px) {
-  .registro-brand-container {
-    position: relative;
-    bottom: auto;
-    left: auto;
-    margin-top: 1.5rem;
+  .brand-panel p {
+    font-size: 0.95rem;
+  }
+
+  .link-registro-brand {
+    font-size: 0.95rem;
   }
 }

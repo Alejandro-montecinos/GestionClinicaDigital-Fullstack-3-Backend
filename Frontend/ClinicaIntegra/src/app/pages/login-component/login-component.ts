@@ -4,7 +4,8 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { ActivatedRoute, Router } from '@angular/router';
 import { NavbarComponent } from '../navbar-component/navbar-component';
 import { LoginService } from '../../services/login-services';
-import { LoginModel } from '../../models/LoginModel';
+import { LoginRequest } from '../../models/LoginRequest';
+import { LoginResponse } from '../../models/LoginResponse';
 
 @Component({
   selector: 'app-login-component',
@@ -17,13 +18,13 @@ export class LoginComponent implements OnInit {
   private fb = inject(FormBuilder);
   private loginService = inject(LoginService);
   private router = inject(Router);
-  private route = inject(ActivatedRoute); 
+  private route = inject(ActivatedRoute);
 
   loginForm: FormGroup;
   cargando = false;
   mensajeError = '';
   mensajeExito = '';
-  esPaciente = false; 
+  esPaciente = false;
 
   constructor() {
     this.loginForm = this.fb.group({
@@ -33,24 +34,28 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const tipoUsuario = this.route.snapshot.paramMap.get('tipo');
-    if (tipoUsuario === 'paciente') {
-      this.esPaciente = true;
-    } else {
-      this.esPaciente = false;
-    }
+    this.route.queryParamMap.subscribe(params => {
+      const rolIdRol = Number(params.get('rolIdRol')) || 0;
+      this.esPaciente = rolIdRol === 2;
+    });
   }
 
-  get f() { return this.loginForm.controls; }
+  get f() {
+    return this.loginForm.controls;
+  }
 
   campoInvalido(campo: string): boolean {
     const control = this.loginForm.get(campo);
     return !!control && control.invalid && control.touched;
   }
 
-  irARegistro(): void { this.router.navigate(['/persona']); }
+  irARegistro(): void {
+    this.router.navigate(['/persona'], {
+      queryParams: { rolIdRol: 2 }
+    });
+  }
 
-  async iniciarSesion() {
+  async iniciarSesion(): Promise<void> {
     this.mensajeError = '';
     this.mensajeExito = '';
 
@@ -62,15 +67,20 @@ export class LoginComponent implements OnInit {
     this.cargando = true;
 
     try {
-      const credenciales: LoginModel = this.loginForm.getRawValue();
-      const respuesta = await this.loginService.iniciarSesion(credenciales);
+      const credenciales: LoginRequest = this.loginForm.getRawValue();
+      const respuesta: LoginResponse = await this.loginService.iniciarSesion(credenciales);
 
       console.log('Login correcto:', respuesta);
       this.mensajeExito = 'Inicio de sesión correcto. Redirigiendo...';
 
       setTimeout(() => {
-        // ✅ CORREGIDO: Redirección directa al path correcto
-        this.router.navigate(['/inicio-paciente']);
+        if (respuesta.rolIdRol === 2) {
+          this.router.navigate(['/inicio-paciente']);
+        } else if (respuesta.rolIdRol === 1) {
+          this.router.navigate(['/inicio-admin']);
+        } else {
+          this.router.navigate(['/']);
+        }
       }, 800);
 
     } catch (error) {

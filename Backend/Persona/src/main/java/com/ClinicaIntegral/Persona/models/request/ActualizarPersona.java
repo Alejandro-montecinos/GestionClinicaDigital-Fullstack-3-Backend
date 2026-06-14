@@ -41,9 +41,9 @@ public class ActualizarPersona {
     private String direccion;
 
     @NotBlank
-    private int COMUNA_id_comuna;
+    private int comunaIdComuna;
 
     @NotBlank
-    private int ROL_id_rol;
+    private int rolIdRol;
 
 }
