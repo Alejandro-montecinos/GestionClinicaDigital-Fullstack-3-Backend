@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NavbarComponent } from '../navbar-component/navbar-component';
 import { LoginService } from '../../services/login-services';
 import { LoginModel } from '../../models/LoginModel';
@@ -13,15 +13,17 @@ import { LoginModel } from '../../models/LoginModel';
   templateUrl: './login-component.html',
   styleUrl: './login-component.scss',
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
   private fb = inject(FormBuilder);
   private loginService = inject(LoginService);
   private router = inject(Router);
+  private route = inject(ActivatedRoute); 
 
   loginForm: FormGroup;
   cargando = false;
   mensajeError = '';
   mensajeExito = '';
+  esPaciente = false; 
 
   constructor() {
     this.loginForm = this.fb.group({
@@ -30,14 +32,23 @@ export class LoginComponent {
     });
   }
 
-  get f() {
-    return this.loginForm.controls;
+  ngOnInit(): void {
+    const tipoUsuario = this.route.snapshot.paramMap.get('tipo');
+    if (tipoUsuario === 'paciente') {
+      this.esPaciente = true;
+    } else {
+      this.esPaciente = false;
+    }
   }
+
+  get f() { return this.loginForm.controls; }
 
   campoInvalido(campo: string): boolean {
     const control = this.loginForm.get(campo);
     return !!control && control.invalid && control.touched;
   }
+
+  irARegistro(): void { this.router.navigate(['/persona']); }
 
   async iniciarSesion() {
     this.mensajeError = '';
@@ -58,7 +69,8 @@ export class LoginComponent {
       this.mensajeExito = 'Inicio de sesión correcto. Redirigiendo...';
 
       setTimeout(() => {
-        this.router.navigate(['/dashboard-persona']);
+        // ✅ CORREGIDO: Redirección directa al path correcto
+        this.router.navigate(['/inicio-paciente']);
       }, 800);
 
     } catch (error) {

@@ -1,0 +1,67 @@
+
+<div class="login-wrapper">
+  <div class="login-card">
+
+    <div class="brand-panel">
+      <div class="brand-badge">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+          <path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm1 14h-2v-4h2v4zm0-6h-2V8h2v2z"></path>
+        </svg>
+        Hospital Salud+
+      </div>
+      <h1>Hospital Salud+</h1>
+      <p>Tu bienestar primero</p>
+      
+      <div class="brand-decoration">
+        <div class="pulse-circle"></div>
+        <div class="pulse-circle delay"></div>
+      </div>
+
+      <p class="branding-text">Bienvenido a Salud+ Portal. Por favor, seleccione su perfil para comenzar.</p>
+    </div>
+
+    <div class="form-panel">
+      <div class="selection-container">
+        <div class="selection-header">
+          <h2>¿Cómo desea iniciar sesión?</h2>
+        </div>
+
+        <div class="roles-grid">
+          <button class="role-card full-width" (click)="seleccionarRol('paciente')">
+            <div class="role-icon-wrapper paciente-bg">
+              <span class="role-icon">👤</span>
+            </div>
+            <div class="role-info">
+              <h3>Persona / Paciente</h3>
+              <p>Accede a tus citas, recetas e historial médico.</p>
+            </div>
+            <span class="arrow-indicator">→</span>
+          </button>
+
+          <button class="role-card full-width" (click)="seleccionarRol('doctor')">
+            <div class="role-icon-wrapper doctor-bg">
+              <span class="role-icon">🩺</span>
+            </div>
+            <div class="role-info">
+              <h3>Médico / Doctor</h3>
+              <p>Gestiona tus pacientes, agenda y consultas.</p>
+            </div>
+            <span class="arrow-indicator">→</span>
+          </button>
+
+          <button class="role-card full-width" (click)="seleccionarRol('admin')">
+            <div class="role-icon-wrapper admin-bg">
+              <span class="role-icon">⚙️</span>
+            </div>
+            <div class="role-info">
+              <h3>Personal Administrativo</h3>
+              <p>Herramientas de gestión hospitalaria y administración.</p>
+            </div>
+            <span class="arrow-indicator">→</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

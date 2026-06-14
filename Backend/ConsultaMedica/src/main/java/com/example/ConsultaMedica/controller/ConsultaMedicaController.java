@@ -18,6 +18,7 @@ import com.example.ConsultaMedica.models.request.ActualizarConsultaMedica;
 import com.example.ConsultaMedica.models.request.AgregarConsultaMedica;
 import com.example.ConsultaMedica.service.ConsultaMedicaService;
 
+
 @RestController
 @RequestMapping("/consultaMedica")
 @CrossOrigin(origins = "*")
