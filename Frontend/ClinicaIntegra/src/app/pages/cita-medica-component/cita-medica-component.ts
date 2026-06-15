@@ -2,18 +2,18 @@ import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { NavbarComponent } from '../navbar-component/navbar-component';
 import { CitaMedicaService } from '../../services/cita-medica-service';
 import { CitaMedica } from '../../models/CitaMedicaModel';
-import { NavbarComponent } from '../navbar-component/navbar-component';
 
 @Component({
-  selector: 'app-inicio-paciente',
+  selector: 'app-cita-medica',
   standalone: true,
   imports: [CommonModule, FormsModule, NavbarComponent],
-  templateUrl: './inicio-paciente-component.html',
-  styleUrls: ['./inicio-paciente-component.scss']
+  templateUrl: './cita-medica-component.html',
+  styleUrls: ['./cita-medica-component.scss']
 })
-export class InicioPacienteComponent implements OnInit {
+export class CitaMedicaComponent implements OnInit {
   private citaService = inject(CitaMedicaService);
   private router = inject(Router);
 
@@ -21,7 +21,9 @@ export class InicioPacienteComponent implements OnInit {
   mostrarModalCitas: boolean = false;
   idPacienteLogueado: number = 1;
 
-  // CORREGIDO: Todo en camelCase para que no salte TS2561
+  // ==========================================
+  // PRIMERA CORRECCIÓN: Justo aquí arriba
+  // ==========================================
   nuevaCita: CitaMedica = {
     fechaCita: '',
     horaAgendadaCita: '',
@@ -91,6 +93,9 @@ export class InicioPacienteComponent implements OnInit {
     });
   }
 
+  // ==========================================
+  // SEGUNDA CORRECCIÓN: Casi al final del archivo
+  // ==========================================
   reestablecerFormulario() {
     this.nuevaCita = {
       fechaCita: '',

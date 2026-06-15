@@ -1,8 +1,9 @@
 package com.example.CitaMedica.controller;
 
 import java.util.List;
-
+import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,9 +25,13 @@ public class CitaMedicaController {
     @Autowired
     private CitaMedicaService citaMedicaService;
 
+    @Autowired
+    private JdbcTemplate jdbcTemplate;
+
     @GetMapping
-    public List<CitaMedica> listar() {
-        return citaMedicaService.obtenerTodos();
+    public List<Map<String, Object>> listar() {
+        // Esto consulta la tabla usando JDBC directo, ignorando por completo los modelos de Hibernate
+        return jdbcTemplate.queryForList("SELECT * FROM cita_medica");
     }
     
     @GetMapping("/{id}")
@@ -48,5 +53,4 @@ public class CitaMedicaController {
     public void eliminar(@PathVariable int id) {
         citaMedicaService.eliminar(id);
     }
-
 }

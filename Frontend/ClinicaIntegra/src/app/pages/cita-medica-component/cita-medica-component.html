@@ -1,0 +1,109 @@
+<div class="home-container">
+
+  <app-navbar></app-navbar>
+
+  <section class="hero">
+    <div class="bubble b1"></div>
+    <div class="bubble b2"></div>
+    <div class="bubble b3"></div>
+
+    <div class="left-panel">
+      <p class="mini-title">GESTIÓN DE ATENCIONES</p>
+      <h2>Agendar Cita Médica</h2>
+      
+      <form (ngSubmit)="guardarCita()" class="formulario-estetico">
+        <div class="grupo-input">
+          <label>Fecha de la Cita</label>
+          <input type="date" [(ngModel)]="nuevaCita.fechaCita" name="fecha" required>
+        </div>
+
+        <div class="grupo-input">
+          <label>Hora Requerida</label>
+          <input type="time" [(ngModel)]="nuevaCita.horaAgendadaCita" name="hora" required>
+        </div>
+
+        <div class="grupo-input">
+          <label>Motivo de la Consulta</label>
+          <textarea [(ngModel)]="nuevaCita.motivoCita" name="motivo" placeholder="Escribe brevemente el síntoma o control..." required></textarea>
+        </div>
+
+        <div class="grupo-input">
+          <label>Especialista (Médico)</label>
+          <select [(ngModel)]="nuevaCita.medicoIdMedico" name="medico" required>
+            <option [value]="1">Dr. Alejandro Silva (General)</option>
+            <option [value]="2">Dra. Beatriz Fuentes (Pediatría)</option>
+            <option [value]="3">Dr. Carlos Mendoza (Cardiología)</option>
+          </select>
+        </div>
+
+        <div class="botones-form">
+          <button type="submit" class="btn-guardar">Confirmar Cita</button>
+          <button type="button" class="btn-cancelar" (click)="volverAlInicio()">Cancelar</button>
+        </div>
+      </form>
+    </div>
+
+    <div class="image-cut">
+      <img src="img/doctor.jpg" alt="Doctor">
+    </div>
+  </section>
+
+  <div class="modal-overlay" *ngIf="mostrarModalCitas">
+    <div class="modal-contenedor">
+      <div class="modal-cabecera">
+        <div>
+          <p class="modal-mini-title">HISTORIAL MÉDICO</p>
+          <h3>Mis Citas Agendadas</h3>
+        </div>
+        <button class="btn-cerrar-modal" (click)="cerrarModal()">&times;</button>
+      </div>
+
+      <div class="modal-cuerpo">
+        
+        <div style="margin-bottom: 15px;">
+          <p style="font-size: 12px; color: #555; margin-bottom: 4px; font-weight: bold;">Rastreador de datos de la API (Temporal):</p>
+          <pre style="background: #1e1e1e; color: #39ff14; padding: 12px; font-size: 11px; border-radius: 6px; max-height: 120px; overflow-y: auto; margin: 0; font-family: monospace;">
+{{ listaCitas | json }}
+          </pre>
+        </div>
+
+        <table class="tabla-estetica">
+          <thead>
+            <tr>
+              <th>Fecha</th>
+              <th>Hora</th>
+              <th>Motivo de Consulta</th>
+              <th>Estado</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let cita of listaCitas">
+              <td>{{ cita.fechaCita }}</td>
+              <td>{{ cita.horaAgendadaCita }}</td>
+              <td>{{ cita.motivoCita }}</td>
+              <td>
+                <span class="badge" [ngClass]="{
+                  'bg-warning': cita.estadoCita === 'Pendiente',
+                  'bg-success': cita.estadoCita === 'Realizada'
+                }">
+                  {{ cita.estadoCita }}
+                </span>
+              </td>
+            </tr>
+            
+            <tr *ngIf="!listaCitas || listaCitas.length === 0">
+              <td colspan="4" class="tabla-vacia" style="text-align: center; padding: 30px; color: #888;">
+                No registras ninguna cita médica agendada en la base de datos.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="modal-pie">
+        <button class="btn-primario" (click)="cerrarModal()">Entendido</button>
+      </div>
+    </div>
+  </div>
+
+</div>

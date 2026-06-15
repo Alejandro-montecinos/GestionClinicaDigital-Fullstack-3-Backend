@@ -1,22 +1,19 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-seleccion-usuario-component',
+  selector: 'app-seleccion-usuario',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './seleccion-usuario-component.html',
-  styleUrl: './seleccion-usuario-component.scss',
+  styleUrls: ['./seleccion-usuario-component.scss']
 })
 export class SeleccionUsuarioComponent {
+  private router = inject(Router);
 
-  constructor(private router: Router) {}
-
-  seleccionarRol(idRol: number): void {
-    console.log('Rol seleccionado:', idRol);
-
-    this.router.navigate(['/login'], {
-      queryParams: { rolIdRol: idRol }
-    });
+  // Método unificado para redirigir pasando el tipo de usuario exacto en la URL
+  irAlLogin(tipo: string): void {
+    this.router.navigate(['/login', tipo]);
   }
 }

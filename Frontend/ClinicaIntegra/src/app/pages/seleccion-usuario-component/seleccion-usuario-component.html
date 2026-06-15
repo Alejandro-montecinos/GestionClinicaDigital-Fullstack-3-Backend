@@ -1,66 +1,55 @@
-<div class="login-wrapper">
-  <div class="login-card">
-
-    <div class="brand-panel">
-      <div class="brand-badge">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
-          <path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm1 14h-2v-4h2v4zm0-6h-2V8h2v2z"></path>
-        </svg>
-        Hospital Salud+
-      </div>
-      <h1>Hospital Salud+</h1>
-      <p>Tu bienestar primero</p>
-
-      <div class="brand-decoration">
-        <div class="pulse-circle"></div>
-        <div class="pulse-circle delay"></div>
-      </div>
-
-      <p class="branding-text">Bienvenido a Salud+ Portal. Por favor, seleccione su perfil para comenzar.</p>
+<div class="seleccion-container" style="display: flex; min-height: 100vh; font-family: sans-serif; background: linear-gradient(135deg, #75d5ff, #70e0d0);">
+  
+  <div class="panel-izquierdo" style="flex: 1; padding: 60px; display: flex; flex-direction: column; justify-content: center; color: white; background: rgba(255,255,255,0.1); backdrop-filter: blur(10px);">
+    <div class="tag-hospital" style="background: rgba(255,255,255,0.2); padding: 8px 16px; border-radius: 20px; width: fit-content; margin-bottom: 30px; font-weight: bold;">
+      🏥 Hospital Salud+
     </div>
-
-    <div class="form-panel">
-      <div class="selection-container">
-        <div class="selection-header">
-          <h2>¿Cómo desea iniciar sesión?</h2>
-        </div>
-
-        <div class="roles-grid">
-          <button class="role-card full-width" (click)="seleccionarRol(3)">
-            <div class="role-icon-wrapper paciente-bg">
-              <span class="role-icon">👤</span>
-            </div>
-            <div class="role-info">
-              <h3>Persona / Paciente</h3>
-              <p>Accede a tus citas, recetas e historial médico.</p>
-            </div>
-            <span class="arrow-indicator">→</span>
-          </button>
-
-          <button class="role-card full-width" (click)="seleccionarRol(2)">
-            <div class="role-icon-wrapper doctor-bg">
-              <span class="role-icon">🩺</span>
-            </div>
-            <div class="role-info">
-              <h3>Médico / Doctor</h3>
-              <p>Gestiona tus pacientes, agenda y consultas.</p>
-            </div>
-            <span class="arrow-indicator">→</span>
-          </button>
-
-          <button class="role-card full-width" (click)="seleccionarRol(1)">
-            <div class="role-icon-wrapper admin-bg">
-              <span class="role-icon">⚙️</span>
-            </div>
-            <div class="role-info">
-              <h3>Personal Administrativo</h3>
-              <p>Herramientas de gestión hospitalaria y administración.</p>
-            </div>
-            <span class="arrow-indicator">→</span>
-          </button>
-        </div>
-      </div>
-    </div>
-
+    <h1 style="font-size: 3rem; margin: 0 0 10px 0; font-weight: bold;">Hospital Salud+</h1>
+    <p style="font-size: 1.2rem; margin-bottom: 40px; opacity: 0.9;">Tu bienestar primero</p>
+    <p style="font-size: 1rem; max-width: 400px; line-height: 1.6; opacity: 0.8;">
+      Bienvenido a Salud+ Portal. Por favor, seleccione su perfil para comenzar.
+    </p>
   </div>
+
+  <div class="panel-derecho" style="flex: 1.2; background: white; padding: 60px; display: flex; flex-direction: column; justify-content: center; border-top-left-radius: 30px; border-bottom-left-radius: 30px;">
+    <h2 style="color: #1e3d59; font-size: 2rem; margin-bottom: 40px; font-weight: bold;">¿Cómo desea iniciar sesión?</h2>
+
+    <div class="opciones-lista" style="display: flex; flex-direction: column; gap: 20px; max-width: 500px;">
+      
+      <div class="perfil-card" (click)="irAlLogin('paciente')" style="display: flex; align-items: center; justify-content: space-between; padding: 24px; border: 1.5px solid #eef2f5; border-radius: 20px; cursor: pointer; transition: 0.3s; box-shadow: 0 4px 12px rgba(0,0,0,0.02);">
+        <div style="display: flex; align-items: center; gap: 20px;">
+          <div style="background: #f0f4f8; padding: 15px; border-radius: 15px; color: #4b3f72; font-size: 24px;">👤</div>
+          <div>
+            <h4 style="margin: 0 0 5px 0; color: #1e3d59; font-size: 1.1rem; font-weight: bold;">Persona / Paciente</h4>
+            <p style="margin: 0; color: #7a8b99; font-size: 0.9rem;">Accede a tus citas, recetas e historial médico.</p>
+          </div>
+        </div>
+        <span style="color: #70e0d0; font-size: 1.5rem; font-weight: bold;">→</span>
+      </div>
+
+      <div class="perfil-card" (click)="irAlLogin('medico')" style="display: flex; align-items: center; justify-content: space-between; padding: 24px; border: 1.5px solid #eef2f5; border-radius: 20px; cursor: pointer; transition: 0.3s; box-shadow: 0 4px 12px rgba(0,0,0,0.02);">
+        <div style="display: flex; align-items: center; gap: 20px;">
+          <div style="background: #eefdfa; padding: 15px; border-radius: 15px; color: #00a5d8; font-size: 24px;">🩺</div>
+          <div>
+            <h4 style="margin: 0 0 5px 0; color: #1e3d59; font-size: 1.1rem; font-weight: bold;">Médico / Doctor</h4>
+            <p style="margin: 0; color: #7a8b99; font-size: 0.9rem;">Gestiona tus pacientes, agenda y consultas.</p>
+          </div>
+        </div>
+        <span style="color: #70e0d0; font-size: 1.5rem; font-weight: bold;">→</span>
+      </div>
+
+      <div class="perfil-card" (click)="irAlLogin('admin')" style="display: flex; align-items: center; justify-content: space-between; padding: 24px; border: 1.5px solid #eef2f5; border-radius: 20px; cursor: pointer; transition: 0.3s; box-shadow: 0 4px 12px rgba(0,0,0,0.02);">
+        <div style="display: flex; align-items: center; gap: 20px;">
+          <div style="background: #fcf8ff; padding: 15px; border-radius: 15px; color: #a855f7; font-size: 24px;">⚙️</div>
+          <div>
+            <h4 style="margin: 0 0 5px 0; color: #1e3d59; font-size: 1.1rem; font-weight: bold;">Personal Administrativo</h4>
+            <p style="margin: 0; color: #7a8b99; font-size: 0.9rem;">Herramientas de gestión hospitalaria y administración.</p>
+          </div>
+        </div>
+        <span style="color: #70e0d0; font-size: 1.5rem; font-weight: bold;">→</span>
+      </div>
+
+    </div>
+  </div>
+
 </div>

@@ -1,17 +1,8 @@
-export interface ConsultaMedicaModel {
-
+export interface ConsultaMedica {
   idConsulta?: number;
-
   fechaConsulta_ConsultaMedica: string;
-
   sintomas_ConsultaMedica: string;
-
   observaciones_ConsultaMedica: string;
-
   diagnostico_ConsultaMedica: string;
-
-  pacienteId: number;
-
-  medicoId: number;
-
+  medico_idMedico: number;
 }

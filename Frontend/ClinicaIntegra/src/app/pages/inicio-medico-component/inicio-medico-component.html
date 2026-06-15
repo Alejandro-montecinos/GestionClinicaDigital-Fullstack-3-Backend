@@ -1,0 +1,95 @@
+<div class="home-container">
+
+  <!-- Pasamos la opción de 'Consulta Médica' al Navbar tal como lo tenías originalmente -->
+  <app-navbar>
+    <a extra-links (click)="abrirModal()" style="cursor: pointer;">Consulta Médica</a>
+  </app-navbar>
+
+  <section class="hero">
+    <!-- Tus burbujas estéticas de fondo se mantienen intactas -->
+    <div class="bubble b1"></div>
+    <div class="bubble b2"></div>
+    <div class="bubble b3"></div>
+
+    <!-- Panel izquierdo: Mensaje de bienvenida adaptado con tus clases -->
+    <div class="left-panel" style="display: flex; flex-direction: column; justify-content: center; min-height: 450px;">
+      <p class="mini-title">PORTAL DIGITAL DE MÉDICOS</p>
+      <h2>Gestión clínica y atención eficiente</h2>
+      
+      <p style="font-size: 1.15rem; line-height: 1.7; color: #555; margin-top: 20px; max-width: 520px;">
+        Bienvenido a su espacio médico privado. Desde aquí podrá registrar las 
+        consultas médicas de sus pacientes, revisar historiales clínicos y 
+        mantener el control de sus atenciones asignadas de manera rápida y eficiente.
+      </p>
+      
+      <!-- Botón de acceso directo opcional en el panel si quieres que también se abra desde aquí -->
+      <div style="margin-top: 30px;">
+        <button type="button" class="btn-guardar" (click)="abrirModal()" style="padding: 14px 28px; border-radius: 8px; font-size: 15px; font-weight: 600; cursor: pointer; border: none; background-color: #0056b3; color: white;">
+          Ver Historial de Consultas
+        </button>
+      </div>
+    </div>
+
+    <!-- Tu sección derecha de imagen intacta -->
+    <div class="image-cut">
+      <img src="img/doctor.jpg" alt="Doctor Workspace">
+    </div>
+  </section>
+
+  <!-- Mantenemos tu Modal de Consultas idéntico para que no pierdas tu lógica ni la tabla -->
+  <div class="modal-overlay" *ngIf="mostrarModalConsultas">
+    <div class="modal-contenedor">
+      <div class="modal-cabecera">
+        <div>
+          <p class="modal-mini-title">REGISTROS MÉDICOS</p>
+          <h3>Historial de Consultas Emitidas</h3>
+        </div>
+        <button class="btn-cerrar-modal" (click)="cerrarModal()">&times;</button>
+      </div>
+
+      <div class="modal-cuerpo">
+        
+        <div style="margin-bottom: 15px;">
+          <p style="font-size: 12px; color: #555; margin-bottom: 4px; font-weight: bold;">Rastreador de la API de Consultas (Puerto 6161):</p>
+          <pre style="background: #1e1e1e; color: #39ff14; padding: 12px; font-size: 11px; border-radius: 6px; max-height: 120px; overflow-y: auto; margin: 0; font-family: monospace;">
+{{ listaConsultas | json }}
+          </pre>
+        </div>
+
+        <table class="tabla-estetica">
+          <thead>
+            <tr>
+              <th>Fecha</th>
+              <th>Síntomas</th>
+              <th>Observaciones</th>
+              <th>Diagnóstico</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let consulta of listaConsultas">
+              <td>{{ consulta.fechaConsulta_ConsultaMedica }}</td>
+              <td>{{ consulta.sintomas_ConsultaMedica }}</td>
+              <td>{{ consulta.observaciones_ConsultaMedica }}</td>
+              <td>
+                <span class="badge" style="padding: 4px 8px; border-radius: 4px; color: #385723; background: #e2f0d9; font-weight: bold;">
+                  {{ consulta.diagnostico_ConsultaMedica }}
+                </span>
+              </td>
+            </tr>
+            
+            <tr *ngIf="!listaConsultas || listaConsultas.length === 0">
+              <td colspan="4" class="tabla-vacia" style="text-align: center; padding: 30px; color: #888;">
+                No has registrado ninguna consulta médica bajo tu ID de especialista.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="modal-pie">
+        <button class="btn-primario" (click)="cerrarModal()">Entendido</button>
+      </div>
+    </div>
+  </div>
+
+</div>

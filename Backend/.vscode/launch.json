@@ -2,6 +2,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CitaMedicaApplication",
+            "request": "launch",
+            "mainClass": "com.example.CitaMedica.CitaMedicaApplication",
+            "projectName": "citaMedica"
+        },
+        {
+            "type": "java",
             "name": "RecetaApplication",
             "request": "launch",
             "mainClass": "com.clinica.integral.receta.RecetaApplication",

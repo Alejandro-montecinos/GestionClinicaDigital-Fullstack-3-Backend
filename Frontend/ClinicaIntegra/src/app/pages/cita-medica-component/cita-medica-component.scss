@@ -1,0 +1,255 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+html, body {
+    background: linear-gradient(135deg, #75D5FF, #70E0D0);
+}
+
+.home-container {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #75D5FF, #70E0D0);
+    position: relative;
+}
+
+.hero {
+    position: relative;
+    height: 82vh;
+    overflow: hidden;
+    background: linear-gradient(135deg, #75D5FF, #70E0D0);
+}
+
+.left-panel {
+    width: 58%;
+    height: 100%;
+    clip-path: polygon(0 0, 85% 0, 70% 100%, 0 100%);
+    padding: 60px 80px;
+    color: white;
+    position: relative;
+    z-index: 3;
+    animation: fadeUp 0.6s ease;
+    overflow-y: auto;
+}
+
+.mini-title {
+    font-size: 14px;
+    letter-spacing: 3px;
+    margin-bottom: 15px;
+}
+
+.left-panel h2 {
+    font-size: 38px;
+    margin-bottom: 25px;
+}
+
+.formulario-estetico {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(10px);
+    padding: 25px;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+
+    .grupo-input {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+
+        label {
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #f0faff;
+        }
+
+        input, textarea, select {
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            border-radius: 10px;
+            font-size: 15px;
+            color: #333;
+            outline: none;
+        }
+
+        textarea {
+            resize: none;
+            height: 70px;
+        }
+    }
+
+    .botones-form {
+        display: flex;
+        gap: 15px;
+        margin-top: 10px;
+    }
+}
+
+.btn-guardar, .btn-primario {
+    padding: 14px 28px;
+    background: white;
+    color: #00a5d8;
+    border: none;
+    border-radius: 30px;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: 0.3s;
+
+    &:hover {
+        transform: translateY(-2px);
+        background: #f0faff;
+    }
+}
+
+.btn-cancelar {
+    padding: 14px 28px;
+    background: transparent;
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    border-radius: 30px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+
+    &:hover {
+        background: rgba(255, 255, 255, 0.1);
+    }
+}
+
+/* MENSAJE EMERGENTE MODAL GRANDE */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(8px);
+    z-index: 999;
+    display: block;
+}
+
+.modal-contenedor {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 70%;
+    max-width: 850px;
+    background: white;
+    border-radius: 24px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+    overflow: hidden;
+    animation: scaleUp 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.modal-cabecera {
+    background: linear-gradient(135deg, #00c6ff, #0072ff);
+    padding: 25px 35px;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .modal-mini-title {
+        font-size: 12px;
+        letter-spacing: 2px;
+        opacity: 0.8;
+        margin-bottom: 5px;
+    }
+
+    h3 { font-size: 24px; }
+}
+
+.btn-cerrar-modal {
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 32px;
+    cursor: pointer;
+    line-height: 1;
+}
+
+.modal-cuerpo {
+    padding: 35px;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.tabla-estetica {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+
+    th {
+        background: #f4f7f6;
+        color: #555;
+        padding: 15px;
+        font-size: 13px;
+        text-transform: uppercase;
+        border-bottom: 2px solid #e2e8f0;
+    }
+
+    td {
+        padding: 15px;
+        border-bottom: 1px solid #e2e8f0;
+        color: #333;
+        font-size: 15px;
+    }
+
+    .tabla-vacia {
+        text-align: center;
+        color: #777;
+        padding: 40px;
+    }
+}
+
+.badge {
+    padding: 5px 12px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: bold;
+
+    &.Pendiente { background: #fff9db; color: #f0a500; }
+    &.Confirmada { background: #e3faf2; color: #20c997; }
+}
+
+.modal-pie {
+    padding: 20px 35px;
+    background: #f8fafc;
+    border-top: 1px solid #e2e8f0;
+    text-align: right;
+
+    .btn-primario {
+        background: linear-gradient(135deg, #00c6ff, #0072ff);
+        color: white;
+    }
+}
+
+.image-cut {
+    position: absolute; top: 0; right: 0; width: 52%; height: 100%; z-index: 2;
+    clip-path: polygon(20% 0, 100% 0, 100% 100%, 0 100%);
+    overflow: hidden;
+}
+.image-cut img { width: 100%; height: 100%; object-fit: cover; }
+
+.bubble {
+    position: absolute; border-radius: 50%;
+    background: rgba(255, 255, 255, .18);
+    animation: float 7s infinite ease-in-out; backdrop-filter: blur(4px);
+}
+.b1 { width: 120px; height: 120px; top: 100px; left: 60%; }
+.b2 { width: 80px; height: 80px; top: 420px; left: 40%; animation-delay: 2s; }
+.b3 { width: 150px; height: 150px; top: 220px; left: 72%; animation-delay: 4s; }
+
+@keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes scaleUp { from { opacity: 0; transform: translate(-50%, -45%) scale(0.95); } to { opacity: 1; transform: translate(-50%, -50%) scale(1); } }

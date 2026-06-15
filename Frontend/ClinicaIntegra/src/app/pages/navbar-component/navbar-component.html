@@ -5,9 +5,12 @@
   </div>
 
   <nav>
-    <a *ngIf="!estaEnDashboard" routerLink="/" routerLinkActive="activo" [routerLinkActiveOptions]="{ exact: true }">Inicio</a>
+    <a *ngIf="!estaEnDashboard" routerLink="/" routerLinkActive="activo" [routerLinkActiveOptions]="{ exact: true }">Panel Inicio</a>
+    
+    <a *ngIf="estaEnDashboard && esMedico" routerLink="/inicio-medico" routerLinkActive="activo">Consulta Médica</a>
 
-    <a *ngIf="estaEnDashboard" routerLink="/cita-medica" routerLinkActive="activo">Cita Médica</a>
+    <a *ngIf="estaEnDashboard && !esMedico" routerLink="/cita-medica" routerLinkActive="activo">Agendar Cita</a>
+    <a *ngIf="estaEnDashboard && !esMedico" (click)="activarHistorialCitas()" style="cursor: pointer;" class="nav-link-btn">Ver Mis Citas</a>
 
     <ng-content select="[extra-links]"></ng-content>
     

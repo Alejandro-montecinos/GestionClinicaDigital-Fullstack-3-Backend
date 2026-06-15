@@ -1,151 +1,103 @@
-import { Component, inject } from '@angular/core';
-import { NavbarComponent } from '../navbar-component/navbar-component';
-import {
-  FormBuilder,
-  FormGroup,
-  Validators,
-  ReactiveFormsModule
-} from '@angular/forms';
-
+import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-import { ConsultaMedicaServices } from '../../services/consulta-medica-services';
-
-import { ConsultaMedicaModel } from '../../models/consultaMedicaModel';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms'; // <-- Agregado ReactiveFormsModule
+import { ConsultaMedicaService } from '../../services/consulta-medica-services';
+import { ConsultaMedica } from '../../models/consultaMedicaModel';
+import { NavbarComponent } from '../navbar-component/navbar-component';
 
 @Component({
-  selector: 'app-consulta-medica-component',
-
+  selector: 'app-consulta-medica',
   standalone: true,
-
-  imports: [
-    ReactiveFormsModule,
-    CommonModule,
-    NavbarComponent
-  ],
-
+  imports: [CommonModule, ReactiveFormsModule, NavbarComponent],
   templateUrl: './consulta-medica-component.html',
-
-  styleUrl: './consulta-medica-component.scss'
+  styleUrls: ['./consulta-medica-component.scss']
 })
-
-export class ConsultaMedicaComponent {
-
+export class ConsultaMedicaComponent implements OnInit {
   private fb = inject(FormBuilder);
+  private consultaService = inject(ConsultaMedicaService);
 
-  private consultaService = inject(ConsultaMedicaServices);
+  // Variables requeridas de forma exacta por tu HTML
+  consultaForm!: FormGroup;
+  consultas: ConsultaMedica[] = [];
+  cargando: boolean = false;
+  mensajeExito: string | null = null;
+  mensajeError: string | null = null;
+  
+  idMedicoLogueado: number = 1;
+  nombreDoctor: string = 'Especialista';
 
-  consultaForm: FormGroup;
+  ngOnInit(): void {
+    this.obtenerDatosDoctor();
+    this.inicializarFormulario();
+    this.cargarConsultas();
+  }
 
-  cargando = false;
-
-  mensajeExito = '';
-
-  mensajeError = '';
-
-  consultas: ConsultaMedicaModel[] = [];
-
-  constructor() {
-
+  inicializarFormulario(): void {
+    // Vinculado con los formControlName de tu HTML
     this.consultaForm = this.fb.group({
-
       fechaConsulta_ConsultaMedica: ['', Validators.required],
-
-      sintomas_ConsultaMedica: ['', [
-        Validators.required,
-        Validators.minLength(3)
-      ]],
-
-      observaciones_ConsultaMedica: ['', [
-        Validators.required,
-        Validators.minLength(5)
-      ]],
-
-      diagnostico_ConsultaMedica: ['', [
-        Validators.required,
-        Validators.minLength(3)
-      ]],
-
-      pacienteId: [null, Validators.required],
-
-      medicoId: [null, Validators.required]
-
+      sintomas_ConsultaMedica: ['', Validators.required],
+      observaciones_ConsultaMedica: ['', Validators.required],
+      diagnostico_ConsultaMedica: ['', Validators.required],
+      medico_idMedico: [this.idMedicoLogueado]
     });
-
   }
 
-  campoInvalido(campo: string): boolean {
-
-    const control = this.consultaForm.get(campo);
-
-    return !!control && control.invalid && control.touched;
-
+  obtenerDatosDoctor(): void {
+    const usuarioRaw = localStorage.getItem('usuario') || localStorage.getItem('persona');
+    if (usuarioRaw) {
+      const datos = JSON.parse(usuarioRaw);
+      const idDetectado = datos.idMedico || datos.id_medico || datos.medico_idMedico || datos.id;
+      this.idMedicoLogueado = idDetectado ? Number(idDetectado) : 1;
+      this.nombreDoctor = datos.nombre || datos.persona?.nombre || 'Doctor(a)';
+    }
   }
 
-  async registrarConsulta() {
+  cargarConsultas(): void {
+    this.consultaService.listarConsultas().subscribe({
+      next: (data: ConsultaMedica[]) => {
+        if (data && data.length > 0) {
+          // Filtramos para que el doctor solo visualice su historial
+          this.consultas = data.filter(c => Number(c.medico_idMedico) === Number(this.idMedicoLogueado));
+        } else {
+          this.consultas = [];
+        }
+      },
+      error: (err) => {
+        console.error('Error al cargar el historial:', err);
+      }
+    });
+  }
 
-    this.mensajeExito = '';
-
-    this.mensajeError = '';
-
+  // Este es el método exacto (ngSubmit) que busca tu HTML
+  registrarConsulta(): void {
     if (this.consultaForm.invalid) {
-
-      this.consultaForm.markAllAsTouched();
-
+      this.mensajeError = 'Por favor, rellene todos los campos obligatorios.';
       return;
     }
 
     this.cargando = true;
+    this.mensajeExito = null;
+    this.mensajeError = null;
 
-    try {
+    // Aseguramos que viaje con el ID del médico actual
+    this.consultaForm.patchValue({ medico_idMedico: this.idMedicoLogueado });
 
-      const nuevaConsulta: ConsultaMedicaModel = {
-
-        ...this.consultaForm.getRawValue()
-
-      };
-
-      const respuesta = await this.consultaService.crearConsulta(nuevaConsulta);
-
-      this.consultas.push(respuesta);
-      
-      console.log('Consulta registrada:', respuesta);
-
-      this.mensajeExito = 'Consulta médica registrada correctamente.';
-      setTimeout(() => {
-
-        this.mensajeExito = '';
-
-      }, 4000);
-      this.consultaForm.reset({
-
-        fechaConsulta_ConsultaMedica: '',
-
-        sintomas_ConsultaMedica: '',
-
-        observaciones_ConsultaMedica: '',
-
-        diagnostico_ConsultaMedica: '',
-
-        pacienteId: null,
-
-        medicoId: null
-
-      });
-
-    } catch (error) {
-
-      console.error(error);
-
-      this.mensajeError =
-        'Error al registrar la consulta médica.';
-
-    } finally {
-
-      this.cargando = false;
-
-    }
-
+    this.consultaService.crearConsulta(this.consultaForm.value).subscribe({
+      next: (respuesta: ConsultaMedica) => {
+        this.mensajeExito = '¡La consulta médica ha sido registrada con éxito!';
+        this.consultaForm.get('fechaConsulta_ConsultaMedica')?.reset();
+        this.consultaForm.get('sintomas_ConsultaMedica')?.reset();
+        this.consultaForm.get('observaciones_ConsultaMedica')?.reset();
+        this.consultaForm.get('diagnostico_ConsultaMedica')?.reset();
+        this.cargando = false;
+        this.cargarConsultas(); // Recargamos la tabla automáticamente
+      },
+      error: (err: any) => {
+        console.error('Error al guardar:', err);
+        this.mensajeError = 'Hubo un problema al procesar la consulta en el servidor.';
+        this.cargando = false;
+      }
+    });
   }
-
 }
